@@ -32,10 +32,10 @@ export default function VerificationForm() {
     //TODO: Do something with the form values for verification.
     const res = await verifyOTP(values);
 
-    toast[res.success ? "success" : "error"](res.message);
-
     if (res.success) {
       router.push("/success");
+    } else {
+      toast.error(res.message);
     }
   }
 

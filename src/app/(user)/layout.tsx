@@ -12,7 +12,7 @@ export default async function AdminLayout({
 
   return (
     <div className="relative">
-      <main className="flex flex-col gap-6 min-h-[calc(100svh-60px)]">
+      <main className="flex flex-col gap-6 min-h-[calc(100svh-60px)] w-full">
         {children}
       </main>
       <Footer />

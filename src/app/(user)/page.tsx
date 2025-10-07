@@ -1,7 +1,10 @@
+import NavUser from '@/components/nav/nav-user'
 import React from 'react'
 
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <>
+      <NavUser />
+    </>
   )
 }
