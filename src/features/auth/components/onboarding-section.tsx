@@ -91,7 +91,7 @@ export default function OnboardingSection() {
 
       <Section>
         <article className="flex flex-col gap-3 mt-8">
-          <PageHeading className="text-center">
+          <PageHeading className="text-center text-primary">
             Keep track of your calcium intake, keep your bones healthy.
           </PageHeading>
           <p className="text-center text-sm text-muted-foreground">
