@@ -90,7 +90,7 @@ export default function OnboardingSection() {
       </Section>
 
       <Section>
-        <article className="flex flex-col gap-3">
+        <article className="flex flex-col gap-3 mt-8">
           <PageHeading className="text-center">
             Keep track of your calcium intake, keep your bones healthy.
           </PageHeading>
