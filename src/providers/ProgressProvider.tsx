@@ -6,7 +6,7 @@ const ProgressProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <ProgressProvider
       height="4px"
-      color="#2563EB"
+      color="#251D70"
       options={{ showSpinner: false }}
       shallowRouting
     >

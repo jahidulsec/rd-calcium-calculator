@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -20,4 +21,12 @@ const Footer = () => {
   );
 };
 
-export { Footer };
+const RDFooter = () => {
+  return (
+    <footer className="my-3 flex justify-center">
+      <Image width={150} height={41} src={"/images/rd-logo.png"} alt="" />
+    </footer>
+  );
+};
+
+export { Footer, RDFooter };

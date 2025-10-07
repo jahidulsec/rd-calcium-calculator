@@ -1,4 +1,4 @@
-import { Footer } from "@/components/footer/footer";
+import { RDFooter } from "@/components/footer/footer";
 import React from "react";
 
 export default async function AdminLayout({
@@ -6,10 +6,8 @@ export default async function AdminLayout({
 }: React.PropsWithChildren) {
   return (
     <div className="relative">
-      <main className="flex flex-col gap-6 min-h-[calc(100svh-60px)]">
-        {children}
-      </main>
-      <Footer />
+      <main className="min-h-[calc(100svh-70px)]">{children}</main>
+      <RDFooter />
     </div>
   );
 }

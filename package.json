@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 5011",
-    "build": "next build --turbopack",
+    "dev": "next dev -p 5011",
+    "build": "next build",
     "start": "next start -p 5011",
     "lint": "eslint",
     "deploy": "sh scripts/deploy.sh"
@@ -16,6 +16,8 @@
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "jose": "^6.1.0",
     "lucide-react": "^0.545.0",
     "next": "15.5.4",
