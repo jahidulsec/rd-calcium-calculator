@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -65,8 +64,14 @@ export default function VerificationForm() {
           />
 
           <div className="flex flex-col gap-1 my-1">
-            <p className="text-xs text-muted-foreground">OTP Will Send By a Phone Number.</p>
-            <Button variant={"link"} className="text-secondary w-fit px-0" type="button">
+            <p className="text-xs text-muted-foreground">
+              OTP Will Send By a Phone Number.
+            </p>
+            <Button
+              variant={"link"}
+              className="text-secondary w-fit px-0"
+              type="button"
+            >
               Resend Code
             </Button>
           </div>
