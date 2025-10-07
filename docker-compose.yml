@@ -1,0 +1,9 @@
+services:
+  calcium_calculator:
+    build: .
+    container_name: calcium_calculator
+    restart: always
+    ports:
+      - "5011:5011"
+    env_file:
+      - .env
