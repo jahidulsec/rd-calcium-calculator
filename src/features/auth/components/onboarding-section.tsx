@@ -103,7 +103,7 @@ export default function OnboardingSection({
             {data.images[current - 1]?.desc}
           </p>
 
-          <Button className="mt-6" asChild size={"lg"}>
+          <Button className="mt-6 font-bold" asChild size={"lg"}>
             <Link href={"/login"}>
               {data.buttonTitle} <ArrowRight />
             </Link>

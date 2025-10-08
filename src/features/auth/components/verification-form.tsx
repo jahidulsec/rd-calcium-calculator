@@ -76,7 +76,7 @@ export default function VerificationForm() {
             </Button>
           </div>
 
-          <FormButton size={"lg"}>Continue</FormButton>
+          <FormButton className="font-bold" size={"lg"}>Continue</FormButton>
         </form>
       </Form>
     </Section>

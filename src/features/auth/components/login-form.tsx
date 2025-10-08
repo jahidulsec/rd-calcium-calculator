@@ -63,7 +63,7 @@ export default function LoginForm() {
             )}
           />
 
-          <FormButton size={"lg"}>Login</FormButton>
+          <FormButton size={"lg"} className="font-bold">Login</FormButton>
         </form>
       </Form>
     </Section>
