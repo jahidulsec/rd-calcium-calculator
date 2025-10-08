@@ -14,6 +14,7 @@ import { PageHeading } from "@/components/typography/heading";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { DictionaryType } from "@/lib/dictionaries";
 
 const imageData = [
   {
@@ -28,7 +29,11 @@ and other complications, and affect the baby’s bone and teeth development.`,
   },
 ];
 
-export default function OnboardingSection() {
+export default function OnboardingSection({
+  data,
+}: {
+  data: DictionaryType["onboarding"];
+}) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -62,7 +67,7 @@ export default function OnboardingSection() {
           setApi={setApi}
         >
           <CarouselContent>
-            {imageData.map((item, index) => (
+            {data.images.map((item, index) => (
               <CarouselItem key={index}>
                 <div className="w-full aspect-square bg-muted pt-10">
                   <div className="relative w-full aspect-square">
@@ -92,15 +97,15 @@ export default function OnboardingSection() {
       <Section>
         <article className="flex flex-col gap-3 mt-8">
           <PageHeading className="text-center text-primary">
-            Keep track of your calcium intake, keep your bones healthy.
+            {data.title}
           </PageHeading>
           <p className="text-center text-sm text-muted-foreground">
-            {imageData[current - 1]?.desc}
+            {data.images[current - 1]?.desc}
           </p>
 
           <Button className="mt-6" asChild size={"lg"}>
             <Link href={"/login"}>
-              Calculate Now <ArrowRight />
+              {data.buttonTitle} <ArrowRight />
             </Link>
           </Button>
         </article>

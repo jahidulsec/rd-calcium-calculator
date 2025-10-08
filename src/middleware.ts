@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Locales } from "./lib/dictionaries";
 
-const locales = ["en", "bn"];
+const locales: Locales[] = ["en", "bn"];
 const defaultLocale = "en";
 
 // Get the preferred locale, similar to the above or using a library
@@ -8,6 +9,11 @@ const defaultLocale = "en";
 export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl;
+
+  // Skip API and static files (already handled)
+  if (pathname.startsWith("/api") || pathname.includes("."))
+    return NextResponse.next();
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
@@ -24,6 +30,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|public).*)",
   ],
 };
