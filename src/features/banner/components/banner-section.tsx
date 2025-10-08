@@ -25,8 +25,9 @@ export default function BannerSection() {
             delay: 2000,
           }),
         ]}
+        className="w-full"
       >
-        <CarouselContent className="-mt-1 h-[200px]">
+        <CarouselContent>
           {data.map((item) => (
             <CarouselItem key={item} className="pt-1 basis-[80%]">
               <div className="relative w-full aspect-[16/6] rounded-md overflow-hidden bg-muted">
