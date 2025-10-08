@@ -7,7 +7,7 @@ import React from "react";
 export default function HomePage() {
   return (
     <>
-      <NavUser />
+      <NavUser showProfile />
       <BannerSection />
       <CalculatorSection />
       <BlogSection />

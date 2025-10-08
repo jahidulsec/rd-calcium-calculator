@@ -4,19 +4,23 @@ import React from "react";
 const PageHeading = ({ className, ...props }: React.ComponentProps<"h2">) => {
   return (
     <h2
-      className={cn(
-        "text-xl font-semibold text-balance",
-        className
-      )}
+      className={cn("text-xl font-semibold text-balance", className)}
       {...props}
     />
   );
 };
 
-const PageSubtitle = ({ className, ...props }: React.ComponentProps<"h2">) => {
+const PageSubtitle = ({ className, ...props }: React.ComponentProps<"p">) => {
   return (
     <p className={cn("text-xs text-muted-foreground", className)} {...props} />
   );
 };
 
-export { PageHeading, PageSubtitle };
+const PageDescription = ({
+  className,
+  ...props
+}: React.ComponentProps<"p">) => {
+  return <p className={cn("text-sm", className)} {...props} />;
+};
+
+export { PageHeading, PageSubtitle, PageDescription };
