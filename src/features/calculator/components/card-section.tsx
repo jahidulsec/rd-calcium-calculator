@@ -109,7 +109,7 @@ const Card = ({
       {/* left */}
       <div className="relative min-w-20 max-h-20 m-auto aspect-square rounded-md overflow-hidden bg-muted">
         <Image
-          src={"/images/blog1.jpg"}
+          src={item.image}
           fill
           alt={item.item}
           objectFit="cover"

@@ -34,336 +34,284 @@
   "food": [
     {
       "item": "দুধ (ফুল ক্রিম)",
-      "categories": [
-        "breakfast",
-        "evening-snacks",
-        "dinner"
-      ],
+      "categories": ["breakfast", "evening-snacks", "dinner"],
       "calcium_mg": 305,
       "calcium_value": "৩০৫ মি.গ্রা.",
-      "unit": "ফুল ক্রিম"
+      "unit": "ফুল ক্রিম",
+      "image": "/images/food/milk.jpg"
     },
     {
       "item": "চা/কফি (দুধ সহ, ১ কাপ)",
-      "categories": [
-        "breakfast",
-        "evening-snacks"
-      ],
+      "categories": ["breakfast", "evening-snacks"],
       "calcium_mg": 45,
       "calcium_value": "৪৫ মি.গ্রা.",
-      "unit": "১ কাপ"
+      "unit": "১ কাপ",
+      "image": "/images/food/coffee.jpg"
     },
     {
       "item": "চিয়া সিড (২ টেবিল চামচ)",
-      "categories": [
-        "breakfast"
-      ],
+      "categories": ["breakfast"],
       "calcium_mg": 125,
       "calcium_value": "১২৫ মি.গ্রা.",
-      "unit": "২ টেবিল চামচ"
+      "unit": "২ টেবিল চামচ",
+      "image": "/images/food/chia seed.jpg"
     },
     {
       "item": "ডিম (১ টি)",
-      "categories": [
-        "breakfast"
-      ],
+      "categories": ["breakfast"],
       "calcium_mg": 50,
       "calcium_value": "৫০ মি.গ্রা.",
-      "unit": "১ টি"
+      "unit": "১ টি",
+      "image": "/images/food/eggs.jpg"
     },
     {
       "item": "রুটি (১ টি)",
-      "categories": [
-        "breakfast"
-      ],
+      "categories": ["breakfast"],
       "calcium_mg": 30,
       "calcium_value": "৩০ মি.গ্রা.",
-      "unit": "১ টি"
+      "unit": "১ টি",
+      "image": "/images/food/Roti.jpg"
     },
     {
       "item": "মিশ্র সবজি (১ কাপ)",
-      "categories": [
-        "breakfast"
-      ],
+      "categories": ["breakfast"],
       "calcium_mg": 60,
       "calcium_value": "৬০ মি.গ্রা.",
-      "unit": "১ কাপ"
+      "unit": "১ কাপ",
+      "image": "/images/food/Mixed vegetables.jpg"
     },
     {
       "item": "কলা (১ টি)",
-      "categories": [
-        "breakfast",
-        "evening-snacks"
-      ],
+      "categories": ["breakfast", "evening-snacks"],
       "calcium_mg": 10,
       "calcium_value": "১০ মি.গ্রা.",
-      "unit": "১ টি"
+      "unit": "১ টি",
+      "image": "/images/food/Banana.jpg"
     },
     {
       "item": "কমলা (মাঝারি)",
-      "categories": [
-        "breakfast",
-        "evening-snacks"
-      ],
+      "categories": ["breakfast", "evening-snacks"],
       "calcium_mg": 55,
       "calcium_value": "৫৫ মি.গ্রা.",
-      "unit": "মাঝারি"
+      "unit": "মাঝারি",
+      "image": "/images/food/Orange.jpg"
     },
     {
       "item": "পাউরুটি (১ স্লাইস)",
-      "categories": [
-        "breakfast"
-      ],
+      "categories": ["breakfast"],
       "calcium_mg": 30,
       "calcium_value": "৩০ মি.গ্রা.",
-      "unit": "১ স্লাইস"
+      "unit": "১ স্লাইস",
+      "image": "/images/food/Bread.jpg"
     },
     {
       "item": "পনির / ছানা",
-      "categories": [
-        "breakfast"
-      ],
+      "categories": ["breakfast"],
       "calcium_mg": 320,
       "calcium_value": "৩২০ মি.গ্রা.",
-      "unit": "unit"
+      "unit": "unit",
+      "image": "/images/food/cheese.jpg"
     },
     {
       "item": "বাদাম (১ মুঠো)",
-      "categories": [
-        "breakfast",
-        "evening-snacks"
-      ],
+      "categories": ["breakfast", "evening-snacks"],
       "calcium_mg": 30,
       "calcium_value": "৩০ মি.গ্রা.",
-      "unit": "১ মুঠো"
+      "unit": "১ মুঠো",
+      "image": "/images/food/nuts.jpg"
     },
     {
       "item": "তিল (১ চা চামচ)",
-      "categories": [
-        "breakfast"
-      ],
+      "categories": ["breakfast"],
       "calcium_mg": 100,
       "calcium_value": "১০০ মি.গ্রা.",
-      "unit": "১ চা চামচ"
+      "unit": "১ চা চামচ",
+      "image": "/images/food/sesame-seeds-.jpg"
     },
     {
       "item": "খিচুড়ি (১ বাটি)",
-      "categories": [
-        "breakfast",
-        "lunch"
-      ],
+      "categories": ["breakfast", "lunch"],
       "calcium_mg": 30,
       "calcium_value": "৩০ মি.গ্রা.",
-      "unit": "১ বাটি"
+      "unit": "১ বাটি",
+      "image": "/images/food/Hotchpotch.jpeg"
     },
     {
       "item": "ওটমিল (১ কাপ)",
-      "categories": [
-        "breakfast",
-        "lunch",
-        "dinner"
-      ],
+      "categories": ["breakfast", "lunch", "dinner"],
       "calcium_mg": 125,
       "calcium_value": "১২৫ মি.গ্রা.",
-      "unit": "১ কাপ"
+      "unit": "১ কাপ",
+      "image": "/images/food/oatmeal.jpg"
     },
     {
       "item": "নুডলস (১ বাটি)",
-      "categories": [
-        "breakfast",
-        "evening-snacks"
-      ],
+      "categories": ["breakfast", "evening-snacks"],
       "calcium_mg": 30,
       "calcium_value": "৩০ মি.গ্রা.",
-      "unit": "১ বাটি"
+      "unit": "১ বাটি",
+      "image": "/images/food/noodles.jpg"
     },
     {
       "item": "ভাত (১০০ গ্রাম)",
-      "categories": [
-        "breakfast",
-        "lunch",
-        "dinner"
-      ],
+      "categories": ["breakfast", "lunch", "dinner"],
       "calcium_mg": 10,
       "calcium_value": "১০ মি.গ্রা.",
-      "unit": "১০০ গ্রাম"
+      "unit": "১০০ গ্রাম",
+      "image": "/images/food/rice.jpg"
     },
     {
       "item": "ডাল (মসুর/মুগ, ১ কাপ)",
-      "categories": [
-        "lunch",
-        "dinner"
-      ],
+      "categories": ["lunch", "dinner"],
       "calcium_mg": 50,
       "calcium_value": "৫০ মি.গ্রা.",
-      "unit": "১ কাপ"
+      "unit": "১ কাপ",
+      "image": "/images/food/daal.webp"
     },
     {
       "item": "শাকসবজি (পালং, লাল শাক, মুলা শাক ইত্যাদি)",
-      "categories": [
-        "lunch",
-        "dinner"
-      ],
+      "categories": ["lunch", "dinner"],
       "calcium_mg": 350,
       "calcium_value": "৩৫০ মি.গ্রা.",
-      "unit": "unit"
+      "unit": "unit",
+
+      "image": "/images/food/Green leafy vegetables.jpg"
     },
     {
       "item": "সিদ্ধ সয়াবিন (১ কাপ)",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 176,
       "calcium_value": "১৭৬ মি.গ্রা.",
-      "unit": "১ কাপ"
+      "unit": "১ কাপ",
+      "image": "/images/food/Boiled soybeans.jpg"
     },
     {
       "item": "রাজমা",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 130,
       "calcium_value": "১৩০ মি.গ্রা.",
-      "unit": "unit"
+      "unit": "unit",
+      "image": "/images/food/Kidney bean.jpg"
     },
     {
       "item": "রুই মাছ (১ পিস)",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 200,
       "calcium_value": "২০০ মি.গ্রা.",
-      "unit": "১ পিস"
+      "unit": "১ পিস",
+      "image": "/images/food/Rui fish.webp"
     },
     {
       "item": "ইলিশ মাছ (১ পিস)",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 150,
       "calcium_value": "১৫০ মি.গ্রা.",
-      "unit": "১ পিস"
+      "unit": "১ পিস",
+      "image": "/images/food/Elish Fish.jpg"
     },
     {
       "item": "শুকনা মাছ (প্রতি ১০০ গ্রাম)",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 1200,
       "calcium_value": "১২০০ মি.গ্রা.",
-      "unit": "প্রতি ১০০ গ্রাম"
+      "unit": "প্রতি ১০০ গ্রাম",
+      "image": "/images/food/Dried Fish .jpg"
     },
     {
       "item": "কাচকি মাছ",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 700,
       "calcium_value": "৭০০ মি.গ্রা.",
-      "unit": "unit"
+      "unit": "unit",
+      "image": "/images/food/Kachki fish .jpeg"
     },
     {
       "item": "মুরগি (১ মাঝারি পিস)",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 11,
       "calcium_value": "১১ মি.গ্রা.",
-      "unit": "১ মাঝারি পিস"
+      "unit": "১ মাঝারি পিস",
+      "image": "/images/food/chicken leg.jpg"
     },
     {
       "item": "গরুর মাংস (১০০ গ্রাম)",
-      "categories": [
-        "lunch"
-      ],
+      "categories": ["lunch"],
       "calcium_mg": 18,
       "calcium_value": "১৮ মি.গ্রা.",
-      "unit": "১০০ গ্রাম"
+      "unit": "১০০ গ্রাম",
+      "image": "/images/food/meat.jpg"
     },
     {
       "item": "দই",
-      "categories": [
-        "lunch",
-        "dinner"
-      ],
+      "categories": ["lunch", "dinner"],
       "calcium_mg": 110,
       "calcium_value": "১১০ মি.গ্রা.",
-      "unit": "unit"
+      "unit": "unit",
+      "image": "/images/food/Dhoi.jpg"
     },
     {
       "item": "পায়েশ (১ বাটি)",
-      "categories": [
-        "lunch",
-        "dinner"
-      ],
+      "categories": ["lunch", "dinner"],
       "calcium_mg": 150,
       "calcium_value": "১৫০ মি.গ্রা.",
-      "unit": "১ বাটি"
+      "unit": "১ বাটি",
+      "image": "/images/food/payesh.jpg"
     },
     {
       "item": "পুডিং (১ সার্ভিং)",
-      "categories": [
-        "lunch",
-        "evening-snacks",
-        "dinner"
-      ],
+      "categories": ["lunch", "evening-snacks", "dinner"],
       "calcium_mg": 106,
       "calcium_value": "১০৬ মি.গ্রা.",
-      "unit": "১ সার্ভিং"
+      "unit": "১ সার্ভিং",
+      "image": "/images/food/pudding.jpg"
     },
     {
       "item": "আপেল (১ টি)",
-      "categories": [
-        "evening-snacks"
-      ],
+      "categories": ["evening-snacks"],
       "calcium_mg": 10,
       "calcium_value": "১০ মি.গ্রা.",
-      "unit": "১ টি"
+      "unit": "১ টি",
+      "image": "/images/food/apple.png"
     },
     {
       "item": "পেয়ারা (১ টি)",
-      "categories": [
-        "evening-snacks"
-      ],
+      "categories": ["evening-snacks"],
       "calcium_mg": 30,
       "calcium_value": "৩০ মি.গ্রা.",
-      "unit": "১ টি"
+      "unit": "১ টি",
+      "image": "/images/food/Guava.jpg"
     },
     {
       "item": "বিস্কুট",
-      "categories": [
-        "evening-snacks"
-      ],
+      "categories": ["evening-snacks"],
       "calcium_mg": 50,
       "calcium_value": "৫০ মি.গ্রা.",
-      "unit": "unit"
+      "unit": "unit",
+      "image": "/images/food/biscuit.jpg"
     },
     {
       "item": "মাংস (১ পিস)",
-      "categories": [
-        "dinner"
-      ],
+      "categories": ["dinner"],
       "calcium_mg": 30,
       "calcium_value": "৩০ মি.গ্রা.",
-      "unit": "১ পিস"
+      "unit": "১ পিস",
+      "image": "/images/food/meat.jpg"
     },
     {
       "item": "মাছ (১ পিস)",
-      "categories": [
-        "dinner"
-      ],
+      "categories": ["dinner"],
       "calcium_mg": 200,
       "calcium_value": "২০০ মি.গ্রা.",
-      "unit": "১ পিস"
+      "unit": "১ পিস",
+      "image": "/images/food/fish.jpg"
     },
     {
       "item": "খেজুর (২ টি)",
-      "categories": [
-        "dinner"
-      ],
+      "categories": ["dinner"],
       "calcium_mg": 20,
       "calcium_value": "২০ মি.গ্রা.",
-      "unit": "২ টি"
+      "unit": "২ টি",
+      "image": "/images/food/dates.jpg"
     }
   ]
 }
