@@ -350,5 +350,10 @@
         "image": "/images/blog2.jpg"
       }
     ]
+  },
+  "calculator": {
+    "pagetitle": "Add Your Food",
+    "subtitle": "Calculate how much you usually consume each day for each food type. Below are the approximate calcium amounts per standard serving.",
+    "buttonTitle": "Calculate Now"
   }
 }

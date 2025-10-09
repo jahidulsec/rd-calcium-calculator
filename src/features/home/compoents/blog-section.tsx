@@ -14,21 +14,6 @@ import {
 } from "@/components/ui/carousel";
 import { DictionaryType } from "@/lib/dictionaries";
 
-const blogs = [
-  {
-    title: "Without Vitamin D, Your Body Can’t Absorb Calcium Properly",
-    readTime: 5,
-    desc: "Track, manage, and improve your calcium intake with one smart app.",
-    image: "/images/blog1.jpg",
-  },
-  {
-    title: "The Smart Way to Take Care of Your Calcium Needs",
-    readTime: 5,
-    desc: "Stay on top of your bone health with reminders, tracking, and expert tips.",
-    image: "/images/blog2.jpg",
-  },
-];
-
 export default function BlogSection({
   data,
 }: {

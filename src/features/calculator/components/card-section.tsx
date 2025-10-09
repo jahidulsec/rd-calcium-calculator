@@ -20,11 +20,7 @@ import { Food, useCalculatorContext } from "@/providers/calculator-provider";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export default function CardSection({
-  data,
-}: {
-  data: DictionaryType["food"];
-}) {
+export default function CardSection({ data }: { data: DictionaryType }) {
   const { foods, onFoods } = useCalculatorContext();
 
   const searchParams = useSearchParams();
@@ -33,7 +29,7 @@ export default function CardSection({
   return (
     <Section className="relative min-h-[calc(100svh-200px)] flex flex-col">
       <div className="flex flex-col gap-3">
-        {data
+        {data.food
           .filter((food) => food.categories.includes(validatedCategory))
           .map((item) => (
             <Card
@@ -79,7 +75,7 @@ export default function CardSection({
 
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">
         <Button className="w-full font-bold" asChild>
-          <Link href={`/result`}>Calculate Now</Link>
+          <Link href={`/result`}>{data.calculator.buttonTitle}</Link>
         </Button>
       </div>
     </Section>
@@ -107,13 +103,10 @@ const Card = ({
   return (
     <div className="border rounded-md p-3 flex gap-5 w-full">
       {/* left */}
-      <div className="relative min-w-20 max-h-20 m-auto aspect-square rounded-md overflow-hidden bg-muted">
-        <Image
-          src={item.image}
-          fill
-          alt={item.item}
-          objectFit="cover"
-        />
+      <div className="min-w-20 max-h-20 m-auto flex justify-center items-center rounded-md overflow-hidden bg-muted">
+        <div className="relative w-full  aspect-square mix-blend-multiply">
+          <Image src={item.image} fill alt={item.item} objectFit="cover" />
+        </div>
       </div>
 
       {/* right */}
@@ -134,7 +127,7 @@ const Card = ({
           {selected ? (
             <Button
               size={"icon-sm"}
-              className={cn("rounded-full", selected ? "bg-chart-2" : '')}
+              className={cn("rounded-full", selected ? "bg-chart-2" : "")}
               disabled={disable}
               onClick={() =>
                 onDelete({

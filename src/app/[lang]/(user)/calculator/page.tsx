@@ -13,17 +13,16 @@ export default async function CalculatorPage({ params }: { params: params }) {
 
   return (
     <>
-      <NavUser showBackButton pageTitle="Add Your Food" />
+      <NavUser showBackButton pageTitle={dict.calculator.pagetitle} />
       <Section className="-mt-6">
         <PageDescription>
-          Calculate how much you usually consume each day for each food type.
-          Below are the approximate calcium amounts per standard serving.
+          {dict.calculator.subtitle}
         </PageDescription>
       </Section>
 
       <TabSection data={dict.category} />
 
-      <CardSection data={dict.food} />
+      <CardSection data={dict} />
     </>
   );
 }
