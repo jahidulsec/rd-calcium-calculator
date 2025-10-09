@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Locales } from "./lib/dictionaries";
+import { cookies } from "next/headers";
 
-const locales: Locales[] = ["en", "bn"];
-const defaultLocale = "en";
+export async function middleware(request: NextRequest) {
+  const locales: Locales[] = ["en", "bn"];
+  const defaultLocale = "en";
 
-// Get the preferred locale, similar to the above or using a library
+  const cookie = await cookies();
+  const lang = cookie.get("lang_state")?.value ?? defaultLocale;
 
-export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl;
 
@@ -21,7 +23,7 @@ export function middleware(request: NextRequest) {
   if (pathnameHasLocale) return;
 
   // Redirect if there is no locale
-  const locale = defaultLocale;
+  const locale = lang;
   request.nextUrl.pathname = `/${locale}${pathname}`;
   // e.g. incoming request is /products
   // The new URL is now /en-US/products

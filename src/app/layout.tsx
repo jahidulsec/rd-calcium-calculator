@@ -14,13 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-manrepo antialiased`}>
-        <ProgressProviders>
-          {children}
-          <Toaster closeButton richColors position="top-right" />
-        </ProgressProviders>
-      </body>
-    </html>
+    <ProgressProviders>
+      {children}
+      <Toaster closeButton richColors position="top-right" />
+    </ProgressProviders>
   );
 }

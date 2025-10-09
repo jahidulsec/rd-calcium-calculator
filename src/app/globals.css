@@ -5,15 +5,23 @@
 
 @font-face {
   font-family: "Manrepo";
-  src: url('/fonts/Manrope.ttf');
+  src: url("/fonts/Manrope.ttf");
+}
+
+@font-face {
+  font-family: "Anek";
+  src: url("/fonts/Anek.ttf");
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-manrepo: var(--font-manrepo);
+  --font-anek: var(--font-anek);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -83,7 +91,8 @@
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.3033 0.136 278.84);
 
-  --font-manrepo: 'Manrepo';
+  --font-manrepo: "Manrepo";
+  --font-anek: "Anek";
 }
 
 .dark {
@@ -120,7 +129,6 @@
   --sidebar-ring: oklch(0.541 0.281 293.009);
 }
 
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -129,4 +137,12 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html[lang="en"] {
+  font-family: "Manrepo", sans-serif;
+}
+
+html[lang="bn"] {
+  font-family: "Anek", sans-serif;
 }
