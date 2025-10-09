@@ -320,5 +320,15 @@
   "loginForm": {
     "phoneLabel": "মোবাইল নম্বর",
     "buttonTitle": "লগইন করুন"
+  },
+  "verification": {
+    "pageTitle": "আপনার নম্বর নিশ্চিত করুন",
+    "subtitle": "আমরা একটি কোড পাঠিয়েছি "
+  },
+  "verificationForm": {
+    "label": "ভেরিফিকেশন কোড",
+    "desc": "OTP মোবাইল নম্বরে পাঠানো হবে",
+    "buttonTitle": "চালিয়ে যান",
+    "resend": "কোড আবার পাঠান"
   }
 }

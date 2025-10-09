@@ -20,8 +20,13 @@ import { verifyOTP } from "../actions/auth";
 import { toast } from "sonner";
 import { useRouter } from "@bprogress/next/app";
 import { Button } from "@/components/ui/button";
+import { DictionaryType } from "@/lib/dictionaries";
 
-export default function VerificationForm() {
+export default function VerificationForm({
+  data,
+}: {
+  data: DictionaryType["verificationForm"];
+}) {
   const form = useForm<VerificationFormType>({
     resolver: zodResolver(VerificationSchema),
   });
@@ -52,7 +57,7 @@ export default function VerificationForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="flex items-start">
-                  Verification Code{" "}
+                  {data.label}{" "}
                   <Asterisk className="text-destructive" size={10} />
                 </FormLabel>
                 <FormControl>
@@ -64,19 +69,19 @@ export default function VerificationForm() {
           />
 
           <div className="flex flex-col gap-1 my-1">
-            <p className="text-xs text-muted-foreground">
-              OTP Will Send By a Phone Number.
-            </p>
+            <p className="text-xs text-muted-foreground">{data.desc}</p>
             <Button
               variant={"link"}
               className="text-secondary w-fit px-0"
               type="button"
             >
-              Resend Code
+              {data.resend}
             </Button>
           </div>
 
-          <FormButton className="font-bold" size={"lg"}>Continue</FormButton>
+          <FormButton className="font-bold" size={"lg"}>
+            {data.buttonTitle}
+          </FormButton>
         </form>
       </Form>
     </Section>

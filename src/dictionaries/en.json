@@ -4,7 +4,7 @@
     "buttonTitle": "Calculate Now",
     "images": [
       {
-        "desc": "Deficiency may cause weak bones along with conditions like osteogenesis, tetany, and hypothyroidism.",
+        "desc": "Calcium deficiency may cause weak bones along with conditions like osteogenesis, tetany, and hypothyroidism.",
         "image": "/images/image-1.png"
       },
       {
@@ -319,5 +319,15 @@
   "loginForm": {
     "phoneLabel": "Phone Number",
     "buttonTitle": "Login"
+  },
+  "verification": {
+    "pageTitle": "Confirm your Number",
+    "subtitle": "We sent a code to "
+  },
+  "verificationForm": {
+    "label": "Verification Code ",
+    "desc": "OTP Will Send  By a  Phone  Number.",
+    "buttonTitle": "Continue",
+    "resend": "Resend Code"
   }
 }
