@@ -1,12 +1,17 @@
 import HeaderSection from "@/features/auth/components/header-section";
 import LoginForm from "@/features/auth/components/login-form";
+import { getDictionary, Locales } from "@/lib/dictionaries";
+import { params } from "@/types/search-params";
 import React from "react";
 
-export default function LoginPage() {
+export default async function LoginPage({ params }: { params: params }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang?.toString() as Locales);
+
   return (
     <>
-      <HeaderSection title="Let’s create your account" />
-      <LoginForm />
+      <HeaderSection title={dict.login.pageTitle} />
+      <LoginForm data={dict.loginForm} />
     </>
   );
 }

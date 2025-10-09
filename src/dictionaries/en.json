@@ -312,5 +312,12 @@
       "unit": "2 pieces",
       "image": "/images/food/dates.jpg"
     }
-  ]
+  ],
+  "login": {
+    "pageTitle": "Let’s create your account"
+  },
+  "loginForm": {
+    "phoneLabel": "Phone Number",
+    "buttonTitle": "Login"
+  }
 }

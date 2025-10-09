@@ -313,5 +313,12 @@
       "unit": "২ টি",
       "image": "/images/food/dates.jpg"
     }
-  ]
+  ],
+  "login": {
+    "pageTitle": "চলুন, আপনার অ্যাকাউন্ট তৈরি করি"
+  },
+  "loginForm": {
+    "phoneLabel": "মোবাইল নম্বর",
+    "buttonTitle": "লগইন করুন"
+  }
 }

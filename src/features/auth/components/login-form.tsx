@@ -19,8 +19,13 @@ import { FormButton } from "@/components/buttons/button";
 import { login } from "../actions/auth";
 import { toast } from "sonner";
 import { useRouter } from "@bprogress/next/app";
+import { DictionaryType } from "@/lib/dictionaries";
 
-export default function LoginForm() {
+export default function LoginForm({
+  data,
+}: {
+  data: DictionaryType["loginForm"];
+}) {
   const form = useForm<LoginFormType>({
     resolver: zodResolver(LoginSchema),
   });
@@ -51,7 +56,7 @@ export default function LoginForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="flex items-start">
-                  Phone Number{" "}
+                  {data.phoneLabel}{" "}
                   <Asterisk className="text-destructive" size={10} />
                 </FormLabel>
                 <FormControl>
@@ -63,7 +68,9 @@ export default function LoginForm() {
             )}
           />
 
-          <FormButton size={"lg"} className="font-bold">Login</FormButton>
+          <FormButton size={"lg"} className="font-bold">
+            {data.buttonTitle}
+          </FormButton>
         </form>
       </Form>
     </Section>
