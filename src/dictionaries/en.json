@@ -329,5 +329,26 @@
     "desc": "OTP Will Send  By a  Phone  Number.",
     "buttonTitle": "Continue",
     "resend": "Resend Code"
+  },
+  "verificationMessage": "Verification Successful",
+  "home": {
+    "cardButton": "Measure Your Daily Calcium Intake.",
+    "cardTtitle": "Calculate Now",
+    "blogSectionTitle": "Our Blogs & Tips",
+    "blogAllButton": "See all",
+    "blogs": [
+      {
+        "title": "Without Vitamin D, Your Body Can’t Absorb Calcium Properly",
+        "readTime": "5 min read",
+        "desc": "Track, manage, and improve your calcium intake with one smart app.",
+        "image": "/images/blog1.jpg"
+      },
+      {
+        "title": "The Smart Way to Take Care of Your Calcium Needs",
+        "readTime": "5 min read",
+        "desc": "Stay on top of your bone health with reminders, tracking, and expert tips.",
+        "image": "/images/blog2.jpg"
+      }
+    ]
   }
 }

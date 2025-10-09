@@ -12,6 +12,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { DictionaryType } from "@/lib/dictionaries";
 
 const blogs = [
   {
@@ -28,22 +29,26 @@ const blogs = [
   },
 ];
 
-export default function BlogSection() {
+export default function BlogSection({
+  data,
+}: {
+  data: DictionaryType["home"];
+}) {
   return (
     <Section className="flex flex-col gap-4">
       <div className="flex justify-between items-center gap-5">
-        <PageHeading className="font-bold">Our Blogs & Tips</PageHeading>
+        <PageHeading className="font-bold">{data.blogSectionTitle}</PageHeading>
         <Button asChild variant={"link"} className="text-secondary">
-          <Link href={`/blog`}>See All</Link>
+          <Link href={`/blog`}>{data.blogAllButton}</Link>
         </Button>
       </div>
 
-      <CardSection data={blogs} />
+      <CardSection data={data.blogs} />
     </Section>
   );
 }
 
-const CardSection = ({ data }: { data: typeof blogs }) => {
+const CardSection = ({ data }: { data: DictionaryType["home"]["blogs"] }) => {
   return (
     <div className="">
       <Carousel>
@@ -62,10 +67,12 @@ const CardSection = ({ data }: { data: typeof blogs }) => {
                     variant={"outline"}
                     className="bg-secondary/15 text-primary"
                   >
-                    {item.readTime} min read
+                    {item.readTime}
                   </Badge>
                   <h3 className="font-semibold line-clamp-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-3">{item.desc}</p>
+                  <p className="text-sm text-muted-foreground line-clamp-3">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             </CarouselItem>
