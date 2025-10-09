@@ -14,7 +14,7 @@ export default function BannerSection() {
   const data = ["/images/banner1.jpg", "/images/banner2.jpg"];
 
   return (
-    <Section>
+    <Section className="-mt-6">
       <Carousel
         opts={{
           align: "start",
