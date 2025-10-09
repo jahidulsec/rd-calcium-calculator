@@ -10,8 +10,13 @@ import { useCalculatorContext } from "@/providers/calculator-provider";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@bprogress/next";
 import { useParams } from "next/navigation";
+import { DictionaryType } from "@/lib/dictionaries";
 
-export default function ProgressSection() {
+export default function ProgressSection({
+  data,
+}: {
+  data: DictionaryType["result"];
+}) {
   const { foods, onFoods } = useCalculatorContext();
   const router = useRouter();
   const params = useParams();
@@ -28,21 +33,25 @@ export default function ProgressSection() {
   const validatedRemaingValue = value > 100 ? value - 100 : 100 - value;
   const remaining = maxTotal - consumed;
   const status =
-    value < 100 ? "Hypocalcemia" : value > 100 ? "Hypercalcemia" : "Normal";
+    value < 100
+      ? data.hypocalcemia
+      : value > 100
+      ? data.hypercalcemia
+      : data.normal;
 
   return (
     <>
       <div className="flex-1">
         <Section className="grid gap-6">
-          <Field title="Your Daily Calcium Requirement">
+          <Field title={data.pTitle1}>
             <div className="bg-secondary relative h-8 w-full overflow-hidden rounded-md flex justify-center items-center">
               <p className="text-background font-semibold">1600mg</p>
             </div>
           </Field>
-          <Field title="Your Daily Calcium Intake">
+          <Field title={data.pTitle2}>
             <Progress label={`${consumed}mg`} value={validatedValue} />
           </Field>
-          <Field title="Your Daily Calcium Requirement">
+          <Field title={value < 100 ? data.pTitle3lt : data.pTitle3gt}>
             <Progress
               value={Number(validatedRemaingValue)}
               label={`${Math.abs(remaining)}mg`}
@@ -52,7 +61,7 @@ export default function ProgressSection() {
 
         <Section className="flex justify-center items-center flex-col gap-5 mt-6">
           <p className="text-center text-sm text-balance font-medium">
-            Your % of RDA (Recommended Dietary <br /> Allowance)fulfilled?
+            {data.circleSectionTitle}
           </p>
           <CircularProgress progress={value} />
           <div
@@ -75,7 +84,11 @@ export default function ProgressSection() {
                   : "text-chart-2/10 fill-chart-2"
               )}
             />{" "}
-            <p className="font-semibold">You have {status}</p>
+            <p className="font-semibold">
+              {params.lang === "en"
+                ? `${data.resultCommonTitleFirst} ${data.resultCommonTitleEnd} ${status}`
+                : `${data.resultCommonTitleFirst} ${status} ${data.resultCommonTitleEnd}`}
+            </p>
           </div>
         </Section>
       </div>
@@ -88,7 +101,7 @@ export default function ProgressSection() {
             router.replace(`/${params.lang}/calculator`);
           }}
         >
-          Calculate Again
+          {data.buttonTitle}
         </Button>
       </Section>
     </>

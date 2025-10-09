@@ -355,5 +355,19 @@
     "pagetitle": "Add Your Food",
     "subtitle": "Calculate how much you usually consume each day for each food type. Below are the approximate calcium amounts per standard serving.",
     "buttonTitle": "Calculate Now"
+  },
+  "result": {
+    "sectionTitle": "Result Page",
+    "pTitle1": "Your Daily Calcium Requirement",
+    "pTitle2": " Your Daily Calcium Intake",
+    "pTitle3lt": "Your Calcium Deficiency",
+    "pTitle3gt": "You take too much calcium",
+    "circleSectionTitle": "Your % of RDA (Recommended Dietary Allowance)fulfilled?",
+    "resultCommonTitleFirst": "You",
+    "resultCommonTitleEnd": "have",
+    "hypercalcemia": "Hypercalcemia",
+    "hypocalcemia": "Hypocalcemia",
+    "normal": "Normal",
+    "buttonTitle": "Calculate Again"
   }
 }
