@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
-import ProgressProviders from "@/providers/ProgressProvider";
 
 export const metadata: Metadata = {
   title: "Calcium Calculator - Radiant Digital",
@@ -13,10 +11,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <ProgressProviders>
-      {children}
-      <Toaster closeButton richColors position="top-right" />
-    </ProgressProviders>
-  );
+  return <>{children}</>;
 }

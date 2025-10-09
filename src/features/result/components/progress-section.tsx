@@ -9,10 +9,12 @@ import React from "react";
 import { useCalculatorContext } from "@/providers/calculator-provider";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@bprogress/next";
+import { useParams } from "next/navigation";
 
 export default function ProgressSection() {
   const { foods, onFoods } = useCalculatorContext();
-  const router = useRouter()
+  const router = useRouter();
+  const params = useParams();
 
   const totalConsumed = foods.reduce(
     (prev, curr) => prev + curr.calcium_mg * curr.qty,
@@ -26,11 +28,7 @@ export default function ProgressSection() {
   const validatedRemaingValue = value > 100 ? value - 100 : 100 - value;
   const remaining = maxTotal - consumed;
   const status =
-    validatedValue < 100
-      ? "Hypocalcemia"
-      : validatedValue > 100
-      ? "Hypercalcemia"
-      : "Normal";
+    value < 100 ? "Hypocalcemia" : value > 100 ? "Hypercalcemia" : "Normal";
 
   return (
     <>
@@ -56,28 +54,42 @@ export default function ProgressSection() {
           <p className="text-center text-sm text-balance font-medium">
             Your % of RDA (Recommended Dietary <br /> Allowance)fulfilled?
           </p>
-          <CircularProgress progress={validatedValue} />
+          <CircularProgress progress={value} />
           <div
             className={cn(
               " w-full flex justify-center items-center gap-2 h-10 rounded-md",
-              validatedValue < 100
+              value < 100
                 ? "bg-chart-5/10 text-chart-5"
-                : validatedValue > 100
+                : value > 100
                 ? "bg-destructive/10 text-destructive"
                 : "bg-chart-2/10 text-chart-2"
             )}
           >
-            <Circle className="fill-chart-4/50 text-chart-4/50 size-3.5" />{" "}
+            <Circle
+              className={cn(
+                "fill-chart-4/50 text-chart-4/50 size-3.5",
+                value < 100
+                  ? "text-chart-5/10 fill-chart-5"
+                  : value > 100
+                  ? "text-destructive/10 fill-destructive"
+                  : "text-chart-2/10 fill-chart-2"
+              )}
+            />{" "}
             <p className="font-semibold">You have {status}</p>
           </div>
         </Section>
       </div>
 
       <Section>
-        <Button className="font-bold w-full" onClick={() => {
-            onFoods([])
-            router.replace('/calculator')
-        }}>Calculate Again</Button>
+        <Button
+          className="font-bold w-full"
+          onClick={() => {
+            onFoods([]);
+            router.replace(`/${params.lang}/calculator`);
+          }}
+        >
+          Calculate Again
+        </Button>
       </Section>
     </>
   );

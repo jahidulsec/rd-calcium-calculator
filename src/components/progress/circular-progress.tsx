@@ -110,15 +110,15 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
               <div
                 className={cn(
                   "text-xs font-semibold w-[90px] aspect-square flex justify-center items-center rounded-full",
-                  pct < 100
+                  progress < 100
                     ? "bg-chart-4/10 text-chart-5"
-                    : pct == 100
+                    : progress == 100
                     ? "bg-chart-2/10 text-chart-2"
                     : "bg-destructive/10 text-destructive"
                 )}
                 aria-hidden
               >
-                {pct}% <br /> Calcium
+                {Math.round(progress)}% <br /> Calcium
               </div>
             )}
           </div>

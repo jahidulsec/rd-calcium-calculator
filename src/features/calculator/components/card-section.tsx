@@ -15,7 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { Food, useCalculatorContext } from "@/providers/calculator-provider";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -24,6 +24,7 @@ export default function CardSection({ data }: { data: DictionaryType }) {
   const { foods, onFoods } = useCalculatorContext();
 
   const searchParams = useSearchParams();
+  const params = useParams();
   const validatedCategory = searchParams.get("category") ?? "breakfast";
 
   return (
@@ -75,7 +76,9 @@ export default function CardSection({ data }: { data: DictionaryType }) {
 
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">
         <Button className="w-full font-bold" asChild>
-          <Link href={`/result`}>{data.calculator.buttonTitle}</Link>
+          <Link href={`/${params.lang}/result`}>
+            {data.calculator.buttonTitle}
+          </Link>
         </Button>
       </div>
     </Section>
