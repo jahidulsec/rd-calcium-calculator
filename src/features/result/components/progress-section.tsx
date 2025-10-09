@@ -8,7 +8,7 @@ import React from "react";
 
 export default function ProgressSection() {
   const maxTotal = 1600;
-  const consumed = 1800;
+  const consumed = 1400;
   const value = (consumed * 100) / 1600;
   const validatedValue = value > 100 ? 100 : value;
   const validatedRemaingValue = value > 100 ? value - 100 : value;

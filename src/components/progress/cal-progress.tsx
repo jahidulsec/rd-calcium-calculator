@@ -22,7 +22,7 @@ function Progress({
           ? "bg-destructive/20"
           : validatedValue < 66
           ? "bg-chart-4/20"
-          : validatedValue < 100
+          : validatedValue <= 100
           ? "bg-chart-2/20"
           : "bg-destructive/20",
         className
@@ -37,7 +37,7 @@ function Progress({
             ? "bg-rose-500"
             : validatedValue < 66
             ? "bg-chart-4"
-            : validatedValue < 100
+            : validatedValue <= 100
             ? "bg-chart-2"
             : "bg-rose-500"
         )}
