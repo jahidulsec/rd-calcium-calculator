@@ -50,11 +50,9 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
   let indicatorColor = "#ff2056";
   const trackColor = "oklch(0.967 0.001 286.375)";
 
-  if (progress < 30) {
-    indicatorColor = "#ff2056";
-  } else if (progress < 60) {
+  if (progress < 100) {
     indicatorColor = "#ffb900";
-  } else if (progress <= 100) {
+  } else if (progress == 100) {
     indicatorColor = "#009689";
   }
 
@@ -112,11 +110,9 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
               <div
                 className={cn(
                   "text-xs font-semibold w-[90px] aspect-square flex justify-center items-center rounded-full",
-                  pct >= 0 && pct < 30
-                    ? "bg-destructive/10 text-destructive"
-                    : pct < 60
-                    ? "bg-chart-4/10 text-chart-4"
-                    : pct <= 100
+                  pct < 100
+                    ? "bg-chart-4/10 text-chart-5"
+                    : pct == 100
                     ? "bg-chart-2/10 text-chart-2"
                     : "bg-destructive/10 text-destructive"
                 )}
