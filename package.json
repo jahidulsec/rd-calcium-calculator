@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start -p 5011",
     "lint": "eslint",
-    "docker:deploy": "sh scripts/docker-deploy.sh",
-    "pm2:deploy": "sh scripts/pm2-deploy.sh"
+    "deploy:docker": "sh scripts/docker-deploy.sh",
+    "deploy:pm2": "sh scripts/pm2-deploy.sh",
+    "deploy:inital": "sh scripts/inital-deploy.sh"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
