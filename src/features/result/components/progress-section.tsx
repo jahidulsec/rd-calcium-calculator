@@ -12,6 +12,7 @@ import { useRouter } from "@bprogress/next";
 import { useParams } from "next/navigation";
 import { DictionaryType } from "@/lib/dictionaries";
 import AdviceSection from "./advice-section";
+import CallSection from "./call-section";
 
 export default function ProgressSection({
   data,
@@ -97,7 +98,8 @@ export default function ProgressSection({
         {value < 100 && <AdviceSection data={data} />}
       </div>
 
-      <Section>
+      <Section className="grid gap-2">
+        <CallSection />
         <Button
           className="font-bold w-full"
           onClick={() => {
