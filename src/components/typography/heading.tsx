@@ -4,7 +4,7 @@ import React from "react";
 const PageHeading = ({ className, ...props }: React.ComponentProps<"h2">) => {
   return (
     <h2
-      className={cn("text-xl font-semibold text-balance", className)}
+      className={cn("text-xl font-semibold text-nowrap", className)}
       {...props}
     />
   );

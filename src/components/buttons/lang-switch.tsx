@@ -32,7 +32,7 @@ export default function LangSwitch() {
         <button
           data-active={item.value === selected}
           key={item.value}
-          className="text-xs p-1.5 data-[active=true]:bg-background rounded-md text-primary font-semibold"
+          className="text-[10px] p-1.5 data-[active=true]:bg-background rounded-md text-primary font-semibold"
           onClick={() => {
             setSelected(item.value);
             document.cookie = `${SIDEBAR_COOKIE_NAME}=${item.value}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;

@@ -368,6 +368,13 @@
     "hypercalcemia": "Hypercalcemia",
     "hypocalcemia": "Hypocalcemia",
     "normal": "Normal",
-    "buttonTitle": "Calculate Again"
+    "buttonTitle": "Calculate Again",
+    "adviceParagraph": "Compared to your needs, your calcium intake is low, which may increase the risk of hypocalcemia. What you should do",
+    "advicePoints": [
+      "Add calcium-rich foods to your diet.",
+      "Spend at least 15–20 minutes in sunlight daily and do light exercise regularly.",
+      "If needed, take calcium and vitamin D supplements as per your doctor’s advice.",
+      "Get free online consultation from our experienced doctors from the comfort of your home."
+    ]
   }
 }
