@@ -47,12 +47,7 @@ const Select = ({
         }
       }}
     >
-      <SelectTrigger
-        className={cn(
-          "[&_svg]:text-primary bg-background border-primary/25",
-          className
-        )}
-      >
+      <SelectTrigger className={cn("", className)}>
         <SelectValue placeholder={placeholder ?? "Select"} />
       </SelectTrigger>
       <SelectContent>

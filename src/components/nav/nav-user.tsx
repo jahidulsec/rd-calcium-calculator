@@ -5,6 +5,7 @@ import { getAuthUser } from "@/lib/dal";
 import { BackButton } from "../buttons/button";
 import { PageHeading } from "../typography/heading";
 import { getDictionary, Locales } from "@/lib/dictionaries";
+import Link from "next/link";
 
 export default async function NavUser({
   showBackButton = false,
@@ -27,10 +28,15 @@ export default async function NavUser({
 
         {showProfile && (
           <div className="flex items-center gap-3">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@johnDoe" />
-              <AvatarFallback>{autUser?.name.charAt(0)}</AvatarFallback>
-            </Avatar>
+            <Link href={"/profile"}>
+              <Avatar>
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@johnDoe"
+                />
+                <AvatarFallback>{autUser?.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+            </Link>
 
             <h3 className="text-sm">{autUser?.name}</h3>
           </div>
