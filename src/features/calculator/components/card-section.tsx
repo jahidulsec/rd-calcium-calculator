@@ -27,6 +27,15 @@ export default function CardSection({ data }: { data: DictionaryType }) {
   const params = useParams();
   const validatedCategory = searchParams.get("category") ?? "breakfast";
 
+  const otherFood = {
+    item: "Other Food",
+    categories: ["breakfast", "lunch", "evening-snacks", "dinner"],
+    calcium_mg: 50,
+    calcium_value: "50 mg",
+    unit: "Service",
+    image: "",
+  };
+
   return (
     <Section className="relative min-h-[calc(100svh-200px)] flex flex-col">
       <div className="flex flex-col gap-3">
@@ -73,6 +82,48 @@ export default function CardSection({ data }: { data: DictionaryType }) {
             />
           ))}
       </div>
+
+      <p className="text-sm my-3">
+        Subtract your Total Daily Calcium Intake from the Recommended Daily
+        Allowance (RDA) for your age and gender. The result shows how much more
+        calcium you need, which can be met through extra food orsupplements.
+      </p>
+
+      <Card
+        selected={foods.find(
+          (f) => f.name === otherFood.item && f.category === validatedCategory
+        )}
+        onDelete={(value) => {
+          onFoods((prev) => {
+            return prev.filter(
+              (f) => !(f.name === value.name && f.category === value.category)
+            );
+          });
+        }}
+        onSelect={(value) =>
+          onFoods((prev) => {
+            const exists = prev.find(
+              (f) => f.name === value.name && f.category === value.category
+            );
+
+            if (exists) {
+              // If same item with same qty, no change
+              if (exists.qty === value.qty) return prev;
+
+              // Otherwise replace the existing one with updated qty
+              return prev.map((f) =>
+                f.name === value.name && f.category === value.category
+                  ? value
+                  : f
+              );
+            }
+
+            // Add new item
+            return [...prev, value];
+          })
+        }
+        item={otherFood}
+      />
 
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">
         <Button className="w-full font-bold" asChild>
