@@ -11,7 +11,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 export default function BannerSection() {
-  const data = ["/images/banner1.jpg", "/images/banner2.jpg"];
+  const data = ["/images/banner1.png", "/images/banner2.png"];
 
   return (
     <Section className="-mt-6">
