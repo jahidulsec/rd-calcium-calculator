@@ -27,15 +27,6 @@ export default function CardSection({ data }: { data: DictionaryType }) {
   const params = useParams();
   const validatedCategory = searchParams.get("category") ?? "breakfast";
 
-  const otherFood = {
-    item: "Other Food",
-    categories: ["breakfast", "lunch", "evening-snacks", "dinner"],
-    calcium_mg: 50,
-    calcium_value: "50 mg",
-    unit: "Service",
-    image: "",
-  };
-
   return (
     <Section className="relative min-h-[calc(100svh-200px)] flex flex-col">
       <div className="flex flex-col gap-3">
@@ -83,15 +74,12 @@ export default function CardSection({ data }: { data: DictionaryType }) {
           ))}
       </div>
 
-      <p className="text-sm my-3">
-        Subtract your Total Daily Calcium Intake from the Recommended Daily
-        Allowance (RDA) for your age and gender. The result shows how much more
-        calcium you need, which can be met through extra food orsupplements.
-      </p>
+      <p className="text-sm my-3">{data.foodTips}</p>
 
       <Card
         selected={foods.find(
-          (f) => f.name === otherFood.item && f.category === validatedCategory
+          (f) =>
+            f.name === data.otherFood.item && f.category === validatedCategory
         )}
         onDelete={(value) => {
           onFoods((prev) => {
@@ -122,7 +110,7 @@ export default function CardSection({ data }: { data: DictionaryType }) {
             return [...prev, value];
           })
         }
-        item={otherFood}
+        item={data.otherFood}
       />
 
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">

@@ -44,6 +44,15 @@
       "slug": "dinner"
     }
   ],
+  "foodTips": "Subtract your Total Daily Calcium Intake from the Recommended Daily Allowance (RDA) for your age and gender. The result shows how much more calcium you need, which can be met through extra food orsupplements.",
+  "otherFood": {
+    "item": "Other Food",
+    "categories": ["breakfast", "lunch", "evening-snacks", "dinner"],
+    "calcium_mg": 50,
+    "calcium_value": "50 mg",
+    "unit": "Service",
+    "image": ""
+  },
   "food": [
     {
       "item": "Milk (Full cream)",
