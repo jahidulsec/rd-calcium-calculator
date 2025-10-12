@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "@bprogress/next";
 import { useParams } from "next/navigation";
 import { DictionaryType } from "@/lib/dictionaries";
+import AdviceSection from "./advice-section";
 
 export default function ProgressSection({
   data,
@@ -53,6 +54,7 @@ export default function ProgressSection({
           </Field>
           <Field title={value < 100 ? data.pTitle3lt : data.pTitle3gt}>
             <Progress
+              colorOption="reverse"
               value={Number(validatedRemaingValue)}
               label={`${Math.abs(remaining)}mg`}
             />
@@ -91,6 +93,8 @@ export default function ProgressSection({
             </p>
           </div>
         </Section>
+
+        {value < 100 && <AdviceSection data={data} />}
       </div>
 
       <Section>
