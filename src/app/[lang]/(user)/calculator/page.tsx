@@ -13,11 +13,13 @@ export default async function CalculatorPage({ params }: { params: params }) {
 
   return (
     <>
-      <NavUser showBackButton pageTitle={dict.calculator.pagetitle} />
+      <NavUser
+        lang={lang as Locales}
+        showBackButton
+        pageTitle={dict.calculator.pagetitle}
+      />
       <Section className="-mt-6">
-        <PageDescription>
-          {dict.calculator.subtitle}
-        </PageDescription>
+        <PageDescription>{dict.calculator.subtitle}</PageDescription>
       </Section>
 
       <TabSection data={dict.category} />

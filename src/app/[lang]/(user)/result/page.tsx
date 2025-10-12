@@ -10,7 +10,11 @@ export default async function ResultPage({ params }: { params: params }) {
 
   return (
     <>
-      <NavUser showBackButton pageTitle={dict.result.sectionTitle} />
+      <NavUser
+        lang={lang as Locales}
+        showBackButton
+        pageTitle={dict.result.sectionTitle}
+      />
 
       <ProgressSection data={dict.result} />
     </>

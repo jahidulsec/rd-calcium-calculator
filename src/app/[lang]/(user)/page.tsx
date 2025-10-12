@@ -12,7 +12,7 @@ export default async function HomePage({ params }: { params: params }) {
 
   return (
     <>
-      <NavUser showProfile />
+      <NavUser lang={lang as Locales} showProfile />
       <BannerSection />
       <CalculatorSection data={dict.home} />
       <BlogSection data={dict.home} />

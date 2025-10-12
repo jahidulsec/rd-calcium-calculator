@@ -13,6 +13,18 @@
       }
     ]
   },
+  "nav": {
+    "langList": [
+      {
+        "label": "ইংরেজি",
+        "value": "en"
+      },
+      {
+        "label": "বাংলা",
+        "value": "bn"
+      }
+    ]
+  },
   "category": [
     {
       "slug": "breakfast",

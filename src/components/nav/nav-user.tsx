@@ -4,17 +4,21 @@ import LangSwitch from "../buttons/lang-switch";
 import { getAuthUser } from "@/lib/dal";
 import { BackButton } from "../buttons/button";
 import { PageHeading } from "../typography/heading";
+import { getDictionary, Locales } from "@/lib/dictionaries";
 
 export default async function NavUser({
   showBackButton = false,
   showProfile = false,
   pageTitle,
+  lang,
 }: {
   showBackButton?: boolean;
   showProfile?: boolean;
   pageTitle?: string;
+  lang: Locales;
 }) {
   const autUser = await getAuthUser();
+  const dict = await getDictionary(lang as Locales);
 
   return (
     <header className="w-full max-w-md mx-auto px-6 py-4">
@@ -35,8 +39,7 @@ export default async function NavUser({
         {pageTitle && (
           <PageHeading className="font-bold">{pageTitle}</PageHeading>
         )}
-
-        <LangSwitch />
+        <LangSwitch data={dict.nav} />
       </div>
     </header>
   );

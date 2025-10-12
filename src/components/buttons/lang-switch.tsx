@@ -1,24 +1,14 @@
 "use client";
 
+import { DictionaryType } from "@/lib/dictionaries";
 import { useRouter } from "@bprogress/next";
 import { useParams, usePathname } from "next/navigation";
 import React from "react";
 
-const langList = [
-  {
-    label: "English",
-    value: "en",
-  },
-  {
-    label: "Bangla",
-    value: "bn",
-  },
-];
-
 const SIDEBAR_COOKIE_NAME = "lang_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 
-export default function LangSwitch() {
+export default function LangSwitch({ data }: { data: DictionaryType["nav"] }) {
   const params = useParams();
   const pathname = usePathname();
   const [selected, setSelected] = React.useState(
@@ -28,7 +18,7 @@ export default function LangSwitch() {
 
   return (
     <div className="flex items-center gap-1 bg-muted p-0.5 rounded-md">
-      {langList.map((item) => (
+      {data.langList.map((item) => (
         <button
           data-active={item.value === selected}
           key={item.value}

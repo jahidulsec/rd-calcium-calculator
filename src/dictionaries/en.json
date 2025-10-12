@@ -2,6 +2,7 @@
   "onboarding": {
     "title": "Keep track of your calcium intake, keep your bones healthy.",
     "buttonTitle": "Calculate Now",
+
     "images": [
       {
         "desc": "Calcium deficiency may cause weak bones along with conditions like osteogenesis, tetany, and hypothyroidism.",
@@ -10,6 +11,18 @@
       {
         "desc": "During pregnancy, calcium deficiency may weaken the mother’s bones, cause tetany and other complications, and affect the baby’s bone and teeth development.",
         "image": "/images/image-2.png"
+      }
+    ]
+  },
+  "nav": {
+    "langList": [
+      {
+        "label": "English",
+        "value": "en"
+      },
+      {
+        "label": "Bangla",
+        "value": "bn"
       }
     ]
   },
