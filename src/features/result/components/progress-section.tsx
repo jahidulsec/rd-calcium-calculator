@@ -99,7 +99,7 @@ export default function ProgressSection({
       </div>
 
       <Section className="grid gap-2">
-        <CallSection />
+        <CallSection data={data} />
         <Button
           className="font-bold w-full"
           onClick={() => {
