@@ -7,6 +7,7 @@ import { PageHeading } from "../typography/heading";
 import { getDictionary, Locales } from "@/lib/dictionaries";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { getUser } from "@/features/user/servers/user";
 
 export default async function NavUser({
   showBackButton = false,
@@ -24,6 +25,8 @@ export default async function NavUser({
 
   if (!autUser?.name) redirect("/profile/setup");
 
+  const user = await getUser(autUser.mobile);
+
   return (
     <header className="w-full max-w-md mx-auto px-6 py-4">
       <div className="flex justify-between items-center gap-5">
@@ -34,14 +37,16 @@ export default async function NavUser({
             <Link href={"/profile"}>
               <Avatar>
                 <AvatarImage
-                  src="https://github.com/shadcn.png"
+                  src={user.user_information?.user_image?.file_name ?? ""}
                   alt="@johnDoe"
                 />
-                <AvatarFallback>{autUser?.name.charAt(0)}</AvatarFallback>
+                <AvatarFallback>
+                  {user.user_information?.full_name.charAt(0)}
+                </AvatarFallback>
               </Avatar>
             </Link>
 
-            <h3 className="text-sm">{autUser?.name}</h3>
+            <h3 className="text-sm">{user.user_information?.full_name}</h3>
           </div>
         )}
 

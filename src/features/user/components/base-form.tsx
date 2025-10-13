@@ -77,6 +77,7 @@ export default function BaseForm({
             <FormLabel>{data.gender}</FormLabel>
             <FormControl>
               <Select
+                defaultValue={field.value}
                 className="w-full"
                 data={genderList}
                 onValueChange={field.onChange}
@@ -95,6 +96,7 @@ export default function BaseForm({
             <FormLabel>{data.age}</FormLabel>
             <FormControl>
               <Select
+                defaultValue={field.value}
                 className="w-full"
                 data={ageList}
                 onValueChange={field.onChange}

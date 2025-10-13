@@ -3,6 +3,7 @@
 import { $Enums, prisma } from "@/db/client";
 import { createSession } from "@/lib/session";
 import { UpdateUserFormType, UserFormType } from "@/schema/user";
+import { revalidatePath } from "next/cache";
 
 export const createProfile = async (data: UserFormType) => {
   try {
@@ -50,18 +51,43 @@ export const createProfile = async (data: UserFormType) => {
 };
 
 export const updateProfile = async (data: UpdateUserFormType) => {
-  console.log(data);
-
   try {
+    // destructure data
+    const { image } = data;
+
+    const user = await prisma.user.findUnique({
+      where: { mobile: data.userId },
+    });
+
+    // check user
+    if (!user) throw new Error("User does not exist");
+
+    // update user information
+    await prisma.user_information.update({
+      where: { userId: data.userId },
+      data: {
+        full_name: data.fullName,
+        district: data.district,
+        age: data.age,
+        gender: data.gender,
+      },
+    });
+    
+
+    // revalidate cache
+    revalidatePath("/");
+    revalidatePath("/profile");
+
     return {
       success: true,
       message: "Your profile is updated successfully",
     };
   } catch (error) {
-    console.error(error);
+    console.error(JSON.stringify(error));
     return {
       success: false,
-      message: (error as Error).message ?? "Something went wrong",
+      message:
+        (error as Error).message.split("\n").pop() ?? "Something went wrong",
     };
   }
 };

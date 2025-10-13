@@ -22,7 +22,7 @@ export const UpdateUserSchema = UserSchema.omit({})
       .refine(
         (file) => file.size <= 1024 * 1024 && file.type.startsWith("image/"),
         "Image must be under 1MB"
-      ),
+      ).optional(),
   });
 
 export type UserFormType = z.infer<typeof UserSchema>;
