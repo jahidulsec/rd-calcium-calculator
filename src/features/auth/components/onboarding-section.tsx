@@ -16,18 +16,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { DictionaryType } from "@/lib/dictionaries";
 
-const imageData = [
-  {
-    image: "/images/image-1.png",
-    desc: `Deficiency may cause weak bones along with conditions like osteogenesis, tetany,
-and hypothyroidism.`,
-  },
-  {
-    image: "/images/image-2.png",
-    desc: `During pregnancy, calcium deficiency may weaken the mother’s bones, cause tetany
-and other complications, and affect the baby’s bone and teeth development.`,
-  },
-];
+
 
 export default function OnboardingSection({
   data,

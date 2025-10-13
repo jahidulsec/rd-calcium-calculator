@@ -63,6 +63,7 @@ export const updateProfile = async (data: UpdateUserFormType) => {
     if (!user) throw new Error("User does not exist");
 
     // TODO: add user image
+    console.log(image);
 
     // update user information
     await prisma.user_information.update({
