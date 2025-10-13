@@ -62,6 +62,8 @@ export const updateProfile = async (data: UpdateUserFormType) => {
     // check user
     if (!user) throw new Error("User does not exist");
 
+    // TODO: add user image
+
     // update user information
     await prisma.user_information.update({
       where: { userId: data.userId },
@@ -72,7 +74,6 @@ export const updateProfile = async (data: UpdateUserFormType) => {
         gender: data.gender,
       },
     });
-    
 
     // revalidate cache
     revalidatePath("/");

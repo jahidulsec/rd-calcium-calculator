@@ -11,6 +11,7 @@ RUN npm install
 # Only copy required files
 COPY . .
 
+RUN npm run db:generate
 RUN npm run build
 
 # expose port
