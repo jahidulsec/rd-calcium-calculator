@@ -2,7 +2,7 @@
 
 import { Section } from "@/components/section/section";
 import { VerificationSchema, VerificationFormType } from "@/schema/auth";
-import React from "react";
+import React, { useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Asterisk } from "lucide-react";
 import { FormButton } from "@/components/buttons/button";
-import { verifyOTP } from "../actions/auth";
+import { resentOtp, verifyOTP } from "../actions/auth";
 import { toast } from "sonner";
 import { useRouter } from "@bprogress/next/app";
 import { Button } from "@/components/ui/button";
@@ -32,13 +32,19 @@ export default function VerificationForm({
   });
 
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   async function onSubmit(values: VerificationFormType) {
     //TODO: Do something with the form values for verification.
     const res = await verifyOTP(values);
 
     if (res.success) {
-      router.push("/success");
+      if (res.data?.user) {
+        router.push("/success");
+      } else {
+        // if no user profile, redirect setup page
+        router.push("/profile/setup");
+      }
     } else {
       toast.error(res.message);
     }
@@ -74,6 +80,20 @@ export default function VerificationForm({
               variant={"link"}
               className="text-secondary w-fit px-0"
               type="button"
+              onClick={() => {
+                startTransition(async () => {
+                  toast.promise(resentOtp({ mobile: "01" }), {
+                    loading: "Sending...",
+                    success: (data) => {
+                      if (!data.success) {
+                        throw data;
+                      }
+                      return data.message;
+                    },
+                    error: (data) => data.message,
+                  });
+                });
+              }}
             >
               {data.resend}
             </Button>

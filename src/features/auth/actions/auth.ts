@@ -3,7 +3,8 @@
 import { prisma } from "@/db/client";
 import { createSession } from "@/lib/session";
 import { LoginFormType, VerificationFormType } from "@/schema/auth";
-import { addMinutesToDate, generateOtp } from "@/utils/helper";
+import { generateUserOtp } from "../lib/auth";
+import { verifyOtpTime } from "@/utils/helper";
 
 export const login = async (data: LoginFormType) => {
   try {
@@ -24,15 +25,9 @@ export const login = async (data: LoginFormType) => {
     }
 
     // create otp
-    const code = generateOtp();
+    const otp = await generateUserOtp(data.mobile);
 
-    await prisma.otp.create({
-      data: {
-        mobile: data.mobile,
-        code,
-        expiresAt: addMinutesToDate(new Date(), 5), // valid for 5 mins
-      },
-    });
+    // TODO: sent otp to phone
 
     return {
       success: true,
@@ -51,14 +46,87 @@ export const login = async (data: LoginFormType) => {
 };
 
 export const verifyOTP = async (data: VerificationFormType) => {
-  console.log(data);
-
   try {
-    await createSession({ id: "1", name: "John Doe", role: "user" });
+    const OTP = await prisma.otp.findFirst({
+      where: {
+        mobile: data.mobile,
+      },
+      orderBy: {
+        created_at: "desc",
+      },
+    });
+
+    // check otp
+    if (!OTP) {
+      throw new Error("Invalid OTP");
+    }
+
+    if (verifyOtpTime(OTP.expiresAt)) {
+      throw new Error("This OTP is expired");
+    }
+
+    if (OTP.code !== data.code) {
+      throw new Error("Invalid OTP");
+    }
+
+    // get user
+    const user = await prisma.user.findUnique({
+      where: {
+        mobile: data.mobile,
+      },
+      include: {
+        user_information: true,
+      },
+    });
+
+    if (!user) throw new Error("User does not exist");
+
+    await createSession({
+      mobile: user.mobile,
+      name: user?.user_information?.full_name,
+      age: user?.user_information?.age,
+      gender: user?.user_information?.gender,
+      role: "user",
+    });
 
     return {
       success: true,
       message: "Verification successful",
+      data: {
+        user,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: (error as Error).message ?? "Something went wrong",
+    };
+  }
+};
+
+export const resentOtp = async (data: LoginFormType) => {
+  try {
+    // check user or create new user
+    const user = await prisma.user.findUnique({
+      where: {
+        mobile: data.mobile,
+      },
+    });
+
+    if (!user) {
+      throw new Error("User does not exists");
+    }
+
+    // create otp
+    await generateUserOtp(data.mobile);
+
+    return {
+      success: true,
+      message: "OTP is sent to your number",
+      data: {
+        user: user,
+      },
     };
   } catch (error) {
     console.error(error);

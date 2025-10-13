@@ -33,7 +33,6 @@ export default function LoginForm({
   const router = useRouter();
 
   async function onSubmit(values: LoginFormType) {
-    //TODO: Do something with the form values for login.
     const res = await login(values);
 
     toast[res.success ? "success" : "error"](res.message);
