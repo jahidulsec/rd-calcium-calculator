@@ -13,12 +13,17 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import BaseForm from "./base-form";
 import { DictionaryType } from "@/lib/dictionaries";
+import { AuthUser } from "@/types/auth-user";
 
 export default function UserForm({
   data,
+  user,
 }: {
   data: DictionaryType["profileForm"];
+  user: AuthUser;
 }) {
+  const [agreement, setAgreement] = React.useState(false);
+
   const form = useForm<UserFormType>({
     resolver: zodResolver(UserSchema),
   });
@@ -26,6 +31,9 @@ export default function UserForm({
   const router = useRouter();
 
   async function onSubmit(values: UserFormType) {
+    // set user id
+    values.userId = user.mobile;
+
     const res = await createProfile(values);
 
     toast[res.success ? "success" : "error"](res.message);
@@ -44,7 +52,10 @@ export default function UserForm({
         <BaseForm data={data} form={form as any} />
 
         <div className="flex items-center gap-3">
-          <Checkbox id="terms" />
+          <Checkbox
+            id="terms"
+            onCheckedChange={(value) => setAgreement(Boolean(value))}
+          />
           <p className="text-xs text-muted-foreground [&>a]:text-foreground tracking-wide">
             You agree to our{" "}
             <Link href={""} className="hover:underline font-semibold">
@@ -57,7 +68,12 @@ export default function UserForm({
           </p>
         </div>
 
-        <FormButton isPending={form.formState.isSubmitting}>Submit</FormButton>
+        <FormButton
+          disabled={!agreement}
+          isPending={form.formState.isSubmitting}
+        >
+          {data.submit}
+        </FormButton>
       </form>
     </Form>
   );

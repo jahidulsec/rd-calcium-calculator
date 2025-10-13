@@ -408,7 +408,9 @@
     "name": "নাম",
     "gender": "লিঙ্গ",
     "age": "বয়স",
-    "district": "জেলা"
+    "district": "জেলা",
+    "submit": "জমা দিন",
+    "save": "সেভ করুন"
   },
   "profile": {
     "sectionTitle": " ব্যক্তিগত তথ্য"

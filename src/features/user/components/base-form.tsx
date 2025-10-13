@@ -15,34 +15,34 @@ import { UseFormReturn } from "react-hook-form";
 const genderList = [
   {
     label: "Male",
-    value: "male",
+    value: "MALE",
   },
   {
     label: "Female",
-    value: "female",
+    value: "FEMALE",
   },
 ];
 
 const ageList = [
   {
     label: "1-3 years",
-    value: "0",
+    value: "TODDLER",
   },
   {
     label: "4-8 years",
-    value: "1",
+    value: "CHILD",
   },
   {
     label: "9-18 years",
-    value: "2",
+    value: "TEENAGER",
   },
   {
     label: "19-50 years",
-    value: "3",
+    value: "ADULT",
   },
   {
     label: "50 years or more",
-    value: "4",
+    value: "OLD",
   },
 ];
 
@@ -71,7 +71,7 @@ export default function BaseForm({
 
       <FormField
         control={form.control}
-        name="gender"
+        name='gender'
         render={({ field }) => (
           <FormItem>
             <FormLabel>{data.gender}</FormLabel>

@@ -408,7 +408,9 @@
     "name": "Full Name",
     "gender": "Gender",
     "age": "Age",
-    "district": "District"
+    "district": "District",
+    "submit": "Submit",
+    "save": "Save"
   },
   "profile": {
     "sectionTitle": " Personal Information"

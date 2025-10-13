@@ -1,11 +1,15 @@
 import z from "zod";
 
 export const UserSchema = z.object({
+  userId: z.string().optional(),
   fullName: z
     .string({ message: "Enter your full name" })
     .min(3, "At least 3 characters"),
-  gender: z.enum(["male", "female"], "Select a option"),
-  age: z.enum(["0", "1", "2", "3", "4"], "Select a option"),
+  gender: z.enum(["MALE", "FEMALE"], "Select a option"),
+  age: z.enum(
+    ["TODDLER", "CHILD", "TEENAGER", "ADULT", "OLD"],
+    "Select a option"
+  ),
   district: z
     .string({ message: "Enter your district" })
     .min(3, "At least 3 characters"),
