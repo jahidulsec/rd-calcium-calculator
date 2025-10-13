@@ -10,7 +10,7 @@ export const LoginSchema = z.object({
 export type LoginFormType = z.infer<typeof LoginSchema>;
 
 export const VerificationSchema = z.object({
-  mobile: z.string().regex(phoneRegex, "Invalid Number"),
+  mobile: z.string().regex(phoneRegex, "Invalid Number").optional(),
   code: z
     .string({ message: "Enter a valid code" })
     .regex(otpRegex, "Invalid verification code"),

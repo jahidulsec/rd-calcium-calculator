@@ -6,6 +6,7 @@ import { BackButton } from "../buttons/button";
 import { PageHeading } from "../typography/heading";
 import { getDictionary, Locales } from "@/lib/dictionaries";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function NavUser({
   showBackButton = false,
@@ -20,6 +21,8 @@ export default async function NavUser({
 }) {
   const autUser = await getAuthUser();
   const dict = await getDictionary(lang as Locales);
+
+  if (!autUser?.name) redirect("/profile/setup");
 
   return (
     <header className="w-full max-w-md mx-auto px-6 py-4">

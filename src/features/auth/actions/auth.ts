@@ -61,13 +61,16 @@ export const verifyOTP = async (data: VerificationFormType) => {
       throw new Error("Invalid OTP");
     }
 
-    if (verifyOtpTime(OTP.expiresAt)) {
+    if (!verifyOtpTime(OTP.expiresAt)) {
       throw new Error("This OTP is expired");
     }
 
     if (OTP.code !== data.code) {
       throw new Error("Invalid OTP");
     }
+
+    // delete verified otp
+    await prisma.otp.delete({ where: { id: OTP.id } });
 
     // get user
     const user = await prisma.user.findUnique({
@@ -107,6 +110,8 @@ export const verifyOTP = async (data: VerificationFormType) => {
 
 export const resentOtp = async (data: LoginFormType) => {
   try {
+    console.log(data);
+
     // check user or create new user
     const user = await prisma.user.findUnique({
       where: {

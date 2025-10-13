@@ -7,9 +7,9 @@ export const generateOtp = () => {
   return code.toString();
 };
 
-
 export const verifyOtpTime = (expireAt: Date) => {
   const now = new Date();
+
   if (now.getTime() <= expireAt.getTime()) return true;
   return false;
 };

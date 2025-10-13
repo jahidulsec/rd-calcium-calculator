@@ -21,6 +21,8 @@ import { toast } from "sonner";
 import { useRouter } from "@bprogress/next/app";
 import { Button } from "@/components/ui/button";
 import { DictionaryType } from "@/lib/dictionaries";
+import { Spinner } from "@/components/ui/spinner";
+import { useAuthContext } from "@/providers/auth-provider";
 
 export default function VerificationForm({
   data,
@@ -31,15 +33,19 @@ export default function VerificationForm({
     resolver: zodResolver(VerificationSchema),
   });
 
+  const { user } = useAuthContext();
+
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   async function onSubmit(values: VerificationFormType) {
-    //TODO: Do something with the form values for verification.
+    // set user mobile
+    values.mobile = user?.mobile ?? "";
+
     const res = await verifyOTP(values);
 
     if (res.success) {
-      if (res.data?.user) {
+      if (res.data?.user.user_information) {
         router.push("/success");
       } else {
         // if no user profile, redirect setup page
@@ -49,6 +55,12 @@ export default function VerificationForm({
       toast.error(res.message);
     }
   }
+
+  React.useEffect(() => {
+    if (!user) {
+      router.replace("/login");
+    }
+  });
 
   return (
     <Section className="my-3">
@@ -82,7 +94,7 @@ export default function VerificationForm({
               type="button"
               onClick={() => {
                 startTransition(async () => {
-                  toast.promise(resentOtp({ mobile: "01" }), {
+                  toast.promise(resentOtp({ mobile: user?.mobile ?? "" }), {
                     loading: "Sending...",
                     success: (data) => {
                       if (!data.success) {
@@ -95,11 +107,15 @@ export default function VerificationForm({
                 });
               }}
             >
-              {data.resend}
+              {isPending ? <Spinner /> : data.resend}
             </Button>
           </div>
 
-          <FormButton className="font-bold" size={"lg"}>
+          <FormButton
+            isPending={form.formState.isSubmitting}
+            className="font-bold"
+            size={"lg"}
+          >
             {data.buttonTitle}
           </FormButton>
         </form>

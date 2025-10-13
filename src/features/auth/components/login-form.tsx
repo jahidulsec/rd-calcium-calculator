@@ -20,12 +20,15 @@ import { login } from "../actions/auth";
 import { toast } from "sonner";
 import { useRouter } from "@bprogress/next/app";
 import { DictionaryType } from "@/lib/dictionaries";
+import { useAuthContext } from "@/providers/auth-provider";
 
 export default function LoginForm({
   data,
 }: {
   data: DictionaryType["loginForm"];
 }) {
+  const { onUser } = useAuthContext();
+
   const form = useForm<LoginFormType>({
     resolver: zodResolver(LoginSchema),
   });
@@ -38,6 +41,7 @@ export default function LoginForm({
     toast[res.success ? "success" : "error"](res.message);
 
     if (res.success) {
+      onUser({ mobile: values.mobile });
       router.push("/verify");
     }
   }
@@ -67,7 +71,7 @@ export default function LoginForm({
             )}
           />
 
-          <FormButton size={"lg"} className="font-bold">
+          <FormButton isPending={form.formState.isSubmitting} size={"lg"} className="font-bold">
             {data.buttonTitle}
           </FormButton>
         </form>

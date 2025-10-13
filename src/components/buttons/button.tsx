@@ -5,6 +5,7 @@ import { Button, ButtonProps } from "../ui/button";
 import { ArrowLeft, Loader } from "lucide-react";
 import { useRouter } from "@bprogress/next/app";
 import { useFormStatus } from "react-dom";
+import { Spinner } from "../ui/spinner";
 
 const BackButton = () => {
   const router = useRouter();
@@ -35,13 +36,12 @@ const ActionButton = ({
 };
 
 const FormButton = ({
-  children,
+  children, isPending,
   ...props
 }: ButtonProps & { isPending?: boolean }) => {
-  const { pending } = useFormStatus();
   return (
-    <Button {...props} disabled={pending || props.disabled}>
-      {pending && <Loader className="animate-spin" />}
+    <Button type="submit" {...props} disabled={isPending || props.disabled}>
+      {isPending && <Spinner />}
       {children}
     </Button>
   );
