@@ -16,7 +16,7 @@ export const verifyOtpTime = (expireAt: Date) => {
 
 export const sendOTP = async (mobile: string, code: string) => {
   // send otp to mobile
-  const message = `Your One-Time Password (OTP) for Calcium Calculator is ${code}.`;
+  const message = `Your One-Time Password (OTP) for Calcium Calculator is ${code}. This OTP will be valid for 5 minutes.`;
 
   const send = await fetch(
     `https://api.mobireach.com.bd/SendTextMessage?Username=${process.env.SMS_USERNAME}&Password=${process.env.SMS_PASSWORD}&From=Impala&To=${mobile}&Message=${message}`,
