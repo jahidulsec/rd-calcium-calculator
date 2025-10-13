@@ -13,3 +13,19 @@ export const verifyOtpTime = (expireAt: Date) => {
   if (now.getTime() <= expireAt.getTime()) return true;
   return false;
 };
+
+export const sendOTP = async (mobile: string, code: string) => {
+  // send otp to mobile
+  const message = `Your One-Time Password (OTP) for Calcium Calculator is ${code}.`;
+
+  const send = await fetch(
+    `https://api.mobireach.com.bd/SendTextMessage?Username=${process.env.SMS_USERNAME}&Password=${process.env.SMS_PASSWORD}&From=Impala&To=${mobile}&Message=${message}`,
+    {
+      method: "GET",
+    }
+  );
+
+  if (!send.ok) {
+    throw new Error("Something went wrong");
+  }
+};

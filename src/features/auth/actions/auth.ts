@@ -4,7 +4,7 @@ import { prisma } from "@/db/client";
 import { createSession } from "@/lib/session";
 import { LoginFormType, VerificationFormType } from "@/schema/auth";
 import { generateUserOtp } from "../lib/auth";
-import { verifyOtpTime } from "@/utils/helper";
+import { sendOTP, verifyOtpTime } from "@/utils/helper";
 
 export const login = async (data: LoginFormType) => {
   try {
@@ -27,7 +27,8 @@ export const login = async (data: LoginFormType) => {
     // create otp
     const otp = await generateUserOtp(data.mobile);
 
-    // TODO: sent otp to phone
+    // sent otp to phone
+    await sendOTP(otp.mobile, otp.code);
 
     return {
       success: true,
@@ -124,7 +125,10 @@ export const resentOtp = async (data: LoginFormType) => {
     }
 
     // create otp
-    await generateUserOtp(data.mobile);
+    const otp = await generateUserOtp(data.mobile);
+
+     // sent otp to phone
+    await sendOTP(otp.mobile, otp.code);
 
     return {
       success: true,
