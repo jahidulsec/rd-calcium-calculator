@@ -9,11 +9,11 @@ datasource db {
 }
 
 model otp {
-  id         String   @id @default(nanoid()) @db.VarChar(21)
+  id         String   @id @default(cuid()) @db.VarChar(25)
   mobile     String   @db.VarChar(50)
   code       String   @db.VarChar(6)
   created_at DateTime @default(now())
-  updated_at DateTime
+  updated_at DateTime @updatedAt
   expiresAt  DateTime @default(now()) @db.Timestamp(5)
   user       user     @relation(fields: [mobile], references: [mobile], onDelete: Cascade)
 
@@ -48,7 +48,7 @@ model user_information {
   gender     user_information_gender
   district   String                  @db.VarChar(50)
   created_at DateTime                @default(now())
-  updated_at DateTime
+  updated_at DateTime                @updatedAt
   user_image user_image?
   user       user                    @relation(fields: [userId], references: [mobile], onDelete: Cascade)
 }

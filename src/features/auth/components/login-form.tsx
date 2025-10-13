@@ -52,7 +52,7 @@ export default function LoginForm({
         >
           <FormField
             control={form.control}
-            name="phone"
+            name="mobile"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="flex items-start">

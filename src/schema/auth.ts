@@ -2,7 +2,7 @@ import { otpRegex, phoneRegex } from "@/utils/regex";
 import z from "zod";
 
 export const LoginSchema = z.object({
-  phone: z
+  mobile: z
     .string({ message: "Enter a valid number" })
     .regex(phoneRegex, "Invalid phone number"),
 });

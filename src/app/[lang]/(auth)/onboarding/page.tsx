@@ -5,7 +5,7 @@ import React from "react";
 
 export default async function OnBoardingPage({ params }: { params: params }) {
   const { lang } = await params;
-  const dict = await getDictionary((lang?.toString()) as Locales);
+  const dict = await getDictionary(lang?.toString() as Locales);
 
   return <OnboardingSection data={dict.onboarding} />;
 }
