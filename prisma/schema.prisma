@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model otp {
+  id         String   @id @default(nanoid()) @db.VarChar(21)
+  mobile     String   @db.VarChar(50)
+  code       String   @db.VarChar(6)
+  created_at DateTime @default(now())
+  updated_at DateTime
+  expiresAt  DateTime @default(now()) @db.Timestamp(5)
+  user       user     @relation(fields: [mobile], references: [mobile], onDelete: Cascade)
+
+  @@index([mobile], map: "otp_mobile_fkey")
+}
+
+model user {
+  mobile           String            @id @db.VarChar(14)
+  created_at       DateTime          @default(now())
+  updated_at       DateTime
+  otp              otp[]
+  user_information user_information?
+}
+
+model user_image {
+  id                  String           @id @default(nanoid()) @db.VarChar(21)
+  user_information_id String           @unique @db.VarChar(21)
+  file_name           String           @db.VarChar(150)
+  mime_type           String           @db.VarChar(16)
+  ext                 String           @db.VarChar(8)
+  file_path           String           @db.VarChar(255)
+  created_at          DateTime         @default(now())
+  updated_at          DateTime
+  user_information    user_information @relation(fields: [user_information_id], references: [id], onDelete: Cascade)
+}
+
+model user_information {
+  id         String                  @id @default(nanoid()) @db.VarChar(21)
+  userId     String                  @unique @db.VarChar(21)
+  full_name  String                  @db.VarChar(100)
+  age        user_information_age
+  gender     user_information_gender
+  district   String                  @db.VarChar(50)
+  created_at DateTime                @default(now())
+  updated_at DateTime
+  user_image user_image?
+  user       user                    @relation(fields: [userId], references: [mobile], onDelete: Cascade)
+}
+
+enum user_information_age {
+  TODDLER
+  CHILD
+  TEENAGER
+  ADULT
+  OLD
+}
+
+enum user_information_gender {
+  MALE
+  FEMALE
+}
