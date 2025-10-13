@@ -400,5 +400,17 @@
     ],
     "callSectionPara": "ঘরে বসেই ফ্রি ডাক্তারের পরামর্শ নিন সকাল ৯ টা থেকে রাত ১২ টা পর্যন্ত",
     "callButtonTitle": "বিনামূল্যে পরামর্শ নিন"
+  },
+  "profileSetup": {
+    "sectionTitle": "আপনার ব্যক্তিগত তথ্য সেটআপ করুন"
+  },
+  "profileForm": {
+    "name": "নাম",
+    "gender": "লিঙ্গ",
+    "age": "বয়স",
+    "district": "জেলা"
+  },
+  "profile": {
+    "sectionTitle": " ব্যক্তিগত তথ্য"
   }
 }

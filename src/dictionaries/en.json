@@ -400,5 +400,17 @@
     ],
     "callSectionPara": "Get free doctor consultations from home, from 9 AM to 12 midnight",
     "callButtonTitle": "Free Consultation"
+  },
+  "profileSetup": {
+    "sectionTitle": "Setup Your Personal Information"
+  },
+  "profileForm": {
+    "name": "Full Name",
+    "gender": "Gender",
+    "age": "Age",
+    "district": "District"
+  },
+  "profile": {
+    "sectionTitle": " Personal Information"
   }
 }

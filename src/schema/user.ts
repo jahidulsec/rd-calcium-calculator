@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const UserSchema = z.object({
-  name: z
+  fullName: z
     .string({ message: "Enter your full name" })
     .min(3, "At least 3 characters"),
   gender: z.enum(["male", "female"], "Select a option"),

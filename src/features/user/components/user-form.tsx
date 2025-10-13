@@ -12,8 +12,13 @@ import { FormButton } from "@/components/buttons/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import BaseForm from "./base-form";
+import { DictionaryType } from "@/lib/dictionaries";
 
-export default function UserForm() {
+export default function UserForm({
+  data,
+}: {
+  data: DictionaryType["profileForm"];
+}) {
   const form = useForm<UserFormType>({
     resolver: zodResolver(UserSchema),
   });
@@ -21,7 +26,6 @@ export default function UserForm() {
   const router = useRouter();
 
   async function onSubmit(values: UserFormType) {
-    //TODO: Do something with the form values for profile update.
     const res = await createProfile(values);
 
     toast[res.success ? "success" : "error"](res.message);
@@ -37,7 +41,7 @@ export default function UserForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <BaseForm form={form as any} />
+        <BaseForm data={data} form={form as any} />
 
         <div className="flex items-center gap-3">
           <Checkbox id="terms" />

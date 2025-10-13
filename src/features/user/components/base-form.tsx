@@ -7,6 +7,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { DictionaryType } from "@/lib/dictionaries";
 import { UpdateUserFormType, UserFormType } from "@/schema/user";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
@@ -47,17 +48,19 @@ const ageList = [
 
 export default function BaseForm({
   form,
+  data,
 }: {
-  form: UseFormReturn<UserFormType | UpdateUserFormType >;
+  form: UseFormReturn<UserFormType | UpdateUserFormType>;
+  data: DictionaryType["profileForm"];
 }) {
   return (
     <>
       <FormField
         control={form.control}
-        name="name"
+        name="fullName"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Full name</FormLabel>
+            <FormLabel>{data.name}</FormLabel>
             <FormControl>
               <Input {...field} placeholder="John Doe" />
             </FormControl>
@@ -71,7 +74,7 @@ export default function BaseForm({
         name="gender"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Gender</FormLabel>
+            <FormLabel>{data.gender}</FormLabel>
             <FormControl>
               <Select
                 className="w-full"
@@ -89,7 +92,7 @@ export default function BaseForm({
         name="age"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Age</FormLabel>
+            <FormLabel>{data.age}</FormLabel>
             <FormControl>
               <Select
                 className="w-full"
@@ -107,7 +110,7 @@ export default function BaseForm({
         name="district"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>District</FormLabel>
+            <FormLabel>{data.district}</FormLabel>
             <FormControl>
               <Input {...field} placeholder="eg. Dhaka" />
             </FormControl>
