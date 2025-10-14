@@ -88,4 +88,3 @@ Eating foods rich in calcium is a must. You can find it in dairy, non-dairy opti
 - Ensure a Healthy Pregnancy with Proper Calcium Intake  
 
 © 2025 Coralcal  
-Designed and Developed by Impala Intech Limited  

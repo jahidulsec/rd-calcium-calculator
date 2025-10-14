@@ -1,6 +1,16 @@
+import path from "path";
+import fs from "fs";
+
 const blogs = [
-  async () => JSON.stringify((await import("../../public/blogs/blog1.md")).default),
-  async () => JSON.stringify((await import("../../public/blogs/blog2.md")).default),
+  async () => await getStaticProps("public/blogs/blog1.md"),
+  async () => await getStaticProps("public/blogs/blog2.md"),
 ];
 
-export { blogs };
+async function getStaticProps(filePath: string) {
+  const currentFilePath = path.join(process.cwd(), filePath);
+  const content = fs.readFileSync(currentFilePath, "utf-8");
+
+  return { props: { content } };
+}
+
+export { blogs, getStaticProps };

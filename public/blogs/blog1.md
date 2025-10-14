@@ -87,4 +87,3 @@ In Bangladesh, you can easily increase your calcium and Vitamin D. Eat foods ric
 ---
 
 © 2025 Coralcal  
-Designed and Developed by Impala Intech Limited  
