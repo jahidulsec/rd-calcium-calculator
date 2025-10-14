@@ -71,7 +71,7 @@ export default function ProfileForm({
                 src={
                   image
                     ? URL.createObjectURL(image)
-                    : userData?.user_information?.user_image?.file_name
+                    : `/api/upload/user/${userData?.user_information?.user_image?.id}`
                 }
                 alt="@johnDoe"
               />

@@ -37,8 +37,9 @@ export default async function NavUser({
             <Link href={"/profile"}>
               <Avatar>
                 <AvatarImage
-                  src={user.user_information?.user_image?.file_name ?? ""}
+                  src={`/api/upload/user/${user?.user_information?.user_image?.id}`}
                   alt="@johnDoe"
+                  className="object-cover"
                 />
                 <AvatarFallback>
                   {user.user_information?.full_name.charAt(0)}
