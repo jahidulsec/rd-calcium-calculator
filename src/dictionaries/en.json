@@ -360,12 +360,14 @@
     "blogAllButton": "See all",
     "blogs": [
       {
+        "id": "1",
         "title": "Without Vitamin D, Your Body Can’t Absorb Calcium Properly",
         "readTime": "5 min read",
         "desc": "Track, manage, and improve your calcium intake with one smart app.",
         "image": "/images/blog1.jpg"
       },
       {
+        "id": "2",
         "title": "The Smart Way to Take Care of Your Calcium Needs",
         "readTime": "5 min read",
         "desc": "Stay on top of your bone health with reminders, tracking, and expert tips.",
@@ -414,5 +416,8 @@
   },
   "profile": {
     "sectionTitle": " Personal Information"
+  },
+  "blog": {
+    "pageTitle": "Blogs & Tips"
   }
 }

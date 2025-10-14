@@ -54,7 +54,9 @@ const CardSection = ({ data }: { data: DictionaryType["home"]["blogs"] }) => {
                   >
                     {item.readTime}
                   </Badge>
-                  <h3 className="font-semibold line-clamp-2">{item.title}</h3>
+                  <Link href={`/blog/${item.id}`}>
+                    <h3 className="font-semibold line-clamp-2">{item.title}</h3>
+                  </Link>
                   <p className="text-sm text-muted-foreground line-clamp-3">
                     {item.desc}
                   </p>
