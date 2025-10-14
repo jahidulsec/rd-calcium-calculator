@@ -1,6 +1,6 @@
 # Ensure a Healthy Pregnancy with Proper Calcium Intake
 
-*October 6, 2025*
+_October 6, 2025_
 
 Expectant mothers often wonder about the essential nutrients they need during pregnancy. One crucial element is calcium, vital for the health of both mother and baby.
 
@@ -38,10 +38,10 @@ The World Health Organization states that “Calcium supplements during pregnanc
 
 Spotting calcium deficiency early is key. Look out for these signs:
 
-- Muscle cramps  
-- Fatigue  
-- Weakened bones  
-- Numbness or tingling in the fingers  
+- Muscle cramps
+- Fatigue
+- Weakened bones
+- Numbness or tingling in the fingers
 
 If you notice any of these, talk to your doctor right away.
 
@@ -51,10 +51,10 @@ If you notice any of these, talk to your doctor right away.
 
 Not getting enough calcium can cause major problems. These include:
 
-| Risks                   | Complications for Mother        | Complications for Baby         |
-|-------------------------|----------------------------------|--------------------------------|
-| Preeclampsia            | High blood pressure              | Low birth weight                |
-| Gestational diabetes    | Increased risk of osteoporosis   | Developmental issues            |
+| Risks                | Complications for Mother       | Complications for Baby |
+| -------------------- | ------------------------------ | ---------------------- |
+| Preeclampsia         | High blood pressure            | Low birth weight       |
+| Gestational diabetes | Increased risk of osteoporosis | Developmental issues   |
 
 Keeping calcium levels right is crucial for a healthy pregnancy. Eating enough calcium or taking supplements can help avoid these issues. Pregnant women should check their calcium levels with their doctors.
 
@@ -64,13 +64,13 @@ Keeping calcium levels right is crucial for a healthy pregnancy. Eating enough c
 
 In Bangladesh, you can find many foods rich in calcium to support a healthy pregnancy. Many foods readily available in Bangladesh are excellent sources of calcium. It is important to focus on these in your diet:
 
-| Food Source                        | Description / Examples                              |
-|------------------------------------|-----------------------------------------------------|
-| Milk and Dairy Products            | Cow’s milk, yogurt, and cheese                      |
-| Small Fish                          | Small fish like **shutki**, **mola**, **dhela**, **kachki** (especially when eaten with bones) |
-| Green Leafy Vegetables             | Spinach (palong shak), pui shak, kochu shak, drumstick leaves (sajne pata), cabbage |
-| Eggs and Lentils                    | Egg yolks and various lentils (e.g. masoor dal, chickpeas) |
-| Sesame Seeds and Nuts              | Sesame seeds (til), almonds (kath badam), other nuts |
+| Food Source             | Description / Examples                                                                         |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| Milk and Dairy Products | Cow’s milk, yogurt, and cheese                                                                 |
+| Small Fish              | Small fish like **shutki**, **mola**, **dhela**, **kachki** (especially when eaten with bones) |
+| Green Leafy Vegetables  | Spinach (palong shak), pui shak, kochu shak, drumstick leaves (sajne pata), cabbage            |
+| Eggs and Lentils        | Egg yolks and various lentils (e.g. masoor dal, chickpeas)                                     |
+| Sesame Seeds and Nuts   | Sesame seeds (til), almonds (kath badam), other nuts                                           |
 
 ---
 
@@ -82,9 +82,4 @@ Eating foods rich in calcium is a must. You can find it in dairy, non-dairy opti
 
 ---
 
-## Latest News
-
-- Without Vitamin D, Your Body Can’t Absorb Calcium Properly  
-- Ensure a Healthy Pregnancy with Proper Calcium Intake  
-
-© 2025 Coralcal  
+© 2025 Coralcal

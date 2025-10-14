@@ -1,6 +1,6 @@
 # Without Vitamin D, Your Body Can’t Absorb Calcium Properly
 
-*October 6, 2025*
+_October 6, 2025_
 
 Maintaining strong bones is key for good health. Vitamin D is vital for this. It helps your body take in calcium; a mineral needed for strong bones.
 
@@ -46,9 +46,10 @@ Not getting enough calcium can cause muscle cramps, spasms, or weakness. You mig
 
 ### How Calcium Deficiency Affects Different Age Groups
 
-Calcium deficiency affects everyone differently.  
-- Kids might grow slower and have weaker bones.  
-- Adults might face osteoporosis, more fractures, and dental issues.  
+Calcium deficiency affects everyone differently.
+
+- Kids might grow slower and have weaker bones.
+- Adults might face osteoporosis, more fractures, and dental issues.
 - Older adults could see bone loss worsen, raising the risk of osteoporosis and fractures.
 
 ---
@@ -79,11 +80,4 @@ In Bangladesh, you can easily increase your calcium and Vitamin D. Eat foods ric
 
 ---
 
-## Latest News
-
-- Without Vitamin D, Your Body Can’t Absorb Calcium Properly  
-- Ensure a Healthy Pregnancy with Proper Calcium Intake
-
----
-
-© 2025 Coralcal  
+© 2025 Coralcal
