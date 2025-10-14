@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "An app to help you maintain your calcium level with ease",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
