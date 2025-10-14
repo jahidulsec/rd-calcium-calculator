@@ -13,11 +13,15 @@ import { useParams } from "next/navigation";
 import { DictionaryType } from "@/lib/dictionaries";
 import AdviceSection from "./advice-section";
 import CallSection from "./call-section";
+import { AuthUser } from "@/types/auth-user";
+import { CALCIUM_REQUIREMENT_LIST } from "@/utils/data";
 
 export default function ProgressSection({
   data,
+  user,
 }: {
   data: DictionaryType["result"];
+  user: AuthUser;
 }) {
   const { foods, onFoods } = useCalculatorContext();
   const router = useRouter();
@@ -28,7 +32,10 @@ export default function ProgressSection({
     0
   );
 
-  const maxTotal = 1600;
+  const maxTotal =
+    CALCIUM_REQUIREMENT_LIST.find(
+      (item) => item.age === user.age && item.gender.includes(user.gender ?? "")
+    )?.amount ?? 0;
   const consumed = totalConsumed;
   const value = (consumed * 100) / 1600;
   const validatedValue = value > 100 ? 100 : value;
@@ -47,7 +54,7 @@ export default function ProgressSection({
         <Section className="grid gap-6">
           <Field title={data.pTitle1}>
             <div className="bg-secondary relative h-8 w-full overflow-hidden rounded-md flex justify-center items-center">
-              <p className="text-background font-semibold">1600mg</p>
+              <p className="text-background font-semibold">{maxTotal}mg</p>
             </div>
           </Field>
           <Field title={data.pTitle2}>

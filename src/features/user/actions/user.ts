@@ -109,9 +109,19 @@ export const updateProfile = async (data: UpdateUserFormType) => {
       },
     });
 
+    // create new session
+    await createSession({
+      mobile: user.mobile,
+      name: user.user_information?.full_name,
+      age: user.user_information?.age,
+      gender: user.user_information?.gender,
+      role: "user",
+    });
+
     // revalidate cache
     revalidatePath("/");
     revalidatePath("/profile");
+    revalidatePath("/result");
 
     return {
       success: true,
