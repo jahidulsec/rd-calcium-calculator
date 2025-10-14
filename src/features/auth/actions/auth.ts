@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/db/client";
-import { createSession } from "@/lib/session";
+import { createSession, deleteSession } from "@/lib/session";
 import { LoginFormType, VerificationFormType } from "@/schema/auth";
 import { generateUserOtp } from "../lib/auth";
 import { sendOTP, verifyOtpTime } from "@/utils/helper";
@@ -127,7 +127,7 @@ export const resentOtp = async (data: LoginFormType) => {
     // create otp
     const otp = await generateUserOtp(data.mobile);
 
-     // sent otp to phone
+    // sent otp to phone
     await sendOTP(otp.mobile, otp.code);
 
     return {
@@ -145,3 +145,20 @@ export const resentOtp = async (data: LoginFormType) => {
     };
   }
 };
+
+export async function logout() {
+  try {
+    await deleteSession();
+
+    return {
+      success: true,
+      message: "You are logged out successfully",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: (error as Error).message ?? "Something went wrong",
+    };
+  }
+}

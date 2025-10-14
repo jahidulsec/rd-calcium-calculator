@@ -1,14 +1,12 @@
-import { BackButton } from "@/components/buttons/button";
-import { Header, Section } from "@/components/section/section";
+import { Section } from "@/components/section/section";
 import { PageHeading } from "@/components/typography/heading";
-import { Button } from "@/components/ui/button";
+import HeaderSection from "@/features/profile/components/header-section";
 import ProfileForm from "@/features/user/components/profile-form";
 import { getUser } from "@/features/user/servers/user";
 import { getAuthUser } from "@/lib/dal";
 import { getDictionary, Locales } from "@/lib/dictionaries";
 import { AuthUser } from "@/types/auth-user";
 import { params } from "@/types/search-params";
-import { LogOut } from "lucide-react";
 import React from "react";
 
 export default async function ProfilePage({ params }: { params: params }) {
@@ -22,12 +20,7 @@ export default async function ProfilePage({ params }: { params: params }) {
 
   return (
     <>
-      <Header className="flex justify-between items-center gap-6">
-        <BackButton />
-        <Button size={"icon"} className="rounded-full" variant={"outline"}>
-          <LogOut /> <span className="sr-only">Logout</span>
-        </Button>
-      </Header>
+      <HeaderSection />
 
       <PageHeading className="text-center">
         {dict.profile.sectionTitle}
