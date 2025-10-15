@@ -3,7 +3,7 @@
 import { Section } from "@/components/section/section";
 import { Button } from "@/components/ui/button";
 import { DictionaryType } from "@/lib/dictionaries";
-import { Check, Info, Plus } from "lucide-react";
+import { Check, Info, Plus, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import {
@@ -19,9 +19,11 @@ import { useParams, useSearchParams } from "next/navigation";
 import { Food, useCalculatorContext } from "@/providers/calculator-provider";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 export default function CardSection({ data }: { data: DictionaryType }) {
   const { foods, onFoods } = useCalculatorContext();
+  const [otherFoodCount, setOtherFoodCount] = React.useState(1);
 
   const searchParams = useSearchParams();
   const params = useParams();
@@ -73,46 +75,58 @@ export default function CardSection({ data }: { data: DictionaryType }) {
             />
           ))}
       </div>
-
       <p className="text-sm my-3">{data.foodTips}</p>
+      {/* other food section */}
+      <Button
+        className="mb-3 w-fit ml-auto"
+        onClick={() => setOtherFoodCount(otherFoodCount + 1)}
+      >
+        <PlusCircle /> Food
+      </Button>{" "}
+      <div className="flex flex-col gap-3">
+        {Array.from({ length: otherFoodCount }).map((_, index) => (
+          <Card
+            key={index}
+            type="other"
+            selected={foods.find(
+              (f) => f.id === index + 1 && f.category === validatedCategory
+            )}
+            onDelete={(value) => {
+              onFoods((prev) => {
+                return prev.filter(
+                  (f) => !(f.id === value.id && f.category === value.category)
+                );
+              });
+            }}
+            onSelect={(value) =>
+              onFoods((prev) => {
+                const exists = prev.find(
+                  (f) => f.id === value.id && f.category === value.category
+                );
 
-      <Card
-        selected={foods.find(
-          (f) =>
-            f.name === data.otherFood.item && f.category === validatedCategory
-        )}
-        onDelete={(value) => {
-          onFoods((prev) => {
-            return prev.filter(
-              (f) => !(f.name === value.name && f.category === value.category)
-            );
-          });
-        }}
-        onSelect={(value) =>
-          onFoods((prev) => {
-            const exists = prev.find(
-              (f) => f.name === value.name && f.category === value.category
-            );
+                if (exists) {
+                  // If same item with same qty, no change
+                  if (exists.qty === value.qty) return prev;
 
-            if (exists) {
-              // If same item with same qty, no change
-              if (exists.qty === value.qty) return prev;
+                  // Otherwise replace the existing one with updated qty
+                  return prev.map((f) =>
+                    f.id === value.id && f.category === value.category
+                      ? value
+                      : f
+                  );
+                }
 
-              // Otherwise replace the existing one with updated qty
-              return prev.map((f) =>
-                f.name === value.name && f.category === value.category
-                  ? value
-                  : f
-              );
+                // Add new item
+                return [...prev, value];
+              })
             }
-
-            // Add new item
-            return [...prev, value];
-          })
-        }
-        item={data.otherFood}
-      />
-
+            item={{
+              ...data.otherFood,
+              id: index + 1,
+            }}
+          />
+        ))}
+      </div>
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">
         <Button className="w-full font-bold" asChild>
           <Link href={`/${params.lang}/result`}>
@@ -130,14 +144,17 @@ const Card = ({
   disable,
   selected,
   onDelete,
+  type = "default",
 }: {
-  item: DictionaryType["food"][number];
+  item: DictionaryType["food"][number] & { id?: number };
   onSelect: (value: Food) => void;
   onDelete: (value: Food) => void;
   disable?: boolean;
   selected?: Food;
+  type?: "other" | "default";
 }) => {
   const [unitNo, setUnitNo] = React.useState(selected?.qty ?? 1);
+  const [other, setOther] = React.useState(item);
 
   const searchParams = useSearchParams();
   const validatedCategory = searchParams.get("category") ?? "breakfast";
@@ -146,9 +163,13 @@ const Card = ({
     <div className="border rounded-md p-3 flex gap-5 w-full">
       {/* left */}
       <div className="min-w-20 max-h-20 m-auto flex justify-center items-center rounded-md overflow-hidden bg-muted">
-        <div className="relative w-full  aspect-square mix-blend-multiply">
-          <Image src={item.image} fill alt={item.item} objectFit="cover" />
-        </div>
+        {item.image ? (
+          <div className="relative w-full  aspect-square mix-blend-multiply">
+            <Image src={item.image} fill alt={item.item} objectFit="cover" />
+          </div>
+        ) : (
+          <div className="w-full aspect-square"></div>
+        )}
       </div>
 
       {/* right */}
@@ -156,7 +177,25 @@ const Card = ({
         {/* top */}
         <div className="flex items-center gap-2 flex-wrap">
           <p className="text-muted-foreground text-sm">
-            {item.unit} | {item.calcium_value}
+            {item.unit} |{" "}
+            {type === "other" ? (
+              <>
+                <Input
+                  type="number"
+                  className="text-sm max-w-20 h-fit"
+                  value={other.calcium_mg}
+                  onChange={(e) =>
+                    setOther((prev) => ({
+                      ...prev,
+                      calcium_mg: Number(e.target.value),
+                    }))
+                  }
+                />{" "}
+                mg
+              </>
+            ) : (
+              item.calcium_value
+            )}
           </p>
           <Info className="fill-muted-foreground/30 text-background size-5" />
         </div>
@@ -164,21 +203,44 @@ const Card = ({
         {/* middle */}
         <div className="w-full flex justify-between items-center gap-5 flex-wrap">
           {/* title */}
-          <h3 className="font-bold max-w-[72%]">{item.item.split("(")[0]}</h3>
+          {type === "other" ? (
+            <Input
+              className="font-bold max-w-[72%]"
+              value={other.item}
+              onChange={(e) =>
+                setOther((prev) => ({
+                  ...prev,
+                  item: e.target.value,
+                }))
+              }
+            />
+          ) : (
+            <h3 className="font-bold max-w-[72%]">{item.item.split("(")[0]}</h3>
+          )}
 
           {selected ? (
             <Button
               size={"icon-sm"}
               className={cn("rounded-full", selected ? "bg-chart-2" : "")}
               disabled={disable}
-              onClick={() =>
-                onDelete({
-                  name: item.item,
-                  qty: unitNo,
-                  calcium_mg: item.calcium_mg,
-                  category: validatedCategory,
-                })
-              }
+              onClick={() => {
+                if (type === "other") {
+                  onDelete({
+                    id: other.id,
+                    name: other.item,
+                    qty: unitNo,
+                    calcium_mg: other.calcium_mg,
+                    category: validatedCategory,
+                  });
+                } else {
+                  onDelete({
+                    name: item.item,
+                    qty: unitNo,
+                    calcium_mg: item.calcium_mg,
+                    category: validatedCategory,
+                  });
+                }
+              }}
             >
               <Check />
               <span className="sr-only">Add</span>
@@ -188,14 +250,24 @@ const Card = ({
               size={"icon-sm"}
               className="rounded-full"
               disabled={disable}
-              onClick={() =>
-                onSelect({
-                  name: item.item,
-                  qty: unitNo,
-                  calcium_mg: item.calcium_mg,
-                  category: validatedCategory,
-                })
-              }
+              onClick={() => {
+                if (type === "other") {
+                  onSelect({
+                    id: other.id,
+                    name: other.item,
+                    qty: unitNo,
+                    calcium_mg: other.calcium_mg,
+                    category: validatedCategory,
+                  });
+                } else {
+                  onSelect({
+                    name: item.item,
+                    qty: unitNo,
+                    calcium_mg: item.calcium_mg,
+                    category: validatedCategory,
+                  });
+                }
+              }}
             >
               <Plus />
               <span className="sr-only">Add</span>
@@ -208,12 +280,23 @@ const Card = ({
           value={unitNo.toString()}
           onValueChange={(value) => {
             setUnitNo(Number(value ?? 1));
-            onSelect({
-              name: item.item,
-              qty: Number(value ?? 1),
-              calcium_mg: item.calcium_mg,
-              category: validatedCategory,
-            });
+
+            if (type === "other") {
+              onSelect({
+                id: other.id,
+                name: other.item,
+                qty: Number(value ?? 1),
+                calcium_mg: other.calcium_mg,
+                category: validatedCategory,
+              });
+            } else {
+              onSelect({
+                name: item.item,
+                qty: Number(value ?? 1),
+                calcium_mg: item.calcium_mg,
+                category: validatedCategory,
+              });
+            }
           }}
         >
           <SelectTrigger className="w-[180px] text-primary font-semibold [&_svg:not([class*='text-'])]:text-secondary">

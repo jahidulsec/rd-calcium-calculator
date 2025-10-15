@@ -10,6 +10,7 @@ import {
 } from "react";
 
 export type Food = {
+  id?: number;
   name: string;
   qty: number;
   calcium_mg: number;
