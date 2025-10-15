@@ -307,7 +307,7 @@ const Card = ({
               <SelectLabel>Unit</SelectLabel>
               {Array.from({ length: 8 }).map((_, index) => (
                 <SelectItem key={index} value={(index + 1).toString()}>
-                  {index + 1} Unit
+                  {index + 1} Serving 
                 </SelectItem>
               ))}
             </SelectGroup>
