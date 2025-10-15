@@ -13,6 +13,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { DictionaryType } from "@/lib/dictionaries";
+import BlogCard from "@/components/card/blog-card";
 
 export default function BlogSection({
   data,
@@ -40,28 +41,7 @@ const CardSection = ({ data }: { data: DictionaryType["home"]["blogs"] }) => {
         <CarouselContent>
           {data.map((item, index) => (
             <CarouselItem key={index} className="basis-[60%]">
-              <div className="bg-muted/50 p-2 rounded-md flex flex-col gap-3">
-                {/* image */}
-                <div className="relative w-full aspect-video rounded-md overflow-hidden">
-                  <Image fill src={item.image} alt="Blog" objectFit="cover" />
-                </div>
-
-                {/* content */}
-                <div className="flex flex-col gap-2">
-                  <Badge
-                    variant={"outline"}
-                    className="bg-secondary/15 text-primary"
-                  >
-                    {item.readTime}
-                  </Badge>
-                  <Link href={`/blog/${item.id}`} className="hover:underline">
-                    <h3 className="font-semibold line-clamp-2">{item.title}</h3>
-                  </Link>
-                  <p className="text-sm text-muted-foreground line-clamp-3">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
+              <BlogCard {...item} />
             </CarouselItem>
           ))}
         </CarouselContent>
