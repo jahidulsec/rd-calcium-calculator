@@ -206,7 +206,7 @@ const Card = ({
           {type === "other" ? (
             <Input
               className="font-bold max-w-[72%]"
-              value={other.item}
+              placeholder={other.item}
               onChange={(e) =>
                 setOther((prev) => ({
                   ...prev,

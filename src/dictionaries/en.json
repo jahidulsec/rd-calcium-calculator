@@ -50,7 +50,7 @@
     "categories": ["breakfast", "lunch", "evening-snacks", "dinner"],
     "calcium_mg": 50,
     "calcium_value": "50 mg",
-    "unit": "Service",
+    "unit": "Unit",
     "image": "/images/food/other.jpg"
   },
   "food": [
