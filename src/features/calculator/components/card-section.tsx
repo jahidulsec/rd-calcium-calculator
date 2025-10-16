@@ -75,58 +75,62 @@ export default function CardSection({ data }: { data: DictionaryType }) {
             />
           ))}
       </div>
-      <p className="text-sm my-3">{data.foodTips}</p>
+      {/* <p className="text-sm my-3">{data.foodTips}</p> */}
       {/* other food section */}
-      <Button
-        className="mb-3 w-fit ml-auto"
-        onClick={() => setOtherFoodCount(otherFoodCount + 1)}
-      >
-        <PlusCircle /> Food
-      </Button>{" "}
-      <div className="flex flex-col gap-3">
-        {Array.from({ length: otherFoodCount }).map((_, index) => (
-          <Card
-            key={index}
-            type="other"
-            selected={foods.find(
-              (f) => f.id === index + 1 && f.category === validatedCategory
-            )}
-            onDelete={(value) => {
-              onFoods((prev) => {
-                return prev.filter(
-                  (f) => !(f.id === value.id && f.category === value.category)
-                );
-              });
-            }}
-            onSelect={(value) =>
-              onFoods((prev) => {
-                const exists = prev.find(
-                  (f) => f.id === value.id && f.category === value.category
-                );
-
-                if (exists) {
-                  // If same item with same qty, no change
-                  if (exists.qty === value.qty) return prev;
-
-                  // Otherwise replace the existing one with updated qty
-                  return prev.map((f) =>
-                    f.id === value.id && f.category === value.category
-                      ? value
-                      : f
+      <section className="w-full flex flex-col gap-3 py-3 border-t mt-3">
+        <Button
+          className="w-fit ml-auto"
+          onClick={() => setOtherFoodCount(otherFoodCount + 1)}
+        >
+          <PlusCircle /> Food
+        </Button>{" "}
+        <div className="flex flex-col gap-3">
+          {Array.from({ length: otherFoodCount }).map((_, index) => (
+            <Card
+              key={index}
+              type="other"
+              selected={foods.find(
+                (f) => f.id === index + 1 && f.category === validatedCategory
+              )}
+              onDelete={(value) => {
+                onFoods((prev) => {
+                  return prev.filter(
+                    (f) => !(f.id === value.id && f.category === value.category)
                   );
-                }
+                });
+              }}
+              onSelect={(value) =>
+                onFoods((prev) => {
+                  const exists = prev.find(
+                    (f) => f.id === value.id && f.category === value.category
+                  );
 
-                // Add new item
-                return [...prev, value];
-              })
-            }
-            item={{
-              ...data.otherFood,
-              id: index + 1,
-            }}
-          />
-        ))}
-      </div>
+                  if (exists) {
+                    // If same item with same qty, no change
+                    if (exists.qty === value.qty) return prev;
+
+                    // Otherwise replace the existing one with updated qty
+                    return prev.map((f) =>
+                      f.id === value.id && f.category === value.category
+                        ? value
+                        : f
+                    );
+                  }
+
+                  // Add new item
+                  return [...prev, value];
+                })
+              }
+              item={{
+                ...data.otherFood,
+                id: index + 1,
+              }}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* button */}
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">
         <Button className="w-full font-bold" asChild>
           <Link href={`/${params.lang}/result`}>
@@ -307,7 +311,7 @@ const Card = ({
               <SelectLabel>Unit</SelectLabel>
               {Array.from({ length: 8 }).map((_, index) => (
                 <SelectItem key={index} value={(index + 1).toString()}>
-                  {index + 1} Serving 
+                  {index + 1} Serving
                 </SelectItem>
               ))}
             </SelectGroup>
