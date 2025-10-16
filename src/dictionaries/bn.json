@@ -389,9 +389,9 @@
     "circleSectionTitle": "হিসাব অনুযায়ী আপনার  কতটুক RDA (প্রস্তাবিত খাদ্য গ্রহণ পরিমাণ) পূরণ হয়েছে?",
     "resultCommonTitleFirst": "আপনার",
     "resultCommonTitleEnd": "রয়েছে",
-    "hypercalcemia": "হাইপারক্যালসেমিয়া",
-    "hypocalcemia": "হাইপোক্যালসেমিয়া",
-    "normal": "স্বাভাবিক",
+    "hypercalcemia": "আপনার হাইপারক্যালসেমিয়া রয়েছে",
+    "hypocalcemia": "আপনার হাইপোক্যালসেমিয়া রয়েছে",
+    "normal": "আপনার ক্যালসিয়াম গ্রহণ স্বাভাবিক আছে",
     "buttonTitle": "আবার ক্যালকুলেট করুন",
     "adviceParagraph": "আপনার তুলনায় ক্যালসিয়াম গ্রহণের পরিমাণ আপনার চাহিদার কম যা আপনার hypocalcemia এর ঝুঁকি বাড়াতে পারে আপনার করণীয়:",
     "advicePoints": [

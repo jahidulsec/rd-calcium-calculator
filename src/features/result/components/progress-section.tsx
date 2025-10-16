@@ -95,9 +95,7 @@ export default function ProgressSection({
               )}
             />{" "}
             <p className="font-semibold">
-              {params.lang === "en"
-                ? `${data.resultCommonTitleFirst} ${data.resultCommonTitleEnd} ${status}`
-                : `${data.resultCommonTitleFirst} ${status} ${data.resultCommonTitleEnd}`}
+              {status}
             </p>
           </div>
         </Section>

@@ -389,9 +389,9 @@
     "circleSectionTitle": "Your % of RDA (Recommended Dietary Allowance) fulfilled?",
     "resultCommonTitleFirst": "You",
     "resultCommonTitleEnd": "have",
-    "hypercalcemia": "Hypercalcemia",
-    "hypocalcemia": "Hypocalcemia",
-    "normal": "Normal",
+    "hypercalcemia": "You have Hypercalcemia",
+    "hypocalcemia": "You have Hypocalcemia",
+    "normal": "Your Calcium Intake is Okay!",
     "buttonTitle": "Calculate Again",
     "adviceParagraph": "Compared to your needs, your calcium intake is low, which may increase the risk of hypocalcemia. What you should do",
     "advicePoints": [
