@@ -85,7 +85,7 @@ export default function OnboardingSection({
 
       <Section>
         <article className="flex flex-col gap-3 mt-8">
-          <PageHeading className="text-center text-primary">
+          <PageHeading className="text-center text-primary text-wrap">
             {data.title}
           </PageHeading>
           <p className="text-center text-sm text-muted-foreground">
