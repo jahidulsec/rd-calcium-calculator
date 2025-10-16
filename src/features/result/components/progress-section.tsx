@@ -37,7 +37,7 @@ export default function ProgressSection({
       (item) => item.age === user.age && item.gender.includes(user.gender ?? "")
     )?.amount ?? 0;
   const consumed = totalConsumed;
-  const value = (consumed * 100) / 1600;
+  const value = (consumed * 100) / maxTotal;
   const validatedValue = value > 100 ? 100 : value;
   const validatedRemaingValue = value > 100 ? value - 100 : 100 - value;
   const remaining = maxTotal - consumed;
@@ -102,7 +102,7 @@ export default function ProgressSection({
           </div>
         </Section>
 
-        {value < 100 && <AdviceSection data={data} />}
+        {/* {value < 100 && <AdviceSection data={data} />} */}
       </div>
 
       <Section className="grid gap-2">

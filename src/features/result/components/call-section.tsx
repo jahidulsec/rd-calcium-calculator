@@ -11,7 +11,9 @@ export default function CallSection({
 }) {
   return (
     <div className="bg-secondary text-background p-4 rounded-md grid gap-2">
-      <p className="text-sm">{data.callSectionPara}</p>
+      <p className="text-sm">
+        {data.callSectionPara} ({process.env.NEXT_PUBLIC_TELE_SERVICE})
+      </p>
       <Button className="w-full text-secondary" variant={"outline"} asChild>
         <Link
           href={`tel:${process.env.NEXT_PUBLIC_TELE_SERVICE}`}
