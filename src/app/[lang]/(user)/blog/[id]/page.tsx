@@ -14,7 +14,7 @@ export default async function BlogPage({ params }: { params: params }) {
 
   const { id } = await params;
 
-  const blog = await blogs[Number(id) - 1]();
+  const blog = await blogs[Number(id) - 1](lang as Locales);
 
   if (!blog) notFound();
 
