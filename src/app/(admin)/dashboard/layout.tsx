@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer/footer";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SiteHeader } from "@/components/sidebar/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
@@ -21,7 +22,7 @@ export default async function AdminLayout({
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+      <AppSidebar variant="inset" user={authUser} />
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
@@ -31,6 +32,7 @@ export default async function AdminLayout({
             </div>
           </div>
         </div>
+        <Footer />
       </SidebarInset>
     </SidebarProvider>
   );
