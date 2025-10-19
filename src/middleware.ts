@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip API and static files (already handled)
-  if (pathname.startsWith("/api") || pathname.startsWith("/admin") || pathname.includes("."))
+  if (pathname.startsWith("/api") || pathname.startsWith("/dashboard") || pathname.startsWith("/login/admin") || pathname.includes("."))
     return NextResponse.next();
 
   const pathnameHasLocale = locales.some(

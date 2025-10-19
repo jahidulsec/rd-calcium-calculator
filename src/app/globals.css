@@ -138,11 +138,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-html[lang="en"] {
-  font-family: "Manrepo", sans-serif;
-}
-
-html[lang="bn"] {
-  font-family: "Anek", sans-serif;
-}
