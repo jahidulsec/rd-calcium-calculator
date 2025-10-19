@@ -1,4 +1,4 @@
-import { $Enums } from "@/generated/prisma";
+import { $Enums, admin_role } from "@/generated/prisma";
 
 export type AuthUser = {
   mobile: string;
@@ -8,4 +8,4 @@ export type AuthUser = {
   gender?: $Enums.user_information_gender;
 };
 
-export type UserRole = "admin" | "user";
+export type UserRole = "user" | admin_role;

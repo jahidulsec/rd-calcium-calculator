@@ -24,6 +24,8 @@ import {
 import { FormButton } from "@/components/buttons/button";
 import { useRouter } from "@bprogress/next";
 import { AdminLoginSchema, AdminLoginSchemaType } from "@/schema/admin";
+import { login } from "../actions/auth";
+import { toast } from "sonner";
 
 export function LoginForm({
   className,
@@ -36,16 +38,14 @@ export function LoginForm({
   const router = useRouter();
 
   async function onSubmit(values: AdminLoginSchemaType) {
-    // const res = await login(values);
-    // TODO: adding admin login action
+    const res = await login(values);
 
     console.log(values);
-    // toast[res.success ? "success" : "error"](res.message);
+    toast[res.success ? "success" : "error"](res.message);
 
-    // if (res.success) {
-    //   onUser({ mobile: values.mobile });
-    //   router.push("/verify");
-    // }
+    if (res.success) {
+      router.push("/dashboard");
+    }
   }
 
   return (
