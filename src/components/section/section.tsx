@@ -19,4 +19,13 @@ const Header = ({ className, ...props }: React.ComponentProps<"header">) => {
   );
 };
 
-export { Section, Header };
+const DashboardSection = ({
+  className,
+  ...props
+}: React.ComponentProps<"section">) => {
+  return (
+    <section className={cn("mx-auto px-6 w-full", className)} {...props} />
+  );
+};
+
+export { Section, Header, DashboardSection };
