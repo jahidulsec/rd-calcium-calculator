@@ -1,9 +1,17 @@
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SiteHeader } from "@/components/sidebar/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { getAuthUser } from "@/lib/dal";
+import { redirect } from "next/navigation";
 import React from "react";
 
-export default function AdminLayout({ children }: React.PropsWithChildren) {
+export default async function AdminLayout({
+  children,
+}: React.PropsWithChildren) {
+  const authUser = await getAuthUser();
+
+  if (!authUser || authUser.role == "user") redirect("/login/admin");
+
   return (
     <SidebarProvider
       style={
