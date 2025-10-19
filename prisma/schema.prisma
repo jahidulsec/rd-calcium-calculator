@@ -53,6 +53,25 @@ model user_information {
   user       user                    @relation(fields: [userId], references: [mobile], onDelete: Cascade)
 }
 
+model admin {
+  id         String      @id @default(nanoid()) @db.VarChar(21)
+  full_name  String      @db.VarChar(50)
+  username   String      @unique(map: "username") @db.VarChar(25)
+  password   String      @db.VarChar(25)
+  created_at DateTime?   @default(now()) @db.Timestamp(0)
+  role       admin_role? @default(admin)
+}
+
+model food {
+  id         String         @id @default(nanoid()) @db.VarChar(21)
+  en_name    String         @db.VarChar(100)
+  bn_name    String         @db.VarChar(100)
+  calcium_mg Float          @db.Float
+  created_at DateTime?      @default(now()) @db.Timestamp(0)
+  unit       String         @db.VarChar(20)
+  category   food_category?
+}
+
 enum user_information_age {
   TODDLER
   CHILD
@@ -64,4 +83,16 @@ enum user_information_age {
 enum user_information_gender {
   MALE
   FEMALE
+}
+
+enum admin_role {
+  superadmin
+  admin
+}
+
+enum food_category {
+  breakfast
+  lunch
+  eveing_snacks @map("eveing-snacks")
+  dinner
 }

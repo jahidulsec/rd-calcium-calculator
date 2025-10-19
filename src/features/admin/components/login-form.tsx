@@ -23,25 +23,19 @@ import {
 } from "@/components/ui/form";
 import { FormButton } from "@/components/buttons/button";
 import { useRouter } from "@bprogress/next";
-
-const AdminSchema = z.object({
-  username: z.string("Enter your username").min(3, "At least 3 Characters"),
-  password: z.string("Enter your password").min(6, "At least 6 Characters"),
-});
-
-type AdminSchemaType = z.infer<typeof AdminSchema>;
+import { AdminLoginSchema, AdminLoginSchemaType } from "@/schema/admin";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const form = useForm<AdminSchemaType>({
-    resolver: zodResolver(AdminSchema),
+  const form = useForm<AdminLoginSchemaType>({
+    resolver: zodResolver(AdminLoginSchema),
   });
 
   const router = useRouter();
 
-  async function onSubmit(values: AdminSchemaType) {
+  async function onSubmit(values: AdminLoginSchemaType) {
     // const res = await login(values);
     // TODO: adding admin login action
 
