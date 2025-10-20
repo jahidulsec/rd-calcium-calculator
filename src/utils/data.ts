@@ -30,3 +30,5 @@ export const CALCIUM_REQUIREMENT_LIST = [
     amount: 1200,
   },
 ];
+
+export const DEFAULT_PAGE_SIZE = 20;
