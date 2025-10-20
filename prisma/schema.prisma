@@ -57,19 +57,30 @@ model admin {
   id         String      @id @default(nanoid()) @db.VarChar(21)
   full_name  String      @db.VarChar(50)
   username   String      @unique(map: "username") @db.VarChar(25)
-  password   String      @db.VarChar(25)
+  password   String      @db.VarChar(100)
   created_at DateTime?   @default(now()) @db.Timestamp(0)
   role       admin_role? @default(admin)
 }
 
 model food {
-  id         String         @id @default(nanoid()) @db.VarChar(21)
-  en_name    String         @db.VarChar(100)
-  bn_name    String         @db.VarChar(100)
-  calcium_mg Float          @db.Float
-  created_at DateTime?      @default(now()) @db.Timestamp(0)
-  unit       String         @db.VarChar(20)
-  category   food_category?
+  id          String    @id @default(nanoid()) @db.VarChar(21)
+  en_name     String    @db.VarChar(100)
+  bn_name     String    @db.VarChar(100)
+  calcium_mg  Float     @db.Float
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  unit        String    @db.VarChar(20)
+  image       String?   @db.VarChar(255)
+  category_id String    @db.VarChar(21)
+  category    category  @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "food_category_fk")
+
+  @@index([category_id], map: "food_category_fk")
+}
+
+model category {
+  id         String    @id @db.VarChar(21)
+  name       String    @db.VarChar(255)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  food       food[]
 }
 
 enum user_information_age {
@@ -88,11 +99,4 @@ enum user_information_gender {
 enum admin_role {
   superadmin
   admin
-}
-
-enum food_category {
-  breakfast
-  lunch
-  eveing_snacks @map("eveing-snacks")
-  dinner
 }
