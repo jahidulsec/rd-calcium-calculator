@@ -1,3 +1,4 @@
+import TablePagination from "@/components/pagintaion/pagination";
 import {
   DashboardHeader,
   DashboardSection,
@@ -42,6 +43,7 @@ const TableSection = async ({
   return (
     <DashboardSection>
       <FoodTable data={foods.data} />
+      <TablePagination count={foods?.count ?? 0} />
     </DashboardSection>
   );
 };

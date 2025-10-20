@@ -5,7 +5,7 @@ import { DEFAULT_PAGE_SIZE } from "@/utils/data";
 
 export const getFoods = async (page?: number, limit?: number) => {
   const validatePage = page || 1;
-  const validateLimit = limit||  DEFAULT_PAGE_SIZE;
+  const validateLimit = limit || DEFAULT_PAGE_SIZE;
 
   try {
     const Foods = await prisma.food.findMany({
@@ -19,7 +19,14 @@ export const getFoods = async (page?: number, limit?: number) => {
       take: validateLimit,
     });
 
-    return { success: true, message: "Get foods successfull", data: Foods };
+    const count = await prisma.food.count();
+
+    return {
+      success: true,
+      message: "Get foods successfull",
+      data: Foods,
+      count: count,
+    };
   } catch (error) {
     console.error(error);
 
