@@ -26,12 +26,26 @@ import { FoodSchema, FoodSchemaType } from "@/schema/food";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { createFood } from "../actions/food";
+import { createFood, updateFood } from "../actions/food";
 import { toast } from "sonner";
+import { FoodTableProps } from "./food-table";
 
-export default function FoodForm({ onClose }: { onClose: () => void }) {
+export default function FoodForm({
+  onClose,
+  food,
+}: {
+  food?: FoodTableProps;
+  onClose: () => void;
+}) {
   const form = useForm<FoodSchemaType>({
     resolver: zodResolver(FoodSchema),
+    defaultValues: {
+      en_name: food?.en_name,
+      bn_name: food?.bn_name,
+      unit: food?.unit,
+      calcium_mg: food?.calcium_mg,
+      category: food?.food_category.map((item) => item.category_id),
+    },
   });
 
   const [categories, setCategories] = React.useState<category[]>([]);
@@ -47,7 +61,7 @@ export default function FoodForm({ onClose }: { onClose: () => void }) {
   }, []);
 
   async function onSubmit(values: FoodSchemaType) {
-    const res = await createFood(values);
+    const res = food ? await updateFood(food.id, values) : await createFood(values);
     toast[res.success ? "success" : "error"](res.message);
     if (res.success) {
       onClose();
@@ -118,7 +132,7 @@ export default function FoodForm({ onClose }: { onClose: () => void }) {
         <FormField
           name="calcium_mg"
           control={form.control}
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>Calcium Value (mg)</FormLabel>
               <FormControl>
@@ -154,7 +168,12 @@ export default function FoodForm({ onClose }: { onClose: () => void }) {
             <FormItem className="md:col-span-2">
               <FormLabel>Image</FormLabel>
               <FormControl>
-                <ImageInput id="image" field={field} formImage={image} />
+                <ImageInput
+                  imageUrl={`/api/upload/food/${food?.id}`}
+                  id="image"
+                  field={field}
+                  formImage={image}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

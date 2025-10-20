@@ -3,19 +3,22 @@
 import { ControllerRenderProps } from "react-hook-form";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { Label } from "../ui/label";
+import { Avatar } from "../ui/avatar";
+import { AvatarImage } from "@radix-ui/react-avatar";
 
 const ImageInput = ({
   field,
   className,
   onChange,
   formImage,
+  imageUrl,
   id,
   ...props
 }: React.ComponentProps<"input"> & {
   field?: ControllerRenderProps<any>;
   formImage?: File;
+  imageUrl?: string;
 }) => {
   const validatedId = id ?? crypto.randomUUID();
 
@@ -24,20 +27,16 @@ const ImageInput = ({
       <Label htmlFor={id} className="h-8 px-6 bg-muted border rounded-md w-fit">
         Upload
       </Label>
-      <div className="w-14 flex items-center justify-center aspect-square bg-muted border rounded-md overflow-hidden">
-        <div className="relative w-full aspect-square mix-blend-multiply">
-          <Image
-            fill
-            objectFit="cover"
-            src={
-              formImage
-                ? URL.createObjectURL(formImage)
-                : "/images/file-icon.svg"
-            }
-            alt=""
-          />
-        </div>
-      </div>
+      <Avatar className="rounded-md size-14 bg-muted">
+        <AvatarImage
+          src={
+            formImage
+              ? URL.createObjectURL(formImage)
+              : imageUrl || "/images/file-icon.svg"
+          }
+        />
+      </Avatar>
+
       <Input
         id={validatedId}
         type="file"

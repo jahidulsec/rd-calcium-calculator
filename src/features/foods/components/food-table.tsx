@@ -1,5 +1,6 @@
 "use client";
 
+import FormModal from "@/components/modal/form-modal";
 import { DataTable } from "@/components/table/data-table";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -11,12 +12,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { food, Prisma } from "@/generated/prisma";
+import { Prisma } from "@/generated/prisma";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { IconDotsVertical } from "@tabler/icons-react";
 import { ColumnDef } from "@tanstack/react-table";
-import Image from "next/image";
 import React from "react";
+import FoodForm from "./food-form";
 
 export type FoodTableProps = Prisma.foodGetPayload<{
   include: {
@@ -29,6 +30,8 @@ export type FoodTableProps = Prisma.foodGetPayload<{
 }>;
 
 export default function FoodTable({ data }: { data: FoodTableProps[] }) {
+  const [edit, setEdit] = React.useState<FoodTableProps | boolean>(false);
+
   const columns: ColumnDef<FoodTableProps>[] = [
     {
       id: "Image",
@@ -73,7 +76,7 @@ export default function FoodTable({ data }: { data: FoodTableProps[] }) {
     },
     {
       id: "actions",
-      cell: () => (
+      cell: ({ row }) => (
         <div className="flex justify-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -87,7 +90,9 @@ export default function FoodTable({ data }: { data: FoodTableProps[] }) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-32">
-              <DropdownMenuItem>Edit</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setEdit(row.original)}>
+                Edit
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
             </DropdownMenuContent>
@@ -97,5 +102,20 @@ export default function FoodTable({ data }: { data: FoodTableProps[] }) {
     },
   ];
 
-  return <DataTable data={data} columns={columns} />;
+  return (
+    <>
+      <DataTable data={data} columns={columns} />
+      <FormModal
+        title="Edit Food"
+        open={!!edit}
+        onOpenChange={setEdit}
+        form={
+          <FoodForm
+            food={typeof edit !== "boolean" ? edit : undefined}
+            onClose={() => setEdit(false)}
+          />
+        }
+      />
+    </>
+  );
 }
