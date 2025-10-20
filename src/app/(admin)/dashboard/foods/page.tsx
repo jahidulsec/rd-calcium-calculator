@@ -4,13 +4,14 @@ import {
   DashboardHeader,
   DashboardSection,
 } from "@/components/section/section";
+import { TableSkeleton } from "@/components/skeleton/table";
 import { DashbaordHeading } from "@/components/typography/heading";
 import AddFoodButton from "@/features/foods/components/add-food-button";
 import FoodTable from "@/features/foods/components/food-table";
 import { getFoods } from "@/features/foods/servers/food";
 import { SearchParams } from "@/types/search-params";
 import { IconListDetails } from "@tabler/icons-react";
-import React from "react";
+import React, { Suspense } from "react";
 
 export default function FoodPage({
   searchParams,
@@ -28,7 +29,9 @@ export default function FoodPage({
       </DashboardHeader>
 
       {/* tablesection */}
-      <TableSection searchParams={searchParams} />
+      <Suspense fallback={<TableSkeleton />}>
+        <TableSection searchParams={searchParams} />
+      </Suspense>
     </>
   );
 }
