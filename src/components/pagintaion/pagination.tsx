@@ -63,7 +63,7 @@ export default function TablePagination({ count }: { count: number }) {
           </Select>
         </div>
         <div className="flex w-fit items-center justify-center text-sm font-medium">
-          Page {searchParams.get("page") ?? 1} of {20}
+          Page {searchParams.get("page") ?? 1} of {Math.ceil(count / size)}
           {/* total page count */}
         </div>
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
@@ -71,7 +71,7 @@ export default function TablePagination({ count }: { count: number }) {
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => handleParams("page", Number(1).toString())}
-            // disabled={!table.getCanPreviousPage()}
+            disabled={page === 1}
           >
             <span className="sr-only">Go to first page</span>
             <IconChevronsLeft />
@@ -107,6 +107,7 @@ export default function TablePagination({ count }: { count: number }) {
             onClick={() =>
               handleParams("page", Math.ceil(count / size).toString())
             }
+            disabled={Math.ceil(count / size) === page}
           >
             <span className="sr-only">Go to last page</span>
             <IconChevronsRight />
