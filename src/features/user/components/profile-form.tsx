@@ -47,7 +47,7 @@ export default function ProfileForm({
 
   // watch image upload
   const image = form.getValues("image");
-  form.watch("image");
+  form.watch('image');
 
   async function onSubmit(values: UpdateUserFormType) {
     values.userId = userData?.mobile;

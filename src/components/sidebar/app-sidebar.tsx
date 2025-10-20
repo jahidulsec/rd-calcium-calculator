@@ -2,10 +2,8 @@
 
 import * as React from "react";
 import {
-  IconBone,
   IconDashboard,
   IconFileWord,
-  IconInnerShadowTop,
   IconListDetails,
 } from "@tabler/icons-react";
 

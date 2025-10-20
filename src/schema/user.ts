@@ -20,7 +20,7 @@ export const UpdateUserSchema = UserSchema.omit({})
     image: z
       .instanceof(File)
       .refine(
-        (file) => file.size <= 1024 * 1024 && file.type.startsWith("image/"),
+        (file) => file.size <= 1 * 1024 * 1024 && file.type.startsWith("image/"),
         "Image must be under 1MB"
       ).optional(),
   });
