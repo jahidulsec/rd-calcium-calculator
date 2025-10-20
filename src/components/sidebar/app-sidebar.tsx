@@ -21,6 +21,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { AuthUser } from "@/types/auth-user";
+import Image from "next/image";
 
 const data = {
   navMain: [
@@ -56,8 +57,19 @@ export function AppSidebar({
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <IconBone className="!size-5" />
-                <span className="text-base font-semibold">Calcium Calculator</span>
+                <div className="w-6 h-6 overflow-hidden rounded-md bg-muted p-0.5 flex">
+                  <div className="relative w-6 h-6 mix-blend-multiply">
+                    <Image
+                      src={"/images/logo-i.png"}
+                      objectFit="cover"
+                      fill
+                      alt="Radiant Pharma"
+                    />
+                  </div>
+                </div>
+                <span className="text-base font-semibold">
+                  Calcium Calculator
+                </span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

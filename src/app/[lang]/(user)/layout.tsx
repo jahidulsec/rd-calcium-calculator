@@ -9,7 +9,7 @@ export default async function AdminLayout({
 }: React.PropsWithChildren) {
   const user = await getAuthUser();
 
-  if (!user) redirect("/onboarding");
+  if (!user || user.role !== 'user') redirect("/onboarding");
 
   return (
     <CalculatorProvider>
