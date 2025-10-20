@@ -9,7 +9,7 @@ export const getFoods = async (page?: number, limit?: number) => {
 
   try {
     const Foods = await prisma.food.findMany({
-      include: { food_category: true },
+      include: { food_category: { include: { category: true } } },
       orderBy: [
         {
           en_name: "asc",
