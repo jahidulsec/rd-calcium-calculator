@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@/components/boundary/error-boundary";
 import TablePagination from "@/components/pagintaion/pagination";
 import {
   DashboardHeader,
@@ -41,9 +42,11 @@ const TableSection = async ({
   const foods = await getFoods(Number(page), Number(size));
 
   return (
-    <DashboardSection>
-      <FoodTable data={foods.data} />
-      <TablePagination count={foods?.count ?? 0} />
-    </DashboardSection>
+    <ErrorBoundary error={!foods.success ? new Error(foods.message) : null}>
+      <DashboardSection>
+        <FoodTable data={foods.data} />
+        <TablePagination count={foods?.count ?? 0} />
+      </DashboardSection>
+    </ErrorBoundary>
   );
 };

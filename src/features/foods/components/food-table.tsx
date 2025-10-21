@@ -18,6 +18,9 @@ import { IconDotsVertical } from "@tabler/icons-react";
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
 import FoodForm from "./food-form";
+import AlertModal from "@/components/alert-modal/alert-modal";
+import { toast } from "sonner";
+import { deleteFood } from "../actions/food";
 
 export type FoodTableProps = Prisma.foodGetPayload<{
   include: {
@@ -31,6 +34,7 @@ export type FoodTableProps = Prisma.foodGetPayload<{
 
 export default function FoodTable({ data }: { data: FoodTableProps[] }) {
   const [edit, setEdit] = React.useState<FoodTableProps | boolean>(false);
+  const [del, setDel] = React.useState<string | boolean>(false);
 
   const columns: ColumnDef<FoodTableProps>[] = [
     {
@@ -94,7 +98,12 @@ export default function FoodTable({ data }: { data: FoodTableProps[] }) {
                 Edit
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+              <DropdownMenuItem
+                variant="destructive"
+                onClick={() => setDel(row.original.id)}
+              >
+                Delete
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -115,6 +124,23 @@ export default function FoodTable({ data }: { data: FoodTableProps[] }) {
             onClose={() => setEdit(false)}
           />
         }
+      />
+
+      <AlertModal
+        title="food"
+        open={!!del}
+        onOpenChange={setDel}
+        onAction={async () => {
+          if (typeof del === "boolean") return;
+          toast.promise(deleteFood(del), {
+            loading: "Loading...",
+            success: (data) => {
+              if (data.success === false) throw data;
+              return data.message;
+            },
+            error: (data) => data.message,
+          });
+        }}
       />
     </>
   );

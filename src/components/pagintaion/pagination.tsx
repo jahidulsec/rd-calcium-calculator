@@ -27,6 +27,7 @@ export default function TablePagination({ count }: { count: number }) {
 
   const page = Number(searchParams.get("page")) || 1;
   const size = Number(searchParams.get("size")) || DEFAULT_PAGE_SIZE;
+  const totalPage = Math.ceil(count / size) > 0 ? Math.ceil(count / size) : 1;
 
   const handleParams = (name: string, value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -63,7 +64,7 @@ export default function TablePagination({ count }: { count: number }) {
           </Select>
         </div>
         <div className="flex w-fit items-center justify-center text-sm font-medium">
-          Page {searchParams.get("page") ?? 1} of {Math.ceil(count / size)}
+          Page {searchParams.get("page") ?? 1} of {totalPage}
           {/* total page count */}
         </div>
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
@@ -95,7 +96,7 @@ export default function TablePagination({ count }: { count: number }) {
             onClick={() => {
               handleParams("page", (page + 1).toString());
             }}
-            disabled={Math.ceil(count / size) === page}
+            disabled={totalPage === page}
           >
             <span className="sr-only">Go to next page</span>
             <IconChevronRight />
@@ -104,10 +105,8 @@ export default function TablePagination({ count }: { count: number }) {
             variant="outline"
             className="hidden size-8 lg:flex"
             size="icon"
-            onClick={() =>
-              handleParams("page", Math.ceil(count / size).toString())
-            }
-            disabled={Math.ceil(count / size) === page}
+            onClick={() => handleParams("page", totalPage.toString())}
+            disabled={totalPage === page}
           >
             <span className="sr-only">Go to last page</span>
             <IconChevronsRight />

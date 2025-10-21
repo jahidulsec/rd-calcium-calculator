@@ -29,6 +29,7 @@ const ImageInput = ({
       </Label>
       <Avatar className="rounded-md size-14 bg-muted">
         <AvatarImage
+          className="object-cover"
           src={
             formImage
               ? URL.createObjectURL(formImage)

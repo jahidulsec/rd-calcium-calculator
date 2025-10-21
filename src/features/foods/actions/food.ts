@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/db/client";
+import { errorResponse } from "@/lib/error";
 import { FoodSchemaType } from "@/schema/food";
 import { deleteFile } from "@/utils/file";
 import fs from "fs/promises";
@@ -27,7 +28,9 @@ export const createFood = async (data: FoodSchemaType) => {
         bn_name: rest.bn_name,
         unit: rest.unit,
         calcium_mg: rest.calcium_mg,
-        image: filePath,
+        ...(image && {
+          image: filePath,
+        }),
       },
     });
 
@@ -52,18 +55,12 @@ export const createFood = async (data: FoodSchemaType) => {
       data: { food: food },
     };
   } catch (error) {
-    console.error(error);
-
     // delete image
     if (filePath) {
       deleteFile(filePath);
     }
 
-    return {
-      success: false,
-      message:
-        (error as Error).message.split("\n").pop() ?? "Something went wrong",
-    };
+    return errorResponse(error as Error);
   }
 };
 
@@ -72,6 +69,8 @@ export const updateFood = async (id: string, data: FoodSchemaType) => {
 
   try {
     const { category, image, ...rest } = data;
+
+    console.log(image);
 
     const food = await prisma.food.findUnique({ where: { id } });
 
@@ -100,7 +99,9 @@ export const updateFood = async (id: string, data: FoodSchemaType) => {
         bn_name: rest.bn_name,
         unit: rest.unit,
         calcium_mg: rest.calcium_mg,
-        image: filePath,
+        ...(image && {
+          image: filePath,
+        }),
       },
     });
 
@@ -137,10 +138,31 @@ export const updateFood = async (id: string, data: FoodSchemaType) => {
       deleteFile(filePath);
     }
 
+    return errorResponse(error as Error);
+  }
+};
+
+export const deleteFood = async (id: string) => {
+  try {
+    const food = await prisma.food.findUnique({ where: { id } });
+
+    if (!food) throw new Error("This food does not exist");
+
+    // delete food image
+    if (food.image) {
+      deleteFile(food.image);
+    }
+
+    await prisma.food.delete({ where: { id } });
+
+    revalidatePath('/dashboard')
+    revalidatePath('/dashboard/foods')
+
     return {
-      success: false,
-      message:
-        (error as Error).message.split("\n").pop() ?? "Something went wrong",
+      success: true,
+      message: "Food is deleted successfully",
     };
+  } catch (error) {
+    return errorResponse(error as Error);
   }
 };
