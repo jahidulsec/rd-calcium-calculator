@@ -1,7 +1,7 @@
 "use client";
 
 import { DataTable } from "@/components/table/data-table";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,27 +10,37 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { blog, Prisma } from "@/generated/prisma";
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Prisma } from "@/generated/prisma";
 import { IconDotsVertical } from "@tabler/icons-react";
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
 import AlertModal from "@/components/alert-modal/alert-modal";
 import { toast } from "sonner";
 import { deleteBlog } from "../actions/blog";
+import Link from "next/link";
 
-export default function BlogTable({ data }: { data: blog[] }) {
-  const [edit, setEdit] = React.useState<blog | boolean>(false);
+export type BlogTableProps = Prisma.blogGetPayload<{
+  select: {
+    id: true;
+    en_title: true;
+    bn_title: true;
+    en_details: true;
+    bn_details: true;
+    image: true;
+  };
+}>;
+
+export default function BlogTable({ data }: { data: BlogTableProps[] }) {
   const [del, setDel] = React.useState<string | boolean>(false);
 
-  const columns: ColumnDef<blog>[] = [
+  const columns: ColumnDef<BlogTableProps>[] = [
     {
       id: "Image",
       cell: ({ row }) => (
         <Avatar className="size-10 rounded-md bg-muted flex justify-center items-center">
           <AvatarImage
             className="object-cover"
-            src={`/api/upload/food/${row.original.id}`}
+            src={`/api/upload/blog/${row.original.id}`}
             alt="@johnDoe"
           />
           <AvatarFallback>{row.original.en_title?.charAt(0)}</AvatarFallback>
@@ -61,8 +71,8 @@ export default function BlogTable({ data }: { data: blog[] }) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-32">
-              <DropdownMenuItem onClick={() => setEdit(row.original)}>
-                Edit
+              <DropdownMenuItem asChild>
+                <Link href={`/dashboard/blogs/${row.original.id}`}>Edit</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem

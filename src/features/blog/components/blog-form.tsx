@@ -120,12 +120,7 @@ export default function BlogForm({ blog }: { blog?: blog }) {
             <FormItem>
               <FormLabel>Details (English)</FormLabel>
               <FormControl>
-                <textarea
-                  className="hidden"
-                  name={field.name}
-                  value={enDetails}
-                
-                />
+                <textarea className="hidden" value={enDetails} />
               </FormControl>
               <MarkdownEditor
                 ref={ref1}
@@ -148,18 +143,13 @@ export default function BlogForm({ blog }: { blog?: blog }) {
             <FormItem>
               <FormLabel>Details (Bangla)</FormLabel>
               <FormControl>
-                <textarea
-                  className="hidden"
-                  name={field.name}
-                  value={bnDetails}
-                
-                />
+                <textarea className="hidden" value={bnDetails} />
               </FormControl>
               <MarkdownEditor
                 ref={ref2}
                 markdown={bnDetails}
                 onChange={(markdown, _) => {
-                  setEnDetails(markdown);
+                  setBnDetails(markdown);
                   field.onChange(markdown);
                 }}
                 placeholder="Write here..."
@@ -177,7 +167,7 @@ export default function BlogForm({ blog }: { blog?: blog }) {
               <FormLabel>Image</FormLabel>
               <FormControl>
                 <ImageInput
-                  imageUrl={`/api/upload/food/${blog?.id}`}
+                  imageUrl={`/api/upload/blog/${blog?.id}`}
                   id="image"
                   field={field}
                   formImage={image}

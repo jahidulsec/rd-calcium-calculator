@@ -14,6 +14,14 @@ export const getBlogs = async (page?: number, limit?: number) => {
           en_title: "asc",
         },
       ],
+      select: {
+        id: true,
+        en_title: true,
+        bn_title: true,
+        en_details: true,
+        bn_details: true,
+        image: true,
+      },
       skip: Number(validatePage - 1) * validateLimit,
       take: validateLimit,
     });
@@ -34,6 +42,29 @@ export const getBlogs = async (page?: number, limit?: number) => {
       message:
         (error as Error).message.split("\n").pop() ?? "Something went wrong",
       data: [],
+    };
+  }
+};
+
+export const getBlog = async (id: string) => {
+  try {
+    const blog = await prisma.blog.findUnique({
+      where: { id },
+    });
+
+    return {
+      success: true,
+      message: "Get blog successfull",
+      data: blog,
+    };
+  } catch (error) {
+    console.error(error);
+
+    return {
+      success: false,
+      message:
+        (error as Error).message.split("\n").pop() ?? "Something went wrong",
+      data: null,
     };
   }
 };

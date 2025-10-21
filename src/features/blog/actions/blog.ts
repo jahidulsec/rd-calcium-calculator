@@ -82,10 +82,15 @@ export const updateBlog = async (id: string, data: BlogSchemaType) => {
     }
 
     // update food
-    await prisma.food.update({
+    await prisma.blog.update({
       where: { id },
       data: {
-        ...rest,
+        en_title: rest.en_title,
+        bn_title: rest.bn_title,
+        en_description: rest.en_description,
+        bn_description: rest.bn_description,
+        en_details: rest.en_details,
+        bn_details: rest.bn_details,
         ...(image && {
           image: filePath,
         }),

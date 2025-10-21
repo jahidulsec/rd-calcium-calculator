@@ -2,7 +2,7 @@
 
 import FormModal from "@/components/modal/form-modal";
 import { DataTable } from "@/components/table/data-table";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Prisma } from "@/generated/prisma";
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { IconDotsVertical } from "@tabler/icons-react";
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
