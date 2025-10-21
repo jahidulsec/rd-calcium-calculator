@@ -40,7 +40,7 @@ export default function FoodTable({ data }: { data: FoodTableProps[] }) {
     {
       id: "Image",
       cell: ({ row }) => (
-        <Avatar className="size-10 rounded-md">
+        <Avatar className="size-10 rounded-md bg-muted flex justify-center items-center">
           <AvatarImage
             className="object-cover"
             src={`/api/upload/food/${row.original.id}`}
