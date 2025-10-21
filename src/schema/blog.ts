@@ -2,35 +2,26 @@ import z from "zod";
 
 export const BlogSchema = z.object({
   en_title: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter an english title of Blog"),
+    .string("Enter an english title of Blog")
+    .min(2, "At least 2 characters"),
 
   bn_title: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter a bangla title of Blog"),
+    .string("Enter a bangla title of Blog")
+    .min(2, "At least 2 characters"),
 
   en_description: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter an english description of Blog"),
-
+    .string("Enter an english description of Blog")
+    .min(2, "At least 2 characters"),
   bn_description: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter a bangla description of Blog"),
+    .string("Enter a bangla description of Blog")
+    .min(2, "At least 2 characters"),
 
   en_details: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter an english details of Blog"),
-
+    .string("Enter an english details of Blog")
+    .min(2, "At least 2 characters"),
   bn_details: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter a bangla details of Blog"),
-
+    .string("Enter a bangla details of Blog")
+    .min(2, "At least 2 characters"),
   image: z
     .instanceof(File)
     .refine(

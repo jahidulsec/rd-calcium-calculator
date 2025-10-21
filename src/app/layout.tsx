@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import ProgressProviders from "@/providers/ProgressProvider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+import "@mdxeditor/editor/style.css"
+
 
 export const metadata: Metadata = {
   title: "Calcium Calculator - Radiant Digital",

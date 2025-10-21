@@ -2,14 +2,12 @@ import z from "zod";
 
 export const FoodSchema = z.object({
   en_name: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter an english title of food"),
+    .string("Enter an english title of food")
+    .min(2, "At least 2 characters"),
 
   bn_name: z
-    .string()
-    .min(2, "At least 2 characters")
-    .describe("Enter a bangla title of food"),
+    .string("Enter a bangla title of food")
+    .min(2, "At least 2 characters"),
 
   category: z.array(z.string()).nonempty("Select at least one option"),
 
