@@ -27,7 +27,7 @@ const DashbaordHeading = ({
   return (
     <PageHeading
       className={cn(
-        "flex items-center gap-3 [&_svg]:size-4 [&_svg]:text-primary",
+        "flex items-center gap-2 [&_svg]:size-4 [&_svg]:text-primary",
         className
       )}
       {...props}

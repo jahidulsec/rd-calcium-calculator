@@ -91,6 +91,18 @@ model food_category {
   @@index([category_id], map: "cate_food_cat_fk")
 }
 
+model blog {
+  id             String    @id @default(nanoid()) @db.VarChar(21)
+  en_title       String    @db.VarChar(255)
+  bn_title       String    @db.VarChar(255)
+  bn_description String    @db.VarChar(255)
+  en_description String    @db.VarChar(255)
+  bn_details     String    @db.Text
+  en_details     String    @db.Text
+  image          String?   @db.VarChar(150)
+  created_at     DateTime? @default(now()) @db.Timestamp(0)
+}
+
 enum user_information_age {
   TODDLER
   CHILD

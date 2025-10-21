@@ -29,9 +29,11 @@ export default function FoodPage({
       </DashboardHeader>
 
       {/* tablesection */}
-      <Suspense fallback={<TableSkeleton />}>
-        <TableSection searchParams={searchParams} />
-      </Suspense>
+      <DashboardSection>
+        <Suspense fallback={<TableSkeleton />}>
+          <TableSection searchParams={searchParams} />
+        </Suspense>
+      </DashboardSection>
     </>
   );
 }
@@ -46,10 +48,8 @@ const TableSection = async ({
 
   return (
     <ErrorBoundary error={!foods.success ? new Error(foods.message) : null}>
-      <DashboardSection>
-        <FoodTable data={foods.data} />
-        <TablePagination count={foods?.count ?? 0} />
-      </DashboardSection>
+      <FoodTable data={foods.data} />
+      <TablePagination count={foods?.count ?? 0} />
     </ErrorBoundary>
   );
 };
