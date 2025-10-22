@@ -26,7 +26,7 @@ model user {
   updated_at       DateTime
   otp              otp[]
   user_calcium     user_calcium[]
-  user_information user_information[]
+  user_information user_information?
 }
 
 model user_image {
