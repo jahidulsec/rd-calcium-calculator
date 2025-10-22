@@ -6,6 +6,7 @@ import { Download } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
 import { getAllUsers } from "../servers/user";
+import { ageDescription } from "@/utils/data";
 
 export default function ExportSection() {
   const [isPending, startTransition] = React.useTransition();
@@ -22,14 +23,14 @@ export default function ExportSection() {
       let line = `${i + 1}`;
       for (const index in array[i]) {
         if (line !== "") line += ",";
-        if (index !== "doctor") {
-          if (index === "userId") {
-            line += `="${array[i][index]}"`;
-          } else if (index !== "created_at") {
-            line += array[i][index];
-          } else {
-            line += format(new Date(array[i][index]), "dd LLL yyyy - h:mm aaa");
-          }
+        if (index === "userId") {
+          line += `="${array[i][index]}"`;
+        } else if (index === "age") {
+          line += ageDescription[array[i][index] as "TODDLER"];
+        } else if (index !== "created_at") {
+          line += array[i][index];
+        } else {
+          line += format(new Date(array[i][index]), "dd LLL yyyy - h:mm aaa");
         }
       }
       str += line + "\r\n";
