@@ -25,6 +25,7 @@ model user {
   created_at       DateTime          @default(now())
   updated_at       DateTime
   otp              otp[]
+  user_calcium     user_calcium?
   user_information user_information?
 }
 
@@ -103,6 +104,23 @@ model blog {
   created_at     DateTime? @default(now()) @db.Timestamp(0)
 }
 
+model calcium_required {
+  age        calcium_required_age
+  gender     calcium_required_gender
+  calcium    Int
+  created_at DateTime?               @default(now()) @db.Timestamp(0)
+
+  @@id([age, gender])
+}
+
+model user_calcium {
+  id             String   @id @db.VarChar(21)
+  userId         String   @unique @db.VarChar(21)
+  calcium_intake Int
+  created_at     DateTime @default(now())
+  user           user     @relation(fields: [userId], references: [mobile], onDelete: Cascade)
+}
+
 enum user_information_age {
   TODDLER
   CHILD
@@ -119,4 +137,17 @@ enum user_information_gender {
 enum admin_role {
   superadmin
   admin
+}
+
+enum calcium_required_age {
+  TODDLER
+  CHILD
+  TEENAGER
+  ADULT
+  OLD
+}
+
+enum calcium_required_gender {
+  MALE
+  FEMALE
 }

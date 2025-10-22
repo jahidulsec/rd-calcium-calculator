@@ -23,6 +23,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { AuthUser } from "@/types/auth-user";
+import { toast } from "sonner";
+import { logout } from "@/features/auth/actions/auth";
 
 export function NavUser({ user }: { user: AuthUser }) {
   const { isMobile } = useSidebar();
@@ -81,7 +83,20 @@ export function NavUser({ user }: { user: AuthUser }) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                toast.promise(logout, {
+                  loading: "Loading",
+                  success: (data) => {
+                    if (!data.success) throw data;
+                    return data.message;
+                  },
+                  error: (data) => {
+                    return data.message;
+                  },
+                })
+              }
+            >
               <IconLogout />
               Log out
             </DropdownMenuItem>
