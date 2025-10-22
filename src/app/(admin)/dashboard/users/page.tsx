@@ -6,6 +6,7 @@ import {
 } from "@/components/section/section";
 import { TableSkeleton } from "@/components/skeleton/table";
 import { DashbaordHeading } from "@/components/typography/heading";
+import ExportSection from "@/features/user/components/export-section";
 import UserTable from "@/features/user/components/user-table";
 import { getUsers } from "@/features/user/servers/user";
 import { SearchParams } from "@/types/search-params";
@@ -23,6 +24,8 @@ export default function UserPage({
         <DashbaordHeading>
           <IconUser /> Users
         </DashbaordHeading>
+
+        <ExportSection />
       </DashboardHeader>
 
       <DashboardSection>

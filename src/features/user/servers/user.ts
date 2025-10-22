@@ -48,3 +48,38 @@ export const getUsers = async (page?: number, limit?: number) => {
     };
   }
 };
+
+export const getAllUsers = async () => {
+  try {
+    const users = await prisma.user_information.findMany({
+      select: {
+        full_name: true,
+        userId: true,
+        age: true,
+        gender: true,
+        district: true,
+        created_at: true,
+      },
+      orderBy: [
+        {
+          full_name: "asc",
+        },
+      ],
+    });
+
+    return {
+      success: true,
+      message: "Get users successfull",
+      data: users,
+    };
+  } catch (error) {
+    console.error(error);
+
+    return {
+      success: false,
+      message:
+        (error as Error).message.split("\n").pop() ?? "Something went wrong",
+      data: [],
+    };
+  }
+};

@@ -31,4 +31,12 @@ export const CALCIUM_REQUIREMENT_LIST = [
   },
 ];
 
+export const ageDescription = {
+  TODDLER: "1-3 years",
+  CHILD: "4-8 years",
+  TEENAGER: "9-18 years",
+  ADULT: "19-50 years",
+  OLD: "51 years or more",
+};
+
 export const DEFAULT_PAGE_SIZE = 20;
