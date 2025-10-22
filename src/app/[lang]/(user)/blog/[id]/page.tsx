@@ -1,12 +1,11 @@
-import MmarkdownViewer from "@/components/markdown/markdown-viewer";
+import MarkdownViewer from "@/components/markdown/markdown-viewer";
 import NavUser from "@/components/nav/nav-user";
 import { Section } from "@/components/section/section";
-import { blogs } from "@/lib/blog";
+import { getBlog } from "@/features/blog/servers/blog";
 import { getDictionary, Locales } from "@/lib/dictionaries";
 import { params } from "@/types/search-params";
 import { notFound } from "next/navigation";
 import React from "react";
-import ReactMarkdown from "react-markdown";
 
 export default async function BlogPage({ params }: { params: params }) {
   const { lang } = await params;
@@ -14,7 +13,7 @@ export default async function BlogPage({ params }: { params: params }) {
 
   const { id } = await params;
 
-  const blog = await blogs[Number(id) - 1](lang as Locales);
+  const blog = await getBlog(id as string);
 
   if (!blog) notFound();
 
@@ -26,7 +25,13 @@ export default async function BlogPage({ params }: { params: params }) {
         pageTitle={dict.blog.pageTitle}
       />
       <Section>
-        <MmarkdownViewer content={blog.props.content} />
+        <MarkdownViewer
+          content={
+            lang === "bn"
+              ? blog.data?.bn_details ?? ""
+              : blog.data?.en_details ?? ""
+          }
+        />
       </Section>
     </>
   );

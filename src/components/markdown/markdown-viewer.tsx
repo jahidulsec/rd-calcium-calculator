@@ -5,7 +5,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-export default function MmarkdownViewer({ content }: { content: string }) {
+export default function MarkdownViewer({ content }: { content: string }) {
   return (
     <ReactMarkdown
       components={{
