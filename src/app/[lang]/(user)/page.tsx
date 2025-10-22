@@ -1,4 +1,6 @@
+import { ErrorBoundary } from "@/components/boundary/error-boundary";
 import NavUser from "@/components/nav/nav-user";
+import TablePagination from "@/components/pagintaion/pagination";
 import { getBlogs } from "@/features/blog/servers/blog";
 import BannerSection from "@/features/home/compoents/banner-section";
 import BlogSection from "@/features/home/compoents/blog-section";
@@ -38,6 +40,10 @@ const BlogContainer = async ({
 }) => {
   const { page, size } = await searchParams;
   const blogs = await getBlogs(Number(page), Number(size ?? 5));
-
-  return <BlogSection data={data} blog={blogs.data} />;
+  return (
+    <ErrorBoundary error={!blogs.success ? new Error(blogs.message) : null}>
+      <BlogSection data={data} blog={blogs.data} />
+      <TablePagination count={blogs?.count ?? 0} />
+    </ErrorBoundary>
+  );
 };

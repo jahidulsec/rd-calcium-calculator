@@ -1,12 +1,12 @@
 import BlogCard from "@/components/card/blog-card";
 import { Section } from "@/components/section/section";
-import { DictionaryType } from "@/lib/dictionaries";
 import React from "react";
+import { BlogTableProps } from "./blog-table";
 
 export default function CardSection({
   data,
 }: {
-  data: DictionaryType["home"]["blogs"];
+  data: BlogTableProps[];
 }) {
   return (
     <Section className="flex flex-col gap-6">
