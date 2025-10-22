@@ -20,13 +20,29 @@ import { Food, useCalculatorContext } from "@/providers/calculator-provider";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "@bprogress/next";
+import { FormButton } from "@/components/buttons/button";
+import { createUserCalcium } from "@/features/result/actions/result";
+import { toast } from "sonner";
+import { CALCIUM_REQUIREMENT_LIST } from "@/utils/data";
+import { AuthUser } from "@/types/auth-user";
 
-export default function CardSection({ data }: { data: DictionaryType }) {
+export default function CardSection({
+  user,
+  data,
+}: {
+  user: AuthUser;
+  data: DictionaryType;
+}) {
   const { foods, onFoods } = useCalculatorContext();
   const [otherFoodCount, setOtherFoodCount] = React.useState(1);
 
   const searchParams = useSearchParams();
   const params = useParams();
+  const router = useRouter();
+
+  const [isPending, startTransition] = React.useTransition();
+
   const validatedCategory = searchParams.get("category") ?? "breakfast";
 
   return (
@@ -132,11 +148,41 @@ export default function CardSection({ data }: { data: DictionaryType }) {
 
       {/* button */}
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">
-        <Button className="w-full font-bold" asChild>
+        <FormButton
+          isPending={isPending}
+          className="w-full font-bold"
+          onClick={() =>
+            startTransition(async () => {
+              const totalConsumed = foods.reduce(
+                (prev, curr) => prev + curr.calcium_mg * curr.qty,
+                0
+              );
+
+              const maxTotal =
+                CALCIUM_REQUIREMENT_LIST.find(
+                  (item) =>
+                    item.age === user.age &&
+                    item.gender.includes(user.gender ?? "")
+                )?.amount ?? 0;
+
+              const res = await createUserCalcium({
+                userId: user.mobile,
+                calcium_intake: totalConsumed,
+                calcium_required: maxTotal,
+              });
+
+              toast[res.success ? "success" : "error"](res.message);
+
+              if (res.success) {
+                router.push(`/${params.lang}/result`);
+              }
+            })
+          }
+        >
           <Link href={`/${params.lang}/result`}>
             {data.calculator.buttonTitle}
           </Link>
-        </Button>
+        </FormButton>
       </div>
     </Section>
   );

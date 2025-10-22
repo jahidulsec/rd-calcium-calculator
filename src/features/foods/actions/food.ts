@@ -46,7 +46,7 @@ export const createFood = async (data: FoodSchemaType) => {
     }
 
     // revalidate cache
-    revalidatePath("/");
+    revalidatePath("/dashboard");
     revalidatePath("/dashboard/foods");
 
     return {
@@ -122,7 +122,7 @@ export const updateFood = async (id: string, data: FoodSchemaType) => {
     }
 
     // revalidate cache
-    revalidatePath("/");
+    revalidatePath("/dashboard");
     revalidatePath("/dashboard/foods");
 
     return {

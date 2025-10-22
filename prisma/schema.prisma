@@ -25,8 +25,8 @@ model user {
   created_at       DateTime          @default(now())
   updated_at       DateTime
   otp              otp[]
-  user_calcium     user_calcium?
-  user_information user_information?
+  user_calcium     user_calcium[]
+  user_information user_information[]
 }
 
 model user_image {
@@ -114,11 +114,14 @@ model calcium_required {
 }
 
 model user_calcium {
-  id             String   @id @db.VarChar(21)
-  userId         String   @unique @db.VarChar(21)
-  calcium_intake Int
-  created_at     DateTime @default(now())
-  user           user     @relation(fields: [userId], references: [mobile], onDelete: Cascade)
+  id               String   @id @default(nanoid()) @db.VarChar(21)
+  userId           String   @db.VarChar(21)
+  calcium_intake   Int
+  created_at       DateTime @default(now())
+  calcium_required Int
+  user             user     @relation(fields: [userId], references: [mobile], onDelete: Cascade, onUpdate: Restrict, map: "user_calcium_ibfk_1")
+
+  @@index([userId], map: "userId")
 }
 
 enum user_information_age {

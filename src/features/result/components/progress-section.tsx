@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "@bprogress/next";
 import { useParams } from "next/navigation";
 import { DictionaryType } from "@/lib/dictionaries";
-import AdviceSection from "./advice-section";
 import CallSection from "./call-section";
 import { AuthUser } from "@/types/auth-user";
 import { CALCIUM_REQUIREMENT_LIST } from "@/utils/data";

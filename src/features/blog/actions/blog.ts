@@ -38,7 +38,7 @@ export const createBlog = async (data: BlogSchemaType) => {
     });
 
     // revalidate cache
-    revalidatePath("/");
+    revalidatePath("/dashboard");
     revalidatePath("/dashboard/blogs");
 
     return {
@@ -98,7 +98,7 @@ export const updateBlog = async (id: string, data: BlogSchemaType) => {
     });
 
     // revalidate cache
-    revalidatePath("/");
+    revalidatePath("/dashboard");
     revalidatePath("/dashboard/blogs");
 
     return {
