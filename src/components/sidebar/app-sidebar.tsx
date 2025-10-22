@@ -5,6 +5,8 @@ import {
   IconDashboard,
   IconFileWord,
   IconListDetails,
+  IconReport,
+  IconUser,
 } from "@tabler/icons-react";
 
 import { NavMain } from "@/components/sidebar/nav-main";
@@ -20,6 +22,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AuthUser } from "@/types/auth-user";
 import Image from "next/image";
+import NavAnalytics from "./nav-analytics";
 
 const data = {
   navMain: [
@@ -37,6 +40,18 @@ const data = {
       title: "Blogs",
       url: "/dashboard/blogs",
       icon: IconFileWord,
+    },
+  ],
+  navAnalytics: [
+    {
+      title: "User",
+      url: "/dashboard/users",
+      icon: IconUser,
+    },
+    {
+      title: "Activities",
+      url: "/dashboard/activities",
+      icon: IconReport,
     },
   ],
 };
@@ -75,6 +90,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavAnalytics items={data.navAnalytics} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />
