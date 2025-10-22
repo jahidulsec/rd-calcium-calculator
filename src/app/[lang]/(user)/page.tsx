@@ -43,7 +43,6 @@ const BlogContainer = async ({
   return (
     <ErrorBoundary error={!blogs.success ? new Error(blogs.message) : null}>
       <BlogSection data={data} blog={blogs.data} />
-      <TablePagination count={blogs?.count ?? 0} />
     </ErrorBoundary>
   );
 };

@@ -1,4 +1,6 @@
 import NavUser from "@/components/nav/nav-user";
+import TablePagination from "@/components/pagintaion/pagination";
+import { Section } from "@/components/section/section";
 import CardSection from "@/features/blog/components/card-section";
 import { getBlogs } from "@/features/blog/servers/blog";
 import { getDictionary, Locales } from "@/lib/dictionaries";
@@ -37,5 +39,10 @@ const BlogSection = async ({
   const { page, size } = await searchParams;
   const blogs = await getBlogs(Number(page), Number(size));
 
-  return <CardSection data={blogs.data} />;
+  return (
+    <>
+      <CardSection data={blogs.data} />
+      <TablePagination className="px-6 md:justify-center" count={blogs?.count ?? 0} />
+    </>
+  );
 };

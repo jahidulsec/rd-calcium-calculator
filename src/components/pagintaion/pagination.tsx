@@ -19,8 +19,15 @@ import {
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "@bprogress/next";
 import { DEFAULT_PAGE_SIZE } from "@/utils/data";
+import { cn } from "@/lib/utils";
 
-export default function TablePagination({ count }: { count: number }) {
+export default function TablePagination({
+  count,
+  className,
+}: {
+  count: number;
+  className?: string;
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -36,7 +43,7 @@ export default function TablePagination({ count }: { count: number }) {
   };
 
   return (
-    <div className="flex items-center justify-end py-4">
+    <div className={cn("flex items-center justify-end py-4", className)}>
       <div className="flex w-full items-center gap-8 lg:w-fit">
         <div className="hidden items-center gap-2 lg:flex">
           <Label htmlFor="rows-per-page" className="text-sm font-medium">
