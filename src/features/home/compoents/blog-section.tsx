@@ -14,11 +14,14 @@ import {
 } from "@/components/ui/carousel";
 import { DictionaryType } from "@/lib/dictionaries";
 import BlogCard from "@/components/card/blog-card";
+import { BlogTableProps } from "@/features/blog/components/blog-table";
 
 export default function BlogSection({
   data,
+  blog,
 }: {
   data: DictionaryType["home"];
+  blog: BlogTableProps[];
 }) {
   return (
     <Section className="flex flex-col gap-4">
@@ -29,12 +32,12 @@ export default function BlogSection({
         </Button>
       </div>
 
-      <CardSection data={data.blogs} />
+      <CardSection data={blog} />
     </Section>
   );
 }
 
-const CardSection = ({ data }: { data: DictionaryType["home"]["blogs"] }) => {
+const CardSection = ({ data }: { data: BlogTableProps[] }) => {
   return (
     <div className="">
       <Carousel>

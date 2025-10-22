@@ -2,19 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import { params } from "@/types/search-params";
 import { prisma } from "@/db/client";
-import { getAuthUser } from "@/lib/dal";
+import path from "path";
 
 export const GET = async (req: NextRequest, { params }: { params: params }) => {
   try {
-    // check authentication
-    const authUser = await getAuthUser();
-
-    if (!authUser)
-      return NextResponse.json(
-        { success: false, message: "Not authenticated" },
-        { status: 401 }
-      );
-
     const { id } = await params;
 
     // get blog imgae information
@@ -22,21 +13,25 @@ export const GET = async (req: NextRequest, { params }: { params: params }) => {
       where: { id: id as string },
     });
 
-    if (!blog) {
+    if (!blog || !blog.image) {
       return NextResponse.json(
         { success: false, message: "not found" },
         { status: 404 }
       );
     }
 
-    if (!fs.existsSync(blog?.image as string)) {
+    const filePath = path.join(process.cwd(), blog.image);
+
+    console.log(filePath);
+
+    if (!fs.existsSync(filePath)) {
       return NextResponse.json(
         { success: false, message: "not found" },
         { status: 404 }
       );
     }
 
-    const file = fs.readFileSync(blog?.image ?? "");
+    const file = fs.readFileSync(filePath);
 
     return new Response(file);
   } catch (error) {

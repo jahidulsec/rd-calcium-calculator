@@ -24,8 +24,8 @@ export type BlogTableProps = Prisma.blogGetPayload<{
     id: true;
     en_title: true;
     bn_title: true;
-    en_details: true;
-    bn_details: true;
+    en_description: true;
+    bn_description: true;
     image: true;
   };
 }>;
