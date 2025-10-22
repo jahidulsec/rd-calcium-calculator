@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   SidebarGroup,
@@ -7,6 +9,7 @@ import {
 } from "../ui/sidebar";
 import { Icon } from "@tabler/icons-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function NavAnalytics({
   items,
@@ -17,13 +20,15 @@ export default function NavAnalytics({
     icon: Icon;
   }[];
 }) {
+  const pathname = usePathname();
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Analytics</SidebarGroupLabel>
       {items.map((item) => (
         <SidebarMenuItem key={item.title}>
-          <SidebarMenuButton asChild>
-            <Link  href={item.url}>
+          <SidebarMenuButton asChild isActive={pathname === item.url}>
+            <Link href={item.url}>
               <item.icon />
               <span>{item.title}</span>
             </Link>
