@@ -22,8 +22,6 @@ export const GET = async (req: NextRequest, { params }: { params: params }) => {
 
     const filePath = path.join(process.cwd(), blog.image);
 
-    console.log(filePath);
-
     if (!fs.existsSync(filePath)) {
       return NextResponse.json(
         { success: false, message: "not found" },

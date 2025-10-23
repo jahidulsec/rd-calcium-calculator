@@ -3,6 +3,7 @@ import fs from "fs";
 import { params } from "@/types/search-params";
 import { prisma } from "@/db/client";
 import { getAuthUser } from "@/lib/dal";
+import path from "path";
 
 export const GET = async (req: NextRequest, { params }: { params: params }) => {
   try {
@@ -22,21 +23,23 @@ export const GET = async (req: NextRequest, { params }: { params: params }) => {
       where: { id: id as string },
     });
 
-    if (!userImage) {
+    if (!userImage || !userImage.file_path) {
       return NextResponse.json(
         { success: false, message: "not found" },
         { status: 404 }
       );
     }
 
-    if (!fs.existsSync(userImage.file_path)) {
+    const filePath = path.join(process.cwd(), userImage.file_path);
+
+    if (!fs.existsSync(filePath)) {
       return NextResponse.json(
         { success: false, message: "not found" },
         { status: 404 }
       );
     }
 
-    const file = fs.readFileSync(userImage.file_path);
+    const file = fs.readFileSync(filePath);
 
     return new Response(file);
   } catch (error) {

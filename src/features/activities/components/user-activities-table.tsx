@@ -29,7 +29,7 @@ export default function UsersActivitiesTable({
       id: "image",
       cell: ({ row }) => (
         <Avatar>
-          <AvatarImage src={(`/api/upload/user/${row.original.userId}`)} />
+          <AvatarImage src={(`/api/upload/user/${row.original.user.user_information?.user_image?.id}`)} />
           <AvatarFallback>
             {row.original.user.user_information?.full_name?.charAt(0)}
           </AvatarFallback>

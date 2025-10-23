@@ -27,7 +27,6 @@ export default async function NavUser({
 
   const user = await getUser(autUser.mobile);
 
-
   return (
     <header className="w-full max-w-md mx-auto px-6 py-4">
       <div className="flex justify-between items-center gap-5">
@@ -38,7 +37,7 @@ export default async function NavUser({
             <Link href={"/profile"}>
               <Avatar>
                 <AvatarImage
-                  src={`/api/upload/user/${user?.user_information}`}
+                  src={`/api/upload/user/${user?.user_information?.user_image?.id}`}
                   alt="@johnDoe"
                   className="object-cover"
                 />
