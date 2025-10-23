@@ -3,12 +3,34 @@
 import { prisma } from "@/db/client";
 import { DEFAULT_PAGE_SIZE } from "@/utils/data";
 
-export const getUsersActivities = async (page?: number, limit?: number) => {
+export const getUsersActivities = async (
+  page?: number,
+  limit?: number,
+  date?: string
+) => {
   const validatePage = page || 1;
   const validateLimit = limit || DEFAULT_PAGE_SIZE;
 
+  const start = date ? new Date(date) : undefined;
+  const end = date ? new Date(date) : undefined;
+
+  if (end) {
+    end.setDate(end.getDate() + 1);
+  }
+
+  console.log(start);
+  console.log(end);
+
   try {
     const users = await prisma.user_calcium.findMany({
+      where: {
+        ...(date && {
+          created_at: {
+            gte: start,
+            lt: end,
+          },
+        }),
+      },
       include: {
         user: {
           include: {
@@ -32,7 +54,16 @@ export const getUsersActivities = async (page?: number, limit?: number) => {
       ],
     });
 
-    const count = await prisma.user_calcium.count();
+    const count = await prisma.user_calcium.count({
+      where: {
+        ...(date && {
+          created_at: {
+            gte: start,
+            lt: end,
+          },
+        }),
+      },
+    });
 
     return {
       success: true,

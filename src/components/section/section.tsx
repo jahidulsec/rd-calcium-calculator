@@ -33,8 +33,26 @@ const DashboardHeader = ({
   ...props
 }: React.ComponentProps<"section">) => {
   return (
-    <DashboardSection className={cn("flex justify-between items-center gap-5 flex-wrap", className)} {...props} />
+    <DashboardSection
+      className={cn(
+        "flex justify-between items-center gap-5 flex-wrap",
+        className
+      )}
+      {...props}
+    />
   );
 };
 
-export { Section, Header, DashboardSection, DashboardHeader };
+const DashboardAction = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
+  return (
+    <div
+      className={cn("flex items-center gap-3 flex-wrap", className)}
+      {...props}
+    />
+  );
+};
+
+export { Section, Header, DashboardSection, DashboardHeader, DashboardAction };

@@ -1,16 +1,11 @@
 import { ErrorBoundary } from "@/components/boundary/error-boundary";
 import TablePagination from "@/components/pagintaion/pagination";
-import {
-  DashboardHeader,
-  DashboardSection,
-} from "@/components/section/section";
+import { DashboardSection } from "@/components/section/section";
 import { TableSkeleton } from "@/components/skeleton/table";
-import { DashbaordHeading } from "@/components/typography/heading";
-import ExportSection from "@/features/activities/components/export-section";
+import HeaderSection from "@/features/activities/components/header-section";
 import UsersActivitiesTable from "@/features/activities/components/user-activities-table";
 import { getUsersActivities } from "@/features/activities/servers/activities";
 import { SearchParams } from "@/types/search-params";
-import { IconReport } from "@tabler/icons-react";
 import React, { Suspense } from "react";
 
 export default function ActivitiesPage({
@@ -20,13 +15,7 @@ export default function ActivitiesPage({
 }) {
   return (
     <>
-      <DashboardHeader>
-        <DashbaordHeading>
-          <IconReport /> Users Activities
-        </DashbaordHeading>
-
-        <ExportSection />
-      </DashboardHeader>
+      <HeaderSection />
 
       <DashboardSection>
         <Suspense fallback={<TableSkeleton />}>
@@ -42,8 +31,12 @@ const TableSection = async ({
 }: {
   searchParams: SearchParams;
 }) => {
-  const { page, size } = await searchParams;
-  const users = await getUsersActivities(Number(page), Number(size));
+  const { page, size, date } = await searchParams;
+  const users = await getUsersActivities(
+    Number(page),
+    Number(size),
+    date as string
+  );
 
   return (
     <ErrorBoundary error={!users.success ? new Error(users.message) : null}>
