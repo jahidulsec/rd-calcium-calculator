@@ -8,17 +8,31 @@ export const getUsersActivities = async (page?: number, limit?: number) => {
   const validateLimit = limit || DEFAULT_PAGE_SIZE;
 
   try {
-    const users = await prisma.user_information.findMany({
-      orderBy: [
-        {
-          full_name: "asc",
+    const users = await prisma.user_calcium.findMany({
+      include: {
+        user: {
+          include: {
+            user_information: { include: { user_image: true } },
+          },
         },
-      ],
+      },
       skip: Number(validatePage - 1) * validateLimit,
       take: validateLimit,
+      orderBy: [
+        {
+          user: {
+            user_information: {
+              full_name: "asc",
+            },
+          },
+        },
+        {
+          created_at: "asc",
+        },
+      ],
     });
 
-    const count = await prisma.user_information.count();
+    const count = await prisma.user_calcium.count();
 
     return {
       success: true,
@@ -48,6 +62,18 @@ export const getAllUsersActivities = async () => {
           },
         },
       },
+      orderBy: [
+        {
+          user: {
+            user_information: {
+              full_name: "asc",
+            },
+          },
+        },
+        {
+          created_at: "asc",
+        },
+      ],
     });
 
     return {
