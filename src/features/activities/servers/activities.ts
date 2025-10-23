@@ -18,9 +18,6 @@ export const getUsersActivities = async (
     end.setDate(end.getDate() + 1);
   }
 
-  console.log(start);
-  console.log(end);
-
   try {
     const users = await prisma.user_calcium.findMany({
       where: {
@@ -83,9 +80,24 @@ export const getUsersActivities = async (
   }
 };
 
-export const getAllUsersActivities = async () => {
+export const getAllUsersActivities = async (date?: string) => {
+  const start = date ? new Date(date) : undefined;
+  const end = date ? new Date(date) : undefined;
+
+  if (end) {
+    end.setDate(end.getDate() + 1);
+  }
+
   try {
     const users = await prisma.user_calcium.findMany({
+      where: {
+        ...(date && {
+          created_at: {
+            gte: start,
+            lt: end,
+          },
+        }),
+      },
       include: {
         user: {
           include: {

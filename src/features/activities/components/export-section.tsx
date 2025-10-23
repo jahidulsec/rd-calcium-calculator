@@ -7,15 +7,16 @@ import React from "react";
 import { toast } from "sonner";
 import { getAllUsersActivities } from "../servers/activities";
 import { ageDescription } from "@/utils/data";
+import { useSearchParams } from "next/navigation";
 
 export default function ExportSection() {
   const [isPending, startTransition] = React.useTransition();
+  const searchParams = useSearchParams();
 
   // export csv
   const convertToCSV = (objArray: object[]) => {
     const array =
       typeof objArray !== "object" ? JSON.parse(objArray) : objArray;
-    console.log(array);
     let str = `\r\n`;
     str +=
       "SL, Name, Mobile, Age, Gender, District, Calcium Intake, Calcium Required, Calcium Deficiency/Much(-/+), Status, Created At \r\n";
@@ -45,7 +46,7 @@ export default function ExportSection() {
   };
 
   const downloadCSV = async (name: string) => {
-    const res = await getAllUsersActivities();
+    const res = await getAllUsersActivities(searchParams.get("date") as string);
     if (!res.success) {
       toast.error(res.message);
       return;
@@ -55,8 +56,6 @@ export default function ExportSection() {
       toast.warning("No user found");
       return;
     }
-
-    console.log(JSON.stringify(res.data, null, 2));
 
     const csvData = new Blob([convertToCSV(res.data)], { type: "text/csv" });
     const csvURL = URL.createObjectURL(csvData);

@@ -14,11 +14,13 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "@bprogress/next";
 
 export function DatePicker({ paramName }: { paramName?: string }) {
-  const [date, setDate] = React.useState<Date>();
-
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const [date, setDate] = React.useState<Date | undefined>(
+    paramName ? new Date(searchParams.get(paramName) as string) : undefined
+  );
 
   return (
     <Popover>
