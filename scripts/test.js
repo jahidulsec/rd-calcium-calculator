@@ -10,4 +10,4 @@ async function getCalcium(foodName) {
     return calcium ? calcium.value + " mg/100g" : "Not found";
 }
 
-getCalcium("beef burger").then(console.log);
+getCalcium("beef").then(console.log);
