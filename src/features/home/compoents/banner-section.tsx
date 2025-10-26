@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Section } from "@/components/section/section";
 import Image from "next/image";
@@ -9,9 +9,11 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import BannerCard from "@/components/card/banner-card";
+import { banner } from "@/generated/prisma";
 
-export default function BannerSection() {
-  const data = ["/images/banner1.png", "/images/banner2.png"];
+export default function BannerSection({ data }: { data: banner[] }) {
+  // const data = ["/images/banner1.png", "/images/banner2.png"];
 
   return (
     <Section className="-mt-6">
@@ -29,10 +31,8 @@ export default function BannerSection() {
       >
         <CarouselContent>
           {data.map((item) => (
-            <CarouselItem key={item} className="pt-1 basis-[80%]">
-              <div className="relative w-full aspect-[16/6] rounded-md overflow-hidden bg-muted">
-                <Image fill src={item} alt="Banner" objectFit="cover" />
-              </div>
+            <CarouselItem key={item.id} className="pt-1 basis-[80%]">
+              <BannerCard alt="Banner" src={`/api/upload/banner/${item.id}`} />
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -43,3 +43,28 @@ export const createBanner = async (data: BannerSchemaType) => {
     return errorResponse(error as Error);
   }
 };
+
+export const deleteBanner = async (id: string) => {
+  try {
+    const banner = await prisma.banner.findUnique({ where: { id } });
+
+    if (!banner) throw new Error("This banner does not exist");
+
+    // delete banner image
+    if (banner.image) {
+      deleteFile(banner.image);
+    }
+
+    await prisma.banner.delete({ where: { id } });
+
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/banners");
+
+    return {
+      success: true,
+      message: "Banner is deleted successfully",
+    };
+  } catch (error) {
+    return errorResponse(error as Error);
+  }
+};

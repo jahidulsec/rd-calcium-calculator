@@ -21,7 +21,7 @@ export default function AlertModal({
 }: AlertDialogProps & { title?: string; onAction: () => void }) {
   return (
     <AlertDialog {...props}>
-      <AlertDialogContent>
+      <AlertDialogContent className="font-manrepo">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
