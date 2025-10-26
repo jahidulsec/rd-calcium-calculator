@@ -4,6 +4,7 @@ import FormModal from "@/components/modal/form-modal";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import React from "react";
+import { AdminForm } from "./admin-form";
 
 export default function CreateButton() {
   const [open, setOpen] = React.useState(false);
@@ -18,7 +19,7 @@ export default function CreateButton() {
       <FormModal
         open={open}
         onOpenChange={setOpen}
-        form={<></>}
+        form={<AdminForm onClose={() => setOpen(false)} />}
         title="Create Admin"
       />
     </>
