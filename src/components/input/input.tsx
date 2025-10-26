@@ -13,12 +13,14 @@ const ImageInput = ({
   onChange,
   formImage,
   imageUrl,
+  imageClassName,
   id,
   ...props
 }: React.ComponentProps<"input"> & {
   field?: ControllerRenderProps<any>;
   formImage?: File;
   imageUrl?: string;
+  imageClassName?: string;
 }) => {
   const validatedId = id ?? crypto.randomUUID();
 
@@ -27,9 +29,9 @@ const ImageInput = ({
       <Label htmlFor={id} className="h-8 px-6 bg-muted border rounded-md w-fit">
         Upload
       </Label>
-      <Avatar className="rounded-md size-14 bg-muted">
+      <Avatar className={cn("rounded-md size-14 bg-muted", imageClassName)}>
         <AvatarImage
-          className="object-cover"
+          className={"object-cover"}
           src={
             formImage
               ? URL.createObjectURL(formImage)

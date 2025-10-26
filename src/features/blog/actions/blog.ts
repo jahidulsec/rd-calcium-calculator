@@ -3,7 +3,6 @@
 import { prisma } from "@/db/client";
 import { errorResponse } from "@/lib/error";
 import { BlogSchemaType } from "@/schema/blog";
-import { FoodSchemaType } from "@/schema/food";
 import { deleteFile } from "@/utils/file";
 import fs from "fs/promises";
 import { revalidatePath } from "next/cache";
