@@ -9,15 +9,21 @@ import { DashbaordHeading } from "@/components/typography/heading";
 import AdminTable from "@/features/admin/components/admin-table";
 import CreateButton from "@/features/admin/components/create-button";
 import { getAdmins } from "@/features/admin/servers/admin";
+import { getAuthUser } from "@/lib/dal";
 import { SearchParams } from "@/types/search-params";
 import { IconUsersGroup } from "@tabler/icons-react";
+import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
 
-export default function AdminPage({
+export default async function AdminPage({
   searchParams,
 }: {
   searchParams: SearchParams;
 }) {
+  const authUser = await getAuthUser();
+
+  if (authUser?.role === "admin") redirect("/dashboard");
+
   return (
     <>
       <DashboardHeader>
