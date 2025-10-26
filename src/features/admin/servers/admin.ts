@@ -7,11 +7,22 @@ export const getAdmins = async (page?: number, limit?: number) => {
 
   try {
     const admins = await prisma.admin.findMany({
+      where: {
+        role: {
+          not: "superadmin",
+        },
+      },
       skip: Number(validatePage - 1) * validateLimit,
       take: validateLimit,
     });
 
-    const count = await prisma.admin.count();
+    const count = await prisma.admin.count({
+      where: {
+        role: {
+          not: "superadmin",
+        },
+      },
+    });
 
     return {
       success: true,
@@ -31,16 +42,16 @@ export const getAdmins = async (page?: number, limit?: number) => {
   }
 };
 
-export const getAdmin = async (id: string) => {
+export const getAdmin = async (username: string) => {
   try {
-    const blog = await prisma.admin.findUnique({
-      where: { id },
+    const admin = await prisma.admin.findUnique({
+      where: { username: username },
     });
 
     return {
       success: true,
       message: "Get admin successfully",
-      data: blog,
+      data: admin,
     };
   } catch (error) {
     console.error(error);

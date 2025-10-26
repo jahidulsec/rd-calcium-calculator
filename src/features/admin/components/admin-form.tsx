@@ -28,7 +28,7 @@ export function AdminForm({
   onClose,
   admin,
 }: {
-  onClose: () => void;
+  onClose?: () => void;
   admin?: admin;
 }) {
   const form = useForm<
@@ -54,7 +54,7 @@ export function AdminForm({
     toast[res.success ? "success" : "error"](res.message);
 
     if (res.success) {
-      onClose();
+      onClose?.();
     }
   }
 
@@ -105,8 +105,8 @@ export function AdminForm({
               )}
             />
 
-            <FormButton isPending={form.formState.isSubmitting}>
-              Create
+            <FormButton className="max-w-[18rem]" isPending={form.formState.isSubmitting}>
+              {admin ? "Update" : "Create"}
             </FormButton>
           </FieldGroup>
         </form>
