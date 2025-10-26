@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   IconDashboard,
   IconFileWord,
+  IconFrame,
   IconListDetails,
   IconReport,
   IconUser,
@@ -40,6 +41,11 @@ const data = {
       title: "Blogs",
       url: "/dashboard/blogs",
       icon: IconFileWord,
+    },
+    {
+      title: "Banners",
+      url: "/dashboard/banners",
+      icon: IconFrame,
     },
   ],
   navAnalytics: [

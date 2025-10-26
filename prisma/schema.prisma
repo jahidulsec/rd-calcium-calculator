@@ -124,6 +124,12 @@ model user_calcium {
   @@index([userId], map: "userId")
 }
 
+model banner {
+  id         String    @id @db.VarChar(21)
+  image      String?   @db.VarChar(150)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+}
+
 enum user_information_age {
   TODDLER
   CHILD
