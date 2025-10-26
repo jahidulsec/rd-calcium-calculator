@@ -30,7 +30,7 @@ export const getBlogs = async (page?: number, limit?: number) => {
 
     return {
       success: true,
-      message: "Get blogs successfull",
+      message: "Get blogs successfully",
       data: blogs,
       count: count,
     };
@@ -54,7 +54,7 @@ export const getBlog = async (id: string) => {
 
     return {
       success: true,
-      message: "Get blog successfull",
+      message: "Get blog successfully",
       data: blog,
     };
   } catch (error) {

@@ -39,7 +39,7 @@ export const getAdmin = async (id: string) => {
 
     return {
       success: true,
-      message: "Get admin successfull",
+      message: "Get admin successfully",
       data: blog,
     };
   } catch (error) {
