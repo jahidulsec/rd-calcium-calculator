@@ -4,6 +4,7 @@ import {
   IconDotsVertical,
   IconLogout,
   IconUserCircle,
+  IconUsersGroup,
 } from "@tabler/icons-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,6 +26,7 @@ import {
 import { AuthUser } from "@/types/auth-user";
 import { toast } from "sonner";
 import { logout } from "@/features/auth/actions/auth";
+import Link from "next/link";
 
 export function NavUser({ user }: { user: AuthUser }) {
   const { isMobile } = useSidebar();
@@ -54,7 +56,7 @@ export function NavUser({ user }: { user: AuthUser }) {
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg font-manrepo"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
@@ -77,10 +79,20 @@ export function NavUser({ user }: { user: AuthUser }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                Account
+              <DropdownMenuItem asChild>
+                <Link href={`/dashboard/account`}>
+                  <IconUserCircle />
+                  Account
+                </Link>
               </DropdownMenuItem>
+              {user.role === "superadmin" && (
+                <DropdownMenuItem asChild>
+                  <Link href={`/dashboard/admins`}>
+                    <IconUsersGroup />
+                    Admins
+                  </Link>
+                </DropdownMenuItem>
+              )}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem

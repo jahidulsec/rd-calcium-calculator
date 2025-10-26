@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -26,6 +25,7 @@ import { useRouter } from "@bprogress/next";
 import { AdminLoginSchema, AdminLoginSchemaType } from "@/schema/admin";
 import { login } from "../actions/auth";
 import { toast } from "sonner";
+import { PasswordInput } from "@/components/input/password";
 
 export function LoginForm({
   className,
@@ -80,12 +80,7 @@ export function LoginForm({
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input
-                          id="username"
-                          placeholder="Password"
-                          type="password"
-                          {...field}
-                        />
+                        <PasswordInput placeholder="Password" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

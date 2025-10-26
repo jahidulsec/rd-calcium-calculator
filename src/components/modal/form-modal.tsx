@@ -14,7 +14,7 @@ export default function FormModal({
 }: DialogProps & { title: string; form: React.ReactNode }) {
   return (
     <Dialog {...props}>
-      <DialogContent>
+      <DialogContent className="font-manrepo">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
