@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/db/client";
-import { AdminSchemaType } from "@/schema/admin";
+import { AdminSchemaType, UpdateAdminSchemaType } from "@/schema/admin";
 import { hashPassword } from "@/utils/password";
 import { revalidatePath } from "next/cache";
 
@@ -47,7 +47,7 @@ export const createAdmin = async (data: AdminSchemaType) => {
   }
 };
 
-export const updateAdmin = async (id: string, data: AdminSchemaType) => {
+export const updateAdmin = async (id: string, data: UpdateAdminSchemaType) => {
   try {
     const user = await prisma.admin.findUnique({
       where: {
@@ -58,9 +58,18 @@ export const updateAdmin = async (id: string, data: AdminSchemaType) => {
     if (!user) throw new Error("Admin does not exist");
 
     // check admin
-    const existingUser = await prisma.admin.findUnique({
+    const existingUser = await prisma.admin.findFirst({
       where: {
-        username: data.username,
+        AND: [
+          {
+            username: data.username,
+          },
+          {
+            id: {
+              not: id,
+            },
+          },
+        ],
       },
     });
 
@@ -68,13 +77,15 @@ export const updateAdmin = async (id: string, data: AdminSchemaType) => {
       throw new Error("Admin already exists with this username");
     }
 
+    const { password, ...rest } = data;
+
     const admin = await prisma.admin.update({
       where: { id },
       data: {
-        full_name: data.full_name,
-        username: data.username,
-        password: await hashPassword(data.password),
-        role: "admin",
+        ...(data.password && {
+          password: await hashPassword(data.password),
+        }),
+        ...rest,
       },
     });
 

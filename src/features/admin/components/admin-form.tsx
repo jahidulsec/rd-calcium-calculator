@@ -13,18 +13,42 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { FormButton } from "@/components/buttons/button";
-import { AdminSchema, AdminSchemaType } from "@/schema/admin";
+import {
+  AdminSchema,
+  AdminSchemaType,
+  UpdateAdminSchemaType,
+  UpdateAdminSchema,
+} from "@/schema/admin";
 import { toast } from "sonner";
 import { PasswordInput } from "@/components/input/password";
-import { createAdmin } from "../actions/admin";
+import { createAdmin, updateAdmin } from "../actions/admin";
+import { admin } from "@/generated/prisma";
 
-export function AdminForm({ onClose }: { onClose: () => void }) {
-  const form = useForm<AdminSchemaType>({
-    resolver: zodResolver(AdminSchema),
+export function AdminForm({
+  onClose,
+  admin,
+}: {
+  onClose: () => void;
+  admin?: admin;
+}) {
+  const form = useForm<
+    typeof admin extends undefined ? AdminSchemaType : UpdateAdminSchemaType
+  >({
+    resolver: zodResolver(admin ? UpdateAdminSchema : AdminSchema),
+    defaultValues: {
+      full_name: admin?.full_name,
+      username: admin?.username,
+    },
   });
 
-  async function onSubmit(values: AdminSchemaType) {
-    const res = await createAdmin(values);
+  async function onSubmit(
+    values: typeof admin extends undefined
+      ? AdminSchemaType
+      : UpdateAdminSchemaType
+  ) {
+    const res = admin
+      ? await updateAdmin(admin.id, values)
+      : await createAdmin(values as AdminSchemaType);
 
     console.log(values);
     toast[res.success ? "success" : "error"](res.message);

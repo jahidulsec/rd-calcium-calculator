@@ -10,6 +10,10 @@ export const AdminSchema = AdminLoginSchema.extend({
   role: z.enum(["superadmin", "admin"]).optional(),
 });
 
+export const UpdateAdminSchema = AdminSchema.partial();
+
 export type AdminSchemaType = z.infer<typeof AdminSchema>;
 
 export type AdminLoginSchemaType = z.infer<typeof AdminLoginSchema>;
+
+export type UpdateAdminSchemaType = z.infer<typeof UpdateAdminSchema>;

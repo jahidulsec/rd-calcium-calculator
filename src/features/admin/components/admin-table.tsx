@@ -19,6 +19,8 @@ import Link from "next/link";
 import React from "react";
 import { toast } from "sonner";
 import { deleteAdmin } from "../actions/admin";
+import FormModal from "@/components/modal/form-modal";
+import { AdminForm } from "./admin-form";
 
 export default function AdminTable({ data }: { data: admin[] }) {
   const [del, setDel] = React.useState<string | boolean>(false);
@@ -65,8 +67,8 @@ export default function AdminTable({ data }: { data: admin[] }) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-32">
-              <DropdownMenuItem asChild>
-                <Link href={`/dashboard/blogs/${row.original.id}`}>Edit</Link>
+              <DropdownMenuItem onClick={() => setEdit(row.original)}>
+                Edit
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
@@ -85,6 +87,18 @@ export default function AdminTable({ data }: { data: admin[] }) {
   return (
     <>
       <DataTable data={data} columns={columns} />
+
+      <FormModal
+        title="Edit Admin"
+        open={!!edit}
+        onOpenChange={setEdit}
+        form={
+          <AdminForm
+            onClose={() => setEdit(false)}
+            admin={typeof edit !== "boolean" ? edit : undefined}
+          />
+        }
+      />
 
       <AlertModal
         title="admin"
