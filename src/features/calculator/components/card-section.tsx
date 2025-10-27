@@ -3,9 +3,9 @@
 import { Section } from "@/components/section/section";
 import { Button } from "@/components/ui/button";
 import { DictionaryType } from "@/lib/dictionaries";
-import { Check, Info, Plus, PlusCircle } from "lucide-react";
+import { Check, Info, Plus, PlusCircle, Search } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useActionState } from "react";
 import {
   Select,
   SelectContent,
@@ -26,6 +26,8 @@ import { createUserCalcium } from "@/features/result/actions/result";
 import { toast } from "sonner";
 import { CALCIUM_REQUIREMENT_LIST } from "@/utils/data";
 import { AuthUser } from "@/types/auth-user";
+import { searchFood } from "@/lib/calcium-api";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function CardSection({
   user,
@@ -44,6 +46,32 @@ export default function CardSection({
   const [isPending, startTransition] = React.useTransition();
 
   const validatedCategory = searchParams.get("category") ?? "breakfast";
+
+  const handleSubmit = () =>
+    startTransition(async () => {
+      const totalConsumed = foods.reduce(
+        (prev, curr) => prev + curr.calcium_mg * curr.qty,
+        0
+      );
+
+      const maxTotal =
+        CALCIUM_REQUIREMENT_LIST.find(
+          (item) =>
+            item.age === user.age && item.gender.includes(user.gender ?? "")
+        )?.amount ?? 0;
+
+      const res = await createUserCalcium({
+        userId: user.mobile,
+        calcium_intake: totalConsumed,
+        calcium_required: maxTotal,
+      });
+
+      toast[res.success ? "success" : "error"](res.message);
+
+      if (res.success) {
+        router.push(`/${params.lang}/result`);
+      }
+    });
 
   return (
     <Section className="relative min-h-[calc(100svh-200px)] flex flex-col">
@@ -91,7 +119,7 @@ export default function CardSection({
             />
           ))}
       </div>
-      {/* <p className="text-sm my-3">{data.foodTips}</p> */}
+
       {/* other food section */}
       <section className="w-full flex flex-col gap-3 py-3 border-t mt-3">
         <Button
@@ -151,33 +179,7 @@ export default function CardSection({
         <FormButton
           isPending={isPending}
           className="w-full font-bold"
-          onClick={() =>
-            startTransition(async () => {
-              const totalConsumed = foods.reduce(
-                (prev, curr) => prev + curr.calcium_mg * curr.qty,
-                0
-              );
-
-              const maxTotal =
-                CALCIUM_REQUIREMENT_LIST.find(
-                  (item) =>
-                    item.age === user.age &&
-                    item.gender.includes(user.gender ?? "")
-                )?.amount ?? 0;
-
-              const res = await createUserCalcium({
-                userId: user.mobile,
-                calcium_intake: totalConsumed,
-                calcium_required: maxTotal,
-              });
-
-              toast[res.success ? "success" : "error"](res.message);
-
-              if (res.success) {
-                router.push(`/${params.lang}/result`);
-              }
-            })
-          }
+          onClick={handleSubmit}
         >
           <Link href={`/${params.lang}/result`}>
             {data.calculator.buttonTitle}
@@ -206,7 +208,24 @@ const Card = ({
   const [unitNo, setUnitNo] = React.useState(selected?.qty ?? 1);
   const [other, setOther] = React.useState(item);
 
+  const [data, action, pending] = useActionState(searchFood, null);
+
   const searchParams = useSearchParams();
+  const params = useParams();
+
+  React.useEffect(() => {
+    if (data) {
+      if (data?.success) {
+        setOther((prev) => ({
+          ...prev,
+          calcium_mg: Number(data.data),
+        }));
+      }
+
+      toast[data?.success ? "success" : "error"](data?.message);
+    }
+  }, [data]);
+
   const validatedCategory = searchParams.get("category") ?? "breakfast";
 
   return (
@@ -226,7 +245,7 @@ const Card = ({
       <div className="flex flex-col gap-2 w-full">
         {/* top */}
         <div className="flex items-center gap-2 flex-wrap">
-          <p className="text-muted-foreground text-sm">
+          <div className="text-muted-foreground text-sm">
             {item.unit} |{" "}
             {type === "other" ? (
               <>
@@ -246,7 +265,7 @@ const Card = ({
             ) : (
               item.calcium_value
             )}
-          </p>
+          </div>
           <Info className="fill-muted-foreground/30 text-background size-5" />
         </div>
 
@@ -254,16 +273,30 @@ const Card = ({
         <div className="w-full flex justify-between items-center gap-5 flex-wrap">
           {/* title */}
           {type === "other" ? (
-            <Input
-              className="font-bold max-w-[72%]"
-              placeholder={other.item}
-              onChange={(e) =>
-                setOther((prev) => ({
-                  ...prev,
-                  item: e.target.value,
-                }))
-              }
-            />
+            <form className="relative max-w-[72%] flex" action={action}>
+              <Input
+                name="search"
+                className="font-bold pr-14"
+                placeholder={
+                  params.lang === "bn" ? "অন্যান্য খাবার" : "Other food"
+                }
+                value={other.item ?? undefined}
+                onChange={(e) =>
+                  setOther((prev) => ({
+                    ...prev,
+                    item: e.target.value,
+                  }))
+                }
+              />
+              <Button
+                disabled={pending}
+                variant={"outline"}
+                className="absolute right-0"
+              >
+                {pending ? <Spinner /> : <Search />}
+                <span className="sr-only">search</span>
+              </Button>
+            </form>
           ) : (
             <h3 className="font-bold max-w-[72%]">{item.item.split("(")[0]}</h3>
           )}
