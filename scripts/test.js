@@ -24,4 +24,4 @@ async function getCalcium(foodName) {
     return "Calcium not found in available entries";
 }
 
-getCalcium("milk butter").then(console.log);
+getCalcium("banana dalquiri").then(console.log);

@@ -222,7 +222,7 @@ const Card = ({
         }));
       }
 
-      toast[data?.success ? "success" : "error"](data?.message);
+      toast[data?.success ? "success" : "info"](data?.message);
     }
   }, [data]);
 
