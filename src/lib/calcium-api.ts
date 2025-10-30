@@ -15,7 +15,7 @@ export async function getCalcium(foodName: string) {
 
   console.log(JSON.stringify(data, null, 2));
 
-  if (!res.ok) throw new Error("Please try again");
+  if (!res.ok) throw data;
 
   const nutrients = data.foods[0]?.foodNutrients;
   const calcium = nutrients?.find((n: any) => n.nutrientName === "Calcium, Ca");
