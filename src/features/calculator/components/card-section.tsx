@@ -60,15 +60,19 @@ export default function CardSection({
             item.age === user.age && item.gender.includes(user.gender ?? "")
         )?.amount ?? 0;
 
-      const res = await createUserCalcium({
-        userId: user.mobile,
-        calcium_intake: totalConsumed,
-        calcium_required: maxTotal,
-      });
+      if (totalConsumed !== 0) {
+        const res = await createUserCalcium({
+          userId: user.mobile,
+          calcium_intake: totalConsumed,
+          calcium_required: maxTotal,
+        });
 
-      toast[res.success ? "success" : "error"](res.message);
+        toast[res.success ? "success" : "error"](res.message);
 
-      if (res.success) {
+        if (res.success) {
+          router.push(`/${params.lang}/result`);
+        }
+      } else {
         router.push(`/${params.lang}/result`);
       }
     });
@@ -213,6 +217,8 @@ const Card = ({
   const searchParams = useSearchParams();
   const params = useParams();
 
+  const placeholder = params.lang === "bn" ? "অন্যান্য খাবার" : "Other Food";
+
   React.useEffect(() => {
     if (data) {
       if (data?.success) {
@@ -277,10 +283,8 @@ const Card = ({
               <Input
                 name="search"
                 className="font-bold pr-14"
-                placeholder={
-                  params.lang === "bn" ? "অন্যান্য খাবার" : "Other food"
-                }
-                value={other.item ?? undefined}
+                placeholder={placeholder}
+                value={other.item === placeholder ? undefined : other.item}
                 onChange={(e) =>
                   setOther((prev) => ({
                     ...prev,

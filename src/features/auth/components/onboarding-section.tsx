@@ -58,7 +58,7 @@ export default function OnboardingSection({
           <CarouselContent>
             {data.images.map((item, index) => (
               <CarouselItem key={index}>
-                <div className="w-full aspect-square bg-muted/50 rounded-md">
+                <div className="w-full aspect-square bg-muted/50 rounded-b-md overflow-hidden">
                   <div className="relative w-full aspect-square mix-blend-multiply">
                     <Image
                       src={item.image}
