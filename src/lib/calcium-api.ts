@@ -3,10 +3,10 @@
 export async function getCalcium(foodName: string) {
   const apiKey = process.env.USDA_API_KEY;
   const res = await fetch(
-    `https://api.nal.usda.gov/fdc/v1/foods/search?query=${foodName}&api_key=${apiKey}`,
+    `https://api.nal.usda.gov/fdc/v1/foods/search?query=${foodName}`,
     {
       headers: {
-        "X-Api-Key": "DEMO_KEY",
+        "X-Api-Key": apiKey as string,
       },
     }
   );
