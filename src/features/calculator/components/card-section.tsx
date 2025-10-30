@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { DictionaryType } from "@/lib/dictionaries";
 import { Check, Info, Plus, PlusCircle, Search } from "lucide-react";
 import Image from "next/image";
-import React, { useActionState } from "react";
+import React, { useActionState, useTransition } from "react";
 import {
   Select,
   SelectContent,
@@ -212,25 +212,12 @@ const Card = ({
   const [unitNo, setUnitNo] = React.useState(selected?.qty ?? 1);
   const [other, setOther] = React.useState(item);
 
-  const [data, action, pending] = useActionState(searchFood, null);
+  const [pending, startTransition] = useTransition();
 
   const searchParams = useSearchParams();
   const params = useParams();
 
   const placeholder = params.lang === "bn" ? "অন্যান্য খাবার" : "Other Food";
-
-  React.useEffect(() => {
-    if (data) {
-      if (data?.success) {
-        setOther((prev) => ({
-          ...prev,
-          calcium_mg: Number(data.data),
-        }));
-      }
-
-      toast[data?.success ? "success" : "info"](data?.message);
-    }
-  }, [data]);
 
   const validatedCategory = searchParams.get("category") ?? "breakfast";
 
@@ -279,7 +266,26 @@ const Card = ({
         <div className="w-full flex justify-between items-center gap-5 flex-wrap">
           {/* title */}
           {type === "other" ? (
-            <form className="relative max-w-[72%] flex" action={action}>
+            <form
+              className="relative max-w-[72%] flex"
+              onSubmit={(e) => {
+                startTransition(async () => {
+                  e.preventDefault();
+                  const data = await searchFood(other.item);
+
+                  if (data) {
+                    if (data?.success) {
+                      setOther((prev) => ({
+                        ...prev,
+                        calcium_mg: Number(data.data),
+                      }));
+                    }
+
+                    toast[data?.success ? "success" : "info"](data?.message);
+                  }
+                });
+              }}
+            >
               <Input
                 name="search"
                 className="font-bold pr-14"
