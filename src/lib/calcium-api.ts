@@ -1,4 +1,3 @@
-"use server";
 
 export async function getCalcium(foodName: string) {
   const apiKey = process.env.USDA_API_KEY;
@@ -12,8 +11,6 @@ export async function getCalcium(foodName: string) {
   );
 
   const data = await res.json();
-
-  console.log(JSON.stringify(data, null, 2));
 
   if (!res.ok) throw data;
 
@@ -29,8 +26,6 @@ export const searchFood = async (prevData: unknown, formData: FormData) => {
     if (!search) throw new Error("input must be contain at least 2 characters");
 
     const res = await getCalcium(search as string);
-
-    console.log(res);
 
     return {
       success: true,
