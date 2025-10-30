@@ -13,6 +13,8 @@ export async function getCalcium(foodName: string) {
 
   const data = await res.json();
 
+  console.log(JSON.stringify(data, null, 2));
+
   if (!res.ok) throw new Error("Please try again");
 
   const nutrients = data.foods[0]?.foodNutrients;
@@ -36,7 +38,7 @@ export const searchFood = async (prevData: unknown, formData: FormData) => {
       data: res,
     };
   } catch (error) {
-    console.error(JSON.stringify(error, null, 2));
+    console.error(error);
 
     const message = (error as Error).message.split("\n").pop();
     return {
