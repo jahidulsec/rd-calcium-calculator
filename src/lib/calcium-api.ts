@@ -8,9 +8,8 @@ export async function getCalcium(foodName: string) {
 
   const data = await res.json();
 
-  console.log(JSON.stringify(data, null, 2));
 
-  if (!res.ok) throw data;
+  if (!res.ok) throw new Error('Please try again');
 
   const nutrients = data.foods[0]?.foodNutrients;
   const calcium = nutrients?.find((n: any) => n.nutrientName === "Calcium, Ca");
@@ -35,7 +34,7 @@ export const searchFood = async (search: string) => {
   } catch (error) {
     console.error(error);
 
-    const message = JSON.stringify(error);
+    const message = (error as Error).message.split('\n').pop();
     return {
       success: false,
       message: message === "fetch failed" ? "Please try again!" : message,

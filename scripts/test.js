@@ -1,5 +1,5 @@
 async function getCalcium(foodName) {
-    const apiKey = "T9FzNXwDoIYWj1RXHziMzwV8DfSSMzYOH57mGOzZ";
+    const apiKey = "DEMO_API";
 
     const res = await fetch(
         `https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(
