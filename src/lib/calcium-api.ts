@@ -36,7 +36,7 @@ export const searchFood = async (prevData: unknown, formData: FormData) => {
       data: res,
     };
   } catch (error) {
-    console.error(error);
+    console.error(JSON.stringify(error, null, 2));
 
     const message = (error as Error).message.split("\n").pop();
     return {
