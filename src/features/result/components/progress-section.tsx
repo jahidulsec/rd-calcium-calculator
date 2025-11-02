@@ -93,17 +93,15 @@ export default function ProgressSection({
                   : "text-chart-2/10 fill-chart-2"
               )}
             />{" "}
-            <p className="font-semibold">
-              {status}
-            </p>
+            <p className="font-semibold">{status}</p>
           </div>
         </Section>
 
         {/* {value < 100 && <AdviceSection data={data} />} */}
+        <CallSection data={data} />
       </div>
 
       <Section className="grid gap-2">
-        <CallSection data={data} />
         <Button
           className="font-bold w-full"
           onClick={() => {

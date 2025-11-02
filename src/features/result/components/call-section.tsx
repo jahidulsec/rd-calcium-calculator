@@ -10,7 +10,7 @@ export default function CallSection({
   data: DictionaryType["result"];
 }) {
   return (
-    <div className="bg-secondary text-background p-4 rounded-md grid gap-2">
+    <div className="p-4 rounded-md grid gap-2">
       <p className="text-sm text-center">
         {data.callSectionPara} 
         {/* ({process.env.NEXT_PUBLIC_TELE_SERVICE}) */}
