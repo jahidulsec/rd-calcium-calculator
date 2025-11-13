@@ -241,7 +241,7 @@ const Card = ({
         {type !== "other" && (
           <div className="flex items-center gap-2 flex-wrap">
             <div className="text-muted-foreground text-sm">
-              {item.unit} | item.calcium_value
+              {item.unit} | {item.calcium_value}
             </div>
             <Info className="fill-muted-foreground/30 text-background size-5" />
           </div>

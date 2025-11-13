@@ -19,8 +19,8 @@ done
 echo "🚀 Starting $app_name deployment (process: $PROCESS)"
 
 
-
-if [ "$PROCESS" = "docker" ]; then
+# Check process
+if [[ "$PROCESS" = "docker" ]]; then
     # docker run
     echo "Drop previous process of docker image..."
     docker-compose down
