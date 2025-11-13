@@ -20,7 +20,7 @@ export const searchFood = async (search: string) => {
   try {
     // const search = formData.get("search");
 
-    if (!search) throw new Error("input must be contain at least 2 characters");
+    if (!search) throw new Error("Search must be contain at least 2 characters");
 
     const res = await getCalcium(search as string);
 
@@ -37,7 +37,7 @@ export const searchFood = async (search: string) => {
     const message = (error as Error).message.split('\n').pop();
     return {
       success: false,
-      message: message === "fetch failed" ? "Please try again!" : message,
+      message: message,
       data: null,
     };
   }

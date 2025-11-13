@@ -211,6 +211,7 @@ const Card = ({
 }) => {
   const [unitNo, setUnitNo] = React.useState(selected?.qty ?? 1);
   const [other, setOther] = React.useState(item);
+  const [search, setSearch] = React.useState("");
 
   const [pending, startTransition] = useTransition();
 
@@ -267,11 +268,11 @@ const Card = ({
           {/* title */}
           {type === "other" ? (
             <form
-              className="relative max-w-[72%] flex"
+              className="relative w-full flex"
               onSubmit={(e) => {
                 startTransition(async () => {
                   e.preventDefault();
-                  const data = await searchFood(other.item);
+                  const data = await searchFood(search);
 
                   if (data) {
                     if (data?.success) {
@@ -291,121 +292,127 @@ const Card = ({
                 className="font-bold pr-14"
                 placeholder={placeholder}
                 value={other.item === placeholder ? undefined : other.item}
-                onChange={(e) =>
+                onChange={(e) => {
                   setOther((prev) => ({
                     ...prev,
                     item: e.target.value,
-                  }))
-                }
+                  }));
+                  setSearch(e.target.value);
+                }}
               />
               <Button
                 disabled={pending}
-                variant={"outline"}
-                className="absolute right-0"
+                variant={"secondary"}
+                className="absolute right-0 text-background"
               >
-                {pending ? <Spinner /> : <Search />}
-                <span className="sr-only">search</span>
+                {pending ? (
+                  <Spinner />
+                ) : (
+                  <span className="sr-only1">Search</span>
+                )}
               </Button>
             </form>
           ) : (
-            <h3 className="font-bold max-w-[72%]">{item.item.split("(")[0]}</h3>
+            <h3 className="font-bold w-full">{item.item.split("(")[0]}</h3>
           )}
 
-          {selected ? (
-            <Button
-              size={"icon-sm"}
-              className={cn("rounded-full", selected ? "bg-chart-2" : "")}
-              disabled={disable}
-              onClick={() => {
-                if (type === "other") {
-                  onDelete({
-                    id: other.id,
-                    name: other.item,
-                    qty: unitNo,
-                    calcium_mg: other.calcium_mg,
-                    category: validatedCategory,
-                  });
-                } else {
-                  onDelete({
-                    name: item.item,
-                    qty: unitNo,
-                    calcium_mg: item.calcium_mg,
-                    category: validatedCategory,
-                  });
-                }
-              }}
-            >
-              <Check />
-              <span className="sr-only">Add</span>
-            </Button>
-          ) : (
-            <Button
-              size={"icon-sm"}
-              className="rounded-full"
-              disabled={disable}
-              onClick={() => {
+          {/* bottom */}
+          <div className={"w-full flex justify-between gap-5"}>
+            <Select
+              value={unitNo.toString()}
+              onValueChange={(value) => {
+                setUnitNo(Number(value ?? 1));
+
                 if (type === "other") {
                   onSelect({
                     id: other.id,
                     name: other.item,
-                    qty: unitNo,
+                    qty: Number(value ?? 1),
                     calcium_mg: other.calcium_mg,
                     category: validatedCategory,
                   });
                 } else {
                   onSelect({
                     name: item.item,
-                    qty: unitNo,
+                    qty: Number(value ?? 1),
                     calcium_mg: item.calcium_mg,
                     category: validatedCategory,
                   });
                 }
               }}
             >
-              <Plus />
-              <span className="sr-only">Add</span>
-            </Button>
-          )}
+              <SelectTrigger className="w-2/3 text-primary font-semibold [&_svg:not([class*='text-'])]:text-secondary">
+                <SelectValue placeholder="Select a unit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Unit</SelectLabel>
+                  {Array.from({ length: 8 }).map((_, index) => (
+                    <SelectItem key={index} value={(index + 1).toString()}>
+                      {index + 1} Serving
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+
+            {selected ? (
+              <Button
+                size={"icon-sm"}
+                className={cn("rounded-full", selected ? "bg-chart-2" : "")}
+                disabled={disable}
+                onClick={() => {
+                  if (type === "other") {
+                    onDelete({
+                      id: other.id,
+                      name: other.item,
+                      qty: unitNo,
+                      calcium_mg: other.calcium_mg,
+                      category: validatedCategory,
+                    });
+                  } else {
+                    onDelete({
+                      name: item.item,
+                      qty: unitNo,
+                      calcium_mg: item.calcium_mg,
+                      category: validatedCategory,
+                    });
+                  }
+                }}
+              >
+                <Check />
+                <span className="sr-only">Add</span>
+              </Button>
+            ) : (
+              <Button
+                size={"icon-sm"}
+                className="rounded-full"
+                disabled={disable}
+                onClick={() => {
+                  if (type === "other") {
+                    onSelect({
+                      id: other.id,
+                      name: other.item,
+                      qty: unitNo,
+                      calcium_mg: other.calcium_mg,
+                      category: validatedCategory,
+                    });
+                  } else {
+                    onSelect({
+                      name: item.item,
+                      qty: unitNo,
+                      calcium_mg: item.calcium_mg,
+                      category: validatedCategory,
+                    });
+                  }
+                }}
+              >
+                <Plus />
+                <span className="sr-only">Add</span>
+              </Button>
+            )}
+          </div>
         </div>
-
-        {/* bottom */}
-        <Select
-          value={unitNo.toString()}
-          onValueChange={(value) => {
-            setUnitNo(Number(value ?? 1));
-
-            if (type === "other") {
-              onSelect({
-                id: other.id,
-                name: other.item,
-                qty: Number(value ?? 1),
-                calcium_mg: other.calcium_mg,
-                category: validatedCategory,
-              });
-            } else {
-              onSelect({
-                name: item.item,
-                qty: Number(value ?? 1),
-                calcium_mg: item.calcium_mg,
-                category: validatedCategory,
-              });
-            }
-          }}
-        >
-          <SelectTrigger className="w-[180px] text-primary font-semibold [&_svg:not([class*='text-'])]:text-secondary">
-            <SelectValue placeholder="Select a unit" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Unit</SelectLabel>
-              {Array.from({ length: 8 }).map((_, index) => (
-                <SelectItem key={index} value={(index + 1).toString()}>
-                  {index + 1} Serving
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
       </div>
     </div>
   );
