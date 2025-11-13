@@ -238,30 +238,14 @@ const Card = ({
       {/* right */}
       <div className="flex flex-col gap-2 w-full">
         {/* top */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <div className="text-muted-foreground text-sm">
-            {item.unit} |{" "}
-            {type === "other" ? (
-              <>
-                <Input
-                  type="number"
-                  className="text-sm max-w-20 h-fit"
-                  value={other.calcium_mg}
-                  onChange={(e) =>
-                    setOther((prev) => ({
-                      ...prev,
-                      calcium_mg: Number(e.target.value),
-                    }))
-                  }
-                />{" "}
-                mg
-              </>
-            ) : (
-              item.calcium_value
-            )}
+        {type !== "other" && (
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="text-muted-foreground text-sm">
+              {item.unit} | item.calcium_value
+            </div>
+            <Info className="fill-muted-foreground/30 text-background size-5" />
           </div>
-          <Info className="fill-muted-foreground/30 text-background size-5" />
-        </div>
+        )}
 
         {/* middle */}
         <div className="w-full flex justify-between items-center gap-5 flex-wrap">

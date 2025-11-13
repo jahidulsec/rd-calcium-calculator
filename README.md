@@ -94,10 +94,10 @@ docker-compose up -d --build
 ## 🛠 Available Scripts
 
 ```bash
-npm run dev             # Run development server
-npm run build           # Build for production
-npm run start           # Start production server
-npm run lint            # Run ESLint
-npm run deploy:pm2      # Run for server deploy with pm2
-npm run deploy:docker   # Run for server deploy with docker
+npm run dev                         # Run development server
+npm run build                       # Build for production
+npm run start                       # Start production server
+npm run lint                        # Run ESLint
+npm run deploy                      # Run for server deploy with local and pm2
+npm run deploy -- --process docker  # Run for server deploy with docker
 ```
