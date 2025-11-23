@@ -6,10 +6,11 @@ export async function getCalcium(foodName: string) {
     `https://api.nal.usda.gov/fdc/v1/foods/search?query=${foodName}&api_key=${apiKey}`,
   );
 
+  if (res.status === 404) throw new Error("Check the food name spelling for better result")
+
+  if (!res.ok) throw new Error('Please try again or try with another name');
+
   const data = await res.json();
-
-
-  if (!res.ok) throw new Error('Please try again');
 
   const nutrients = data.foods[0]?.foodNutrients;
   const calcium = nutrients?.find((n: any) => n.nutrientName === "Calcium, Ca");
