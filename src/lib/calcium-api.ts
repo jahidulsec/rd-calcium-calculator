@@ -3,7 +3,7 @@
 export async function getCalcium(foodName: string) {
   const apiKey = process.env.NEXT_PUBLIC_USDA_API_KEY;
   const res = await fetch(
-    `https://api.nal.usda.gov/fdc/v1/foods/search?query=${foodName}&api_key=${apiKey}`,
+    `https://api.nal.usda.gov/fdc/v1/foods/search?query=${foodName}&api_key=${apiKey}&pageSize=1`,
   );
 
   if (res.status === 404) throw new Error("Check the food name spelling for better result")
