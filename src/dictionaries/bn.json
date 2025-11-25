@@ -47,7 +47,7 @@
   "otherFood": {
     "item": "",
     "categories": ["breakfast", "lunch", "evening-snacks", "dinner"],
-    "calcium_mg": 50,
+    "calcium_mg": 0,
     "calcium_value": "৫০ মি.গ্রা.",
     "unit": "১০০ গ্রাম",
     "image": "/images/food/other.jpg"
