@@ -14,7 +14,7 @@ export default async function AdminLayout({
   return (
     <CalculatorProvider>
       <div className="relative">
-        <main className="flex flex-col gap-6 min-h-[calc(100svh-60px)] w-full">
+        <main className="flex flex-col gap-6 min-h-[calc(100svh-80px)] w-full">
           {children}
         </main>
         <Footer />
