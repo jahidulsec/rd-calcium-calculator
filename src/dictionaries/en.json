@@ -1,6 +1,6 @@
 {
   "onboarding": {
-    "title": "Keep track of your calcium intake, keep your bones healthy.",
+    "title": "Calcium Calculator",
     "buttonTitle": "Calculate Now",
 
     "images": [
@@ -343,7 +343,7 @@
     "buttonTitle": "Login"
   },
   "verification": {
-    "pageTitle": "Confirm your Number",
+    "pageTitle": "Calcium Calculator",
     "subtitle": "We sent a code to "
   },
   "verificationForm": {

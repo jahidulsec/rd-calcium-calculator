@@ -182,7 +182,7 @@ export default function CardSection({
       <div className="sticky bottom-0 pb-5 mt-5 bg-background">
         <FormButton
           isPending={isPending}
-          className="w-full font-bold"
+          className="w-full font-bold bg-emerald-700 hover:bg-emerald-600"
           onClick={handleSubmit}
         >
           <Link href={`/${params.lang}/result`}>

@@ -85,14 +85,14 @@ export default function OnboardingSection({
 
       <Section>
         <article className="flex flex-col gap-3 mt-8">
-          <PageHeading className="text-center text-primary text-wrap">
+          <PageHeading className="text-center text-primary text-wrap text-2xl font-bold">
             {data.title}
           </PageHeading>
           <p className="text-center text-sm text-muted-foreground">
             {data.images[current - 1]?.desc}
           </p>
 
-          <Button className="mt-6 font-bold" asChild size={"lg"}>
+          <Button className="mt-6 font-bold text-lg bg-emerald-800 hover:bg-emerald-900" asChild size={"lg"}>
             <Link href={"/login"}>
               {data.buttonTitle} <ArrowRight />
             </Link>

@@ -16,7 +16,7 @@ export default function BlogCard({ ...item }: BlogTableProps) {
   return (
     <div className="bg-muted/50 p-2 rounded-md flex flex-col gap-3">
       {/* image */}
-      <div className="relative w-full aspect-video rounded-md overflow-hidden">
+      <div className="relative w-full min-w-40 aspect-video rounded-md overflow-hidden">
         <Image
           fill
           src={`/api/upload/blog/${item.id}`}
@@ -33,7 +33,7 @@ export default function BlogCard({ ...item }: BlogTableProps) {
         <Link href={`/blog/${item.id}`} className="hover:underline">
           <h3 className="font-semibold line-clamp-2">{title}</h3>
         </Link>
-        <p className="text-sm text-muted-foreground line-clamp-3">{desc}</p>
+        <p className="text-sm text-muted-foreground line-clamp-2">{desc}</p>
       </div>
     </div>
   );

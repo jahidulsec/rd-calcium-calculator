@@ -12,7 +12,7 @@ export default function HeaderSection({
   return (
     <header className="max-w-md mx-auto p-6 flex flex-col gap-3">
       <BackButton />
-      <PageHeading>{title}</PageHeading>
+      <PageHeading className="font-bold text-2xl">{title}</PageHeading>
       <PageSubtitle>{subtitle}</PageSubtitle>
     </header>
   );

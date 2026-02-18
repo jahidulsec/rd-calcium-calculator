@@ -12,7 +12,7 @@ export default function HomeCalculatorSection({
 }) {
   return (
     <Section>
-      <div className="flex flex-col gap-6 bg-gradient-to-b from-primary to-violet-300 p-4 rounded-md">
+      <div className="flex flex-col gap-6 bg-gradient-to-b from-violet-300 to-primary p-4 py-6 rounded-md">
         <h2 className="flex items-center gap-3 text-primary-foreground font-semibold">
           {data.cardTtitle} <Info className="fill-muted text-primary" />
         </h2>

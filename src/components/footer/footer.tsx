@@ -1,10 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import LogoSection from "./logo-section";
 
 const Footer = () => {
   return (
     <footer className="my-3">
+      {/* image */}
+      <LogoSection />
       <p className="text-center text-xs md:text-sm">
         Designed & Developed By{" "}
         <em className="not-italic font-bold ">
