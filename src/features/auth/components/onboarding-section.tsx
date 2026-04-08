@@ -15,8 +15,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { DictionaryType } from "@/lib/dictionaries";
-
-
+import { useParams } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function OnboardingSection({
   data,
@@ -26,6 +26,8 @@ export default function OnboardingSection({
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+
+  const params = useParams();
 
   React.useEffect(() => {
     if (!api) {
@@ -85,14 +87,23 @@ export default function OnboardingSection({
 
       <Section>
         <article className="flex flex-col gap-3 mt-8">
-          <PageHeading className="text-center text-primary text-wrap text-2xl font-bold">
+          <PageHeading
+            className={cn(
+              "text-center text-primary text-wrap text-4xl",
+              params.lang === "en" ? "font-chakra" : "",
+            )}
+          >
             {data.title}
           </PageHeading>
-          <p className="text-center text-sm text-muted-foreground">
+          {/* <p className="text-center text-sm text-muted-foreground">
             {data.images[current - 1]?.desc}
-          </p>
+          </p> */}
 
-          <Button className="mt-6 font-bold text-lg bg-emerald-800 hover:bg-emerald-900" asChild size={"lg"}>
+          <Button
+            className="mt-6 font-bold text-lg bg-emerald-800 hover:bg-emerald-900"
+            asChild
+            size={"lg"}
+          >
             <Link href={"/login"}>
               {data.buttonTitle} <ArrowRight />
             </Link>

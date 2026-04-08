@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={`antialiased`}>
         <ProgressProviders>
           {children}
           <Toaster closeButton richColors position="top-right" />

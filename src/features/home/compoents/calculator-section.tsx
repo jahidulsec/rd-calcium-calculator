@@ -13,8 +13,8 @@ export default function HomeCalculatorSection({
   return (
     <Section>
       <div className="flex flex-col gap-6 bg-gradient-to-b from-violet-300 to-primary p-4 py-6 rounded-md">
-        <h2 className="flex items-center gap-3 text-primary-foreground font-semibold">
-          {data.cardTtitle} <Info className="fill-muted text-primary" />
+        <h2 className="text-center text-primary-foreground font-semibold">
+          {data.cardButton}
         </h2>
         <Button
           variant={"outline"}
@@ -22,7 +22,7 @@ export default function HomeCalculatorSection({
           className="text-primary font-bold"
           asChild
         >
-          <Link href={`/calculator`}>{data.cardButton}</Link>
+          <Link href={`/calculator`}>{data.cardTtitle}</Link>
         </Button>
       </div>
     </Section>

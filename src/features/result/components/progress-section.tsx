@@ -76,9 +76,9 @@ export default function ProgressSection({
           <div
             className={cn(
               " w-full flex justify-center items-center gap-2 h-10 rounded-md",
-              value < 100
+              value > 100
                 ? "bg-chart-5/10 text-chart-5"
-                : value > 100
+                : value < 100
                 ? "bg-destructive/10 text-destructive"
                 : "bg-chart-2/10 text-chart-2"
             )}
@@ -86,9 +86,9 @@ export default function ProgressSection({
             <Circle
               className={cn(
                 "fill-chart-4/50 text-chart-4/50 size-3.5",
-                value < 100
+                value > 100
                   ? "text-chart-5/10 fill-chart-5"
-                  : value > 100
+                  : value < 100
                   ? "text-destructive/10 fill-destructive"
                   : "text-chart-2/10 fill-chart-2"
               )}
