@@ -2,15 +2,18 @@
   "onboarding": {
     "title": "Calcium Calculator",
     "buttonTitle": "Calculate Now",
-
     "images": [
       {
         "desc": "Calcium deficiency may cause weak bones along with conditions like osteoporosis, tetany, and hypothyroidism.",
-        "image": "/images/App Image 1.jpg"
+        "image": "/images/Calcium Calculator Banner 1.png"
       },
       {
         "desc": "During pregnancy, calcium deficiency may weaken the mother’s bones, cause tetany and other complications, and affect the baby’s bone and teeth development.",
-        "image": "/images/App Image 2.jpg"
+        "image": "/images/Calcium Calculator Banner 2.png"
+      },
+      {
+        "desc": "Calcium deficiency may cause weak bones along with conditions like osteoporosis, tetany, and hypothyroidism.",
+        "image": "/images/Calcium Calculator Banner 3.png"
       }
     ]
   },
@@ -47,7 +50,12 @@
   "foodTips": "Subtract your Total Daily Calcium Intake from the Recommended Daily Allowance (RDA) for your age and gender. The result shows how much more calcium you need, which can be met through extra food orsupplements.",
   "otherFood": {
     "item": "Other Food",
-    "categories": ["breakfast", "lunch", "evening-snacks", "dinner"],
+    "categories": [
+      "breakfast",
+      "lunch",
+      "evening-snacks",
+      "dinner"
+    ],
     "calcium_mg": 0,
     "calcium_value": "50 mg",
     "unit": "100 g",
@@ -56,7 +64,11 @@
   "food": [
     {
       "item": "Milk (Full cream)",
-      "categories": ["breakfast", "evening-snacks", "dinner"],
+      "categories": [
+        "breakfast",
+        "evening-snacks",
+        "dinner"
+      ],
       "calcium_mg": 305,
       "calcium_value": "305 mg",
       "unit": "1 Glass",
@@ -64,7 +76,10 @@
     },
     {
       "item": "Tea/Coffee with milk (1 cup)",
-      "categories": ["breakfast", "evening-snacks"],
+      "categories": [
+        "breakfast",
+        "evening-snacks"
+      ],
       "calcium_mg": 45,
       "calcium_value": "45 mg",
       "unit": "1 cup",
@@ -72,7 +87,9 @@
     },
     {
       "item": "Chia seeds (2 tablespoons)",
-      "categories": ["breakfast"],
+      "categories": [
+        "breakfast"
+      ],
       "calcium_mg": 125,
       "calcium_value": "125 mg",
       "unit": "2 tablespoons",
@@ -80,7 +97,9 @@
     },
     {
       "item": "Egg (1 piece)",
-      "categories": ["breakfast"],
+      "categories": [
+        "breakfast"
+      ],
       "calcium_mg": 50,
       "calcium_value": "50 mg",
       "unit": "1 piece",
@@ -88,7 +107,9 @@
     },
     {
       "item": "Roti (1 piece)",
-      "categories": ["breakfast"],
+      "categories": [
+        "breakfast"
+      ],
       "calcium_mg": 30,
       "calcium_value": "30 mg",
       "unit": "1 piece",
@@ -96,7 +117,9 @@
     },
     {
       "item": "Mixed vegetables (1 cup)",
-      "categories": ["breakfast"],
+      "categories": [
+        "breakfast"
+      ],
       "calcium_mg": 60,
       "calcium_value": "60 mg",
       "unit": "1 cup",
@@ -104,7 +127,10 @@
     },
     {
       "item": "Banana (1 piece)",
-      "categories": ["breakfast", "evening-snacks"],
+      "categories": [
+        "breakfast",
+        "evening-snacks"
+      ],
       "calcium_mg": 10,
       "calcium_value": "10 mg",
       "unit": "1 piece",
@@ -112,7 +138,10 @@
     },
     {
       "item": "Orange (medium)",
-      "categories": ["breakfast", "evening-snacks"],
+      "categories": [
+        "breakfast",
+        "evening-snacks"
+      ],
       "calcium_mg": 55,
       "calcium_value": "55 mg",
       "unit": "medium",
@@ -120,7 +149,9 @@
     },
     {
       "item": "Bread (1 slice)",
-      "categories": ["breakfast"],
+      "categories": [
+        "breakfast"
+      ],
       "calcium_mg": 30,
       "calcium_value": "30 mg",
       "unit": "1 slice",
@@ -128,7 +159,9 @@
     },
     {
       "item": "Paneer / Cottage cheese",
-      "categories": ["breakfast"],
+      "categories": [
+        "breakfast"
+      ],
       "calcium_mg": 320,
       "calcium_value": "320 mg",
       "unit": "unit",
@@ -136,7 +169,10 @@
     },
     {
       "item": "Nuts (1 handful)",
-      "categories": ["breakfast", "evening-snacks"],
+      "categories": [
+        "breakfast",
+        "evening-snacks"
+      ],
       "calcium_mg": 30,
       "calcium_value": "30 mg",
       "unit": "1 handful",
@@ -144,7 +180,9 @@
     },
     {
       "item": "Sesame seeds (1 spoon)",
-      "categories": ["breakfast"],
+      "categories": [
+        "breakfast"
+      ],
       "calcium_mg": 100,
       "calcium_value": "100 mg",
       "unit": "1 spoon",
@@ -152,7 +190,10 @@
     },
     {
       "item": "Hotchpotch (1 bowl)",
-      "categories": ["breakfast", "lunch"],
+      "categories": [
+        "breakfast",
+        "lunch"
+      ],
       "calcium_mg": 30,
       "calcium_value": "30 mg",
       "unit": "1 bowl",
@@ -160,7 +201,11 @@
     },
     {
       "item": "Oatmeal (1 cup)",
-      "categories": ["breakfast", "lunch", "dinner"],
+      "categories": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ],
       "calcium_mg": 125,
       "calcium_value": "125 mg",
       "unit": "1 cup",
@@ -168,7 +213,10 @@
     },
     {
       "item": "Noodles (1 bowl)",
-      "categories": ["breakfast", "evening-snacks"],
+      "categories": [
+        "breakfast",
+        "evening-snacks"
+      ],
       "calcium_mg": 30,
       "calcium_value": "30 mg",
       "unit": "1 bowl",
@@ -176,7 +224,11 @@
     },
     {
       "item": "Rice (100 g)",
-      "categories": ["breakfast", "lunch", "dinner"],
+      "categories": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ],
       "calcium_mg": 10,
       "calcium_value": "10 mg",
       "unit": "100 g",
@@ -184,7 +236,10 @@
     },
     {
       "item": "Lentils (Masoor/Moong) (1 cup)",
-      "categories": ["lunch", "dinner"],
+      "categories": [
+        "lunch",
+        "dinner"
+      ],
       "calcium_mg": 50,
       "calcium_value": "50 mg",
       "unit": "1 cup",
@@ -192,7 +247,10 @@
     },
     {
       "item": "Green leafy vegetables (Spinach, Red amaranth, Radish leaves, etc.)",
-      "categories": ["lunch", "dinner"],
+      "categories": [
+        "lunch",
+        "dinner"
+      ],
       "calcium_mg": 350,
       "calcium_value": "350 mg",
       "unit": "unit",
@@ -200,7 +258,9 @@
     },
     {
       "item": "Boiled soybeans (1 cup)",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 176,
       "calcium_value": "176 mg",
       "unit": "1 cup",
@@ -208,7 +268,9 @@
     },
     {
       "item": "Kidney beans",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 130,
       "calcium_value": "130 mg",
       "unit": "unit",
@@ -216,7 +278,9 @@
     },
     {
       "item": "Rui fish (1 piece)",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 200,
       "calcium_value": "200 mg",
       "unit": "1 piece",
@@ -224,7 +288,9 @@
     },
     {
       "item": "Hilsa fish (1 piece)",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 150,
       "calcium_value": "150 mg",
       "unit": "1 piece",
@@ -232,7 +298,9 @@
     },
     {
       "item": "Dried fish (per 100 g)",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 1200,
       "calcium_value": "1200 mg",
       "unit": "per 100 g",
@@ -240,7 +308,9 @@
     },
     {
       "item": "Kachki fish",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 700,
       "calcium_value": "700 mg",
       "unit": "unit",
@@ -248,7 +318,9 @@
     },
     {
       "item": "Chicken (1 medium piece)",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 11,
       "calcium_value": "11 mg",
       "unit": "1 medium piece",
@@ -256,7 +328,9 @@
     },
     {
       "item": "Beef (100 g)",
-      "categories": ["lunch"],
+      "categories": [
+        "lunch"
+      ],
       "calcium_mg": 18,
       "calcium_value": "18 mg",
       "unit": "100 g",
@@ -264,7 +338,10 @@
     },
     {
       "item": "Yogurt",
-      "categories": ["lunch", "dinner"],
+      "categories": [
+        "lunch",
+        "dinner"
+      ],
       "calcium_mg": 110,
       "calcium_value": "110 mg",
       "unit": "unit",
@@ -272,7 +349,10 @@
     },
     {
       "item": "Payesh (Rice pudding, 1 bowl)",
-      "categories": ["lunch", "dinner"],
+      "categories": [
+        "lunch",
+        "dinner"
+      ],
       "calcium_mg": 150,
       "calcium_value": "150 mg",
       "unit": "Rice pudding, 1 bowl",
@@ -280,7 +360,11 @@
     },
     {
       "item": "Pudding (1 serving)",
-      "categories": ["lunch", "evening-snacks", "dinner"],
+      "categories": [
+        "lunch",
+        "evening-snacks",
+        "dinner"
+      ],
       "calcium_mg": 106,
       "calcium_value": "106 mg",
       "unit": "1 serving",
@@ -288,7 +372,9 @@
     },
     {
       "item": "Apple (1 piece)",
-      "categories": ["evening-snacks"],
+      "categories": [
+        "evening-snacks"
+      ],
       "calcium_mg": 10,
       "calcium_value": "10 mg",
       "unit": "1 piece",
@@ -296,7 +382,9 @@
     },
     {
       "item": "Guava (1 piece)",
-      "categories": ["evening-snacks"],
+      "categories": [
+        "evening-snacks"
+      ],
       "calcium_mg": 30,
       "calcium_value": "30 mg",
       "unit": "1 piece",
@@ -304,7 +392,9 @@
     },
     {
       "item": "Biscuit",
-      "categories": ["evening-snacks"],
+      "categories": [
+        "evening-snacks"
+      ],
       "calcium_mg": 50,
       "calcium_value": "50 mg",
       "unit": "unit",
@@ -312,7 +402,9 @@
     },
     {
       "item": "Meat (1 piece)",
-      "categories": ["dinner"],
+      "categories": [
+        "dinner"
+      ],
       "calcium_mg": 30,
       "calcium_value": "30 mg",
       "unit": "1 piece",
@@ -320,7 +412,9 @@
     },
     {
       "item": "Fish (1 piece)",
-      "categories": ["dinner"],
+      "categories": [
+        "dinner"
+      ],
       "calcium_mg": 200,
       "calcium_value": "200 mg",
       "unit": "1 piece",
@@ -328,7 +422,9 @@
     },
     {
       "item": "Dates (2 pieces)",
-      "categories": ["dinner"],
+      "categories": [
+        "dinner"
+      ],
       "calcium_mg": 20,
       "calcium_value": "20 mg",
       "unit": "2 pieces",
